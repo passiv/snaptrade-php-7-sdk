@@ -165,9 +165,7 @@ class TransactionsAndReportingApi extends \SnapTrade\CustomApi
         $brokerage_authorizations = SENTINEL_VALUE,
         $type = SENTINEL_VALUE,
 
-
         string $contentType = self::contentTypes['getActivities'][0]
-
     )
     {
 
@@ -331,9 +329,7 @@ class TransactionsAndReportingApi extends \SnapTrade\CustomApi
         $brokerage_authorizations = SENTINEL_VALUE,
         $type = SENTINEL_VALUE,
 
-
         string $contentType = self::contentTypes['getActivities'][0]
-
     )
     {
 
@@ -648,9 +644,7 @@ class TransactionsAndReportingApi extends \SnapTrade\CustomApi
         $detailed = SENTINEL_VALUE,
         $frequency = SENTINEL_VALUE,
 
-
         string $contentType = self::contentTypes['getReportingCustomRange'][0]
-
     )
     {
 
@@ -814,9 +808,7 @@ class TransactionsAndReportingApi extends \SnapTrade\CustomApi
         $detailed = SENTINEL_VALUE,
         $frequency = SENTINEL_VALUE,
 
-
         string $contentType = self::contentTypes['getReportingCustomRange'][0]
-
     )
     {
 

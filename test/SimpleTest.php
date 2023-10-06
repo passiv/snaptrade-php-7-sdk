@@ -65,8 +65,8 @@ class SimpleTest extends TestCase
     public function testClient()
     {
         $snaptrade = new \SnapTrade\Client(
-    getenv("SNAPTRADE_CONSUMER_KEY"),
-    getenv("SNAPTRADE_CLIENT_ID")
-);
+            getenv("SNAPTRADE_CONSUMER_KEY"),
+            getenv("SNAPTRADE_CLIENT_ID")
+        );
     }
 }

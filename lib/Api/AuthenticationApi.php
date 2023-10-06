@@ -162,9 +162,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
     public function deleteSnapTradeUser(
         $user_id,
 
-
         string $contentType = self::contentTypes['deleteSnapTradeUser'][0]
-
     )
     {
 
@@ -373,9 +371,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
     public function deleteSnapTradeUserAsync(
         $user_id,
 
-
         string $contentType = self::contentTypes['deleteSnapTradeUser'][0]
-
     )
     {
 
@@ -580,9 +576,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
         $user_id,
         $user_secret,
 
-
         string $contentType = self::contentTypes['getUserJWT'][0]
-
     )
     {
 
@@ -795,9 +789,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
         $user_id,
         $user_secret,
 
-
         string $contentType = self::contentTypes['getUserJWT'][0]
-
     )
     {
 
@@ -1023,7 +1015,6 @@ class AuthenticationApi extends \SnapTrade\CustomApi
 
 
         string $contentType = self::contentTypes['listSnapTradeUsers'][0]
-
     )
     {
 
@@ -1207,7 +1198,6 @@ class AuthenticationApi extends \SnapTrade\CustomApi
 
 
         string $contentType = self::contentTypes['listSnapTradeUsers'][0]
-
     )
     {
 
@@ -1395,9 +1385,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
         $reconnect = SENTINEL_VALUE,
         $connection_type = SENTINEL_VALUE,
 
-
         string $contentType = self::contentTypes['loginSnapTradeUser'][0]
-
     )
     {
         $_body = null;
@@ -1625,9 +1613,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
         $reconnect = SENTINEL_VALUE,
         $connection_type = SENTINEL_VALUE,
 
-
         string $contentType = self::contentTypes['loginSnapTradeUser'][0]
-
     )
     {
         $_body = null;
@@ -1878,9 +1864,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
 
         $user_id = SENTINEL_VALUE,
         $rsa_public_key = SENTINEL_VALUE,
-
         string $contentType = self::contentTypes['registerSnapTradeUser'][0]
-
     )
     {
         $_body = [];
@@ -2071,9 +2055,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
 
         $user_id = SENTINEL_VALUE,
         $rsa_public_key = SENTINEL_VALUE,
-
         string $contentType = self::contentTypes['registerSnapTradeUser'][0]
-
     )
     {
         $_body = [];
