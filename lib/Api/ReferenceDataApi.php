@@ -893,7 +893,7 @@ class ReferenceDataApi extends \SnapTrade\CustomApi
     /**
      * Operation getSecurityTypes
      *
-     * List of all security types.
+     * List of all security types
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityTypes'] to see the possible values for this operation
      *
@@ -915,7 +915,7 @@ class ReferenceDataApi extends \SnapTrade\CustomApi
     /**
      * Operation getSecurityTypesWithHttpInfo
      *
-     * List of all security types.
+     * List of all security types
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityTypes'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
@@ -1030,7 +1030,7 @@ class ReferenceDataApi extends \SnapTrade\CustomApi
     /**
      * Operation getSecurityTypesAsync
      *
-     * List of all security types.
+     * List of all security types
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityTypes'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
@@ -1056,7 +1056,7 @@ class ReferenceDataApi extends \SnapTrade\CustomApi
     /**
      * Operation getSecurityTypesAsyncWithHttpInfo
      *
-     * List of all security types.
+     * List of all security types
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityTypes'] to see the possible values for this operation
      *
