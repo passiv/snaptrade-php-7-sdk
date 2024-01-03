@@ -655,6 +655,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $time_in_force = SENTINEL_VALUE,
         $units = SENTINEL_VALUE,
         $universal_symbol_id = SENTINEL_VALUE,
+        $notional_value = SENTINEL_VALUE,
         string $contentType = self::contentTypes['getOrderImpact'][0]
     )
     {
@@ -667,6 +668,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "units", $units);
         $this->setRequestBodyProperty($_body, "universal_symbol_id", $universal_symbol_id);
+        $this->setRequestBodyProperty($_body, "notional_value", $notional_value);
         $manual_trade_form = $_body;
 
         list($response) = $this->getOrderImpactWithHttpInfo($user_id, $user_secret, $manual_trade_form, $contentType);
@@ -866,6 +868,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $time_in_force = SENTINEL_VALUE,
         $units = SENTINEL_VALUE,
         $universal_symbol_id = SENTINEL_VALUE,
+        $notional_value = SENTINEL_VALUE,
         string $contentType = self::contentTypes['getOrderImpact'][0]
     )
     {
@@ -878,6 +881,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "units", $units);
         $this->setRequestBodyProperty($_body, "universal_symbol_id", $universal_symbol_id);
+        $this->setRequestBodyProperty($_body, "notional_value", $notional_value);
         $manual_trade_form = $_body;
 
         return $this->getOrderImpactAsyncWithHttpInfo($user_id, $user_secret, $manual_trade_form, $contentType)
@@ -1605,6 +1609,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $time_in_force = SENTINEL_VALUE,
         $units = SENTINEL_VALUE,
         $universal_symbol_id = SENTINEL_VALUE,
+        $notional_value = SENTINEL_VALUE,
         string $contentType = self::contentTypes['placeForceOrder'][0]
     )
     {
@@ -1617,6 +1622,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "units", $units);
         $this->setRequestBodyProperty($_body, "universal_symbol_id", $universal_symbol_id);
+        $this->setRequestBodyProperty($_body, "notional_value", $notional_value);
         $manual_trade_form = $_body;
 
         list($response) = $this->placeForceOrderWithHttpInfo($user_id, $user_secret, $manual_trade_form, $contentType);
@@ -1816,6 +1822,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $time_in_force = SENTINEL_VALUE,
         $units = SENTINEL_VALUE,
         $universal_symbol_id = SENTINEL_VALUE,
+        $notional_value = SENTINEL_VALUE,
         string $contentType = self::contentTypes['placeForceOrder'][0]
     )
     {
@@ -1828,6 +1835,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "units", $units);
         $this->setRequestBodyProperty($_body, "universal_symbol_id", $universal_symbol_id);
+        $this->setRequestBodyProperty($_body, "notional_value", $notional_value);
         $manual_trade_form = $_body;
 
         return $this->placeForceOrderAsyncWithHttpInfo($user_id, $user_secret, $manual_trade_form, $contentType)
