@@ -1407,7 +1407,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id The ID of the account to get orders. (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
-     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 90 days if no value is passed in. (optional)
+     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -1438,7 +1438,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_secret (required)
      * @param  string $account_id The ID of the account to get orders. (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
-     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 90 days if no value is passed in. (optional)
+     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -1586,7 +1586,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_secret (required)
      * @param  string $account_id The ID of the account to get orders. (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
-     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 90 days if no value is passed in. (optional)
+     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -1621,7 +1621,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_secret (required)
      * @param  string $account_id The ID of the account to get orders. (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
-     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 90 days if no value is passed in. (optional)
+     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1679,7 +1679,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_secret (required)
      * @param  string $account_id The ID of the account to get orders. (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
-     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 90 days if no value is passed in. (optional)
+     * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
