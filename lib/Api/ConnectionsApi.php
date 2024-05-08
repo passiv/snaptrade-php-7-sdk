@@ -545,7 +545,7 @@ class ConnectionsApi extends \SnapTrade\CustomApi
     /**
      * Operation listBrokerageAuthorizations
      *
-     * List all brokerage authorizations for the user
+     * List all brokerage authorizations for the User
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -570,7 +570,7 @@ class ConnectionsApi extends \SnapTrade\CustomApi
     /**
      * Operation listBrokerageAuthorizationsWithHttpInfo
      *
-     * List all brokerage authorizations for the user
+     * List all brokerage authorizations for the User
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -689,7 +689,7 @@ class ConnectionsApi extends \SnapTrade\CustomApi
     /**
      * Operation listBrokerageAuthorizationsAsync
      *
-     * List all brokerage authorizations for the user
+     * List all brokerage authorizations for the User
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -718,7 +718,7 @@ class ConnectionsApi extends \SnapTrade\CustomApi
     /**
      * Operation listBrokerageAuthorizationsAsyncWithHttpInfo
      *
-     * List all brokerage authorizations for the user
+     * List all brokerage authorizations for the User
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1261,7 +1261,7 @@ class ConnectionsApi extends \SnapTrade\CustomApi
     /**
      * Operation sessionEvents
      *
-     * List all session events for the partner
+     * Get all session events for a user
      *
      * @param  string $partner_client_id partner_client_id (required)
      * @param  string $user_id Optional comma seperated list of user IDs used to filter the request on specific users (optional)
@@ -1288,7 +1288,7 @@ class ConnectionsApi extends \SnapTrade\CustomApi
     /**
      * Operation sessionEventsWithHttpInfo
      *
-     * List all session events for the partner
+     * Get all session events for a user
      *
      * @param  string $partner_client_id (required)
      * @param  string $user_id Optional comma seperated list of user IDs used to filter the request on specific users (optional)
@@ -1409,7 +1409,7 @@ class ConnectionsApi extends \SnapTrade\CustomApi
     /**
      * Operation sessionEventsAsync
      *
-     * List all session events for the partner
+     * Get all session events for a user
      *
      * @param  string $partner_client_id (required)
      * @param  string $user_id Optional comma seperated list of user IDs used to filter the request on specific users (optional)
@@ -1440,7 +1440,7 @@ class ConnectionsApi extends \SnapTrade\CustomApi
     /**
      * Operation sessionEventsAsyncWithHttpInfo
      *
-     * List all session events for the partner
+     * Get all session events for a user
      *
      * @param  string $partner_client_id (required)
      * @param  string $user_id Optional comma seperated list of user IDs used to filter the request on specific users (optional)

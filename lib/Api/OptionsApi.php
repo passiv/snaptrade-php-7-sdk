@@ -150,7 +150,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionStrategy
      *
-     * Creates an option strategy object that will be used to place an option strategy order
+     * Create options strategy
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -186,7 +186,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionStrategyWithHttpInfo
      *
-     * Creates an option strategy object that will be used to place an option strategy order
+     * Create options strategy
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -332,7 +332,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionStrategyAsync
      *
-     * Creates an option strategy object that will be used to place an option strategy order
+     * Create options strategy
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -372,7 +372,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionStrategyAsyncWithHttpInfo
      *
-     * Creates an option strategy object that will be used to place an option strategy order
+     * Create options strategy
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -614,7 +614,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionsChain
      *
-     * Get the options chain
+     * Get the options chain for a symbol
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -643,7 +643,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionsChainWithHttpInfo
      *
-     * Get the options chain
+     * Get the options chain for a symbol
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -789,7 +789,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionsChainAsync
      *
-     * Get the options chain
+     * Get the options chain for a symbol
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -822,7 +822,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionsChainAsyncWithHttpInfo
      *
-     * Get the options chain
+     * Get the options chain for a symbol
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1064,7 +1064,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionsStrategyQuote
      *
-     * Get latest market data of option strategy
+     * Get options strategy quotes
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -1093,7 +1093,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionsStrategyQuoteWithHttpInfo
      *
-     * Get latest market data of option strategy
+     * Get options strategy quotes
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1239,7 +1239,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionsStrategyQuoteAsync
      *
-     * Get latest market data of option strategy
+     * Get options strategy quotes
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1272,7 +1272,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation getOptionsStrategyQuoteAsyncWithHttpInfo
      *
-     * Get latest market data of option strategy
+     * Get options strategy quotes
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1511,7 +1511,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation listOptionHoldings
      *
-     * Get the options holdings in the account
+     * Get account option holdings
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -1538,7 +1538,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation listOptionHoldingsWithHttpInfo
      *
-     * Get the options holdings in the account
+     * Get account option holdings
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1682,7 +1682,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation listOptionHoldingsAsync
      *
-     * Get the options holdings in the account
+     * Get account option holdings
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1713,7 +1713,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation listOptionHoldingsAsyncWithHttpInfo
      *
-     * Get the options holdings in the account
+     * Get account option holdings
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1932,7 +1932,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation placeOptionStrategy
      *
-     * Place an option strategy order on the brokerage
+     * Place an option strategy order
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -1970,7 +1970,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation placeOptionStrategyWithHttpInfo
      *
-     * Place an option strategy order on the brokerage
+     * Place an option strategy order
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -2118,7 +2118,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation placeOptionStrategyAsync
      *
-     * Place an option strategy order on the brokerage
+     * Place an option strategy order
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -2160,7 +2160,7 @@ class OptionsApi extends \SnapTrade\CustomApi
     /**
      * Operation placeOptionStrategyAsyncWithHttpInfo
      *
-     * Place an option strategy order on the brokerage
+     * Place an option strategy order
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
