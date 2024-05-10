@@ -629,7 +629,7 @@ class TradingApi extends \SnapTrade\CustomApi
     /**
      * Operation getOrderImpact
      *
-     * Check impact of trades on account.
+     * Check the impact of a trade on an account
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -675,7 +675,7 @@ class TradingApi extends \SnapTrade\CustomApi
     /**
      * Operation getOrderImpactWithHttpInfo
      *
-     * Check impact of trades on account.
+     * Check the impact of a trade on an account
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -842,7 +842,7 @@ class TradingApi extends \SnapTrade\CustomApi
     /**
      * Operation getOrderImpactAsync
      *
-     * Check impact of trades on account.
+     * Check the impact of a trade on an account
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -892,7 +892,7 @@ class TradingApi extends \SnapTrade\CustomApi
     /**
      * Operation getOrderImpactAsyncWithHttpInfo
      *
-     * Check impact of trades on account.
+     * Check the impact of a trade on an account
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
