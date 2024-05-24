@@ -6,7 +6,7 @@
 
 Connect brokerage accounts to your app for live positions and trading
 
-[![Packagist](https://img.shields.io/badge/Packagist-v2.0.18-blue)](https://packagist.org/packages/konfig/snaptrade-php-7-sdk)
+[![Packagist](https://img.shields.io/badge/Packagist-v2.0.19-blue)](https://packagist.org/packages/konfig/snaptrade-php-7-sdk)
 [![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://snaptrade.com/)
 
 </div>
@@ -85,7 +85,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
     }
   ],
   "require": {
-    "konfig/snaptrade-php-7-sdk": "2.0.18"
+    "konfig/snaptrade-php-7-sdk": "2.0.19"
   }
 }
 ```
@@ -1487,7 +1487,7 @@ $result = $snaptrade->trading->getOrderImpact(
     "FOK", 
     3.14, 
     "2bcd7cc3-e922-4976-bce1-9858296801c3", 
-    100
+    None
 );
 ```
 
@@ -1517,7 +1517,7 @@ Stop Price. If stop loss or stop limit order, the price to trigger the stop
 
 ##### universal_symbol_id: `string`<a id="universal_symbol_id-string"></a>
 
-##### notional_value: [`float`](./lib/Model/float.php)<a id="notional_value-floatlibmodelfloatphp"></a>
+##### notional_value: [`ManualTradeFormNotionalValue`](./lib/Model/ManualTradeFormNotionalValue.php)<a id="notional_value-manualtradeformnotionalvaluelibmodelmanualtradeformnotionalvaluephp"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -1601,7 +1601,7 @@ $result = $snaptrade->trading->placeForceOrder(
     "FOK", 
     3.14, 
     "2bcd7cc3-e922-4976-bce1-9858296801c3", 
-    100
+    None
 );
 ```
 
@@ -1631,7 +1631,7 @@ Stop Price. If stop loss or stop limit order, the price to trigger the stop
 
 ##### universal_symbol_id: `string`<a id="universal_symbol_id-string"></a>
 
-##### notional_value: [`float`](./lib/Model/float.php)<a id="notional_value-floatlibmodelfloatphp"></a>
+##### notional_value: [`ManualTradeFormNotionalValue`](./lib/Model/ManualTradeFormNotionalValue.php)<a id="notional_value-manualtradeformnotionalvaluelibmodelmanualtradeformnotionalvaluephp"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
