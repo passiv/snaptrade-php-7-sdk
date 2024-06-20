@@ -1,6 +1,6 @@
 <?php
 /**
- * OptionsPosition
+ * OptionBrokerageSymbol
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * OptionsPosition Class Doc Comment
+ * OptionBrokerageSymbol Class Doc Comment
  *
  * @category Class
- * @description Option Holdings
+ * @description Option Brokerage symbol
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
+class OptionBrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OptionsPosition';
+    protected static $openAPIModelName = 'OptionBrokerageSymbol';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,11 +51,9 @@ class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'symbol' => '\SnapTrade\Model\OptionBrokerageSymbol',
-        'price' => 'float',
-        'units' => 'float',
-        'currency' => '\SnapTrade\Model\OptionsPositionCurrency',
-        'average_purchase_price' => 'float'
+        'id' => 'string',
+        'description' => 'string',
+        'option_symbol' => '\SnapTrade\Model\OptionsSymbol'
     ];
 
     /**
@@ -66,11 +64,9 @@ class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'symbol' => null,
-        'price' => null,
-        'units' => null,
-        'currency' => null,
-        'average_purchase_price' => null
+        'id' => 'uuid',
+        'description' => null,
+        'option_symbol' => null
     ];
 
     /**
@@ -79,11 +75,9 @@ class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'symbol' => false,
-		'price' => true,
-		'units' => false,
-		'currency' => true,
-		'average_purchase_price' => true
+        'id' => false,
+		'description' => false,
+		'option_symbol' => false
     ];
 
     /**
@@ -172,11 +166,9 @@ class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'symbol' => 'symbol',
-        'price' => 'price',
-        'units' => 'units',
-        'currency' => 'currency',
-        'average_purchase_price' => 'average_purchase_price'
+        'id' => 'id',
+        'description' => 'description',
+        'option_symbol' => 'option_symbol'
     ];
 
     /**
@@ -185,11 +177,9 @@ class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'symbol' => 'setSymbol',
-        'price' => 'setPrice',
-        'units' => 'setUnits',
-        'currency' => 'setCurrency',
-        'average_purchase_price' => 'setAveragePurchasePrice'
+        'id' => 'setId',
+        'description' => 'setDescription',
+        'option_symbol' => 'setOptionSymbol'
     ];
 
     /**
@@ -198,11 +188,9 @@ class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'symbol' => 'getSymbol',
-        'price' => 'getPrice',
-        'units' => 'getUnits',
-        'currency' => 'getCurrency',
-        'average_purchase_price' => 'getAveragePurchasePrice'
+        'id' => 'getId',
+        'description' => 'getDescription',
+        'option_symbol' => 'getOptionSymbol'
     ];
 
     /**
@@ -262,11 +250,9 @@ class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('symbol', $data ?? [], null);
-        $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('units', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('average_purchase_price', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('option_symbol', $data ?? [], null);
     }
 
     /**
@@ -312,167 +298,88 @@ class OptionsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets symbol
+     * Gets id
      *
-     * @return \SnapTrade\Model\OptionBrokerageSymbol|null
+     * @return string|null
      */
-    public function getSymbol()
+    public function getId()
     {
-        return $this->container['symbol'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets symbol
+     * Sets id
      *
-     * @param \SnapTrade\Model\OptionBrokerageSymbol|null $symbol symbol
+     * @param string|null $id id
      *
      * @return self
      */
-    public function setSymbol($symbol)
+    public function setId($id)
     {
 
-        if (is_null($symbol)) {
-            throw new \InvalidArgumentException('non-nullable symbol cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
 
-        $this->container['symbol'] = $symbol;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets price
+     * Gets description
      *
-     * @return float|null
+     * @return string|null
      */
-    public function getPrice()
+    public function getDescription()
     {
-        return $this->container['price'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets price
+     * Sets description
      *
-     * @param float|null $price Trade Price if limit or stop limit order
+     * @param string|null $description description
      *
      * @return self
      */
-    public function setPrice($price)
+    public function setDescription($description)
     {
 
-        if (is_null($price)) {
-            array_push($this->openAPINullablesSetToNull, 'price');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
 
-        $this->container['price'] = $price;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets units
+     * Gets option_symbol
      *
-     * @return float|null
+     * @return \SnapTrade\Model\OptionsSymbol|null
      */
-    public function getUnits()
+    public function getOptionSymbol()
     {
-        return $this->container['units'];
+        return $this->container['option_symbol'];
     }
 
     /**
-     * Sets units
+     * Sets option_symbol
      *
-     * @param float|null $units units
+     * @param \SnapTrade\Model\OptionsSymbol|null $option_symbol option_symbol
      *
      * @return self
      */
-    public function setUnits($units)
+    public function setOptionSymbol($option_symbol)
     {
 
-        if (is_null($units)) {
-            throw new \InvalidArgumentException('non-nullable units cannot be null');
+        if (is_null($option_symbol)) {
+            throw new \InvalidArgumentException('non-nullable option_symbol cannot be null');
         }
 
-        $this->container['units'] = $units;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
-     *
-     * @return \SnapTrade\Model\OptionsPositionCurrency|null
-     */
-    public function getCurrency()
-    {
-        return $this->container['currency'];
-    }
-
-    /**
-     * Sets currency
-     *
-     * @param \SnapTrade\Model\OptionsPositionCurrency|null $currency currency
-     *
-     * @return self
-     */
-    public function setCurrency($currency)
-    {
-
-        if (is_null($currency)) {
-            array_push($this->openAPINullablesSetToNull, 'currency');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets average_purchase_price
-     *
-     * @return float|null
-     */
-    public function getAveragePurchasePrice()
-    {
-        return $this->container['average_purchase_price'];
-    }
-
-    /**
-     * Sets average_purchase_price
-     *
-     * @param float|null $average_purchase_price Average purchase price for this position
-     *
-     * @return self
-     */
-    public function setAveragePurchasePrice($average_purchase_price)
-    {
-
-        if (is_null($average_purchase_price)) {
-            array_push($this->openAPINullablesSetToNull, 'average_purchase_price');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('average_purchase_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['average_purchase_price'] = $average_purchase_price;
+        $this->container['option_symbol'] = $option_symbol;
 
         return $this;
     }
