@@ -1,6 +1,6 @@
 <?php
 /**
- * UserSettings
+ * UnderlyingSymbolExchange
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * UserSettings Class Doc Comment
+ * UnderlyingSymbolExchange Class Doc Comment
  *
  * @category Class
- * @description User account settings
+ * @description The exchange on which the security is listed and traded.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class UnderlyingSymbolExchange implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserSettings';
+    protected static $openAPIModelName = 'UnderlyingSymbol_exchange';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,16 +51,15 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email' => 'string',
+        'id' => 'string',
+        'code' => 'string',
+        'mic_code' => 'string',
         'name' => 'string',
-        'receive_cash_notification' => 'bool',
-        'receive_drift_notification' => 'bool',
-        'user_trial_activated' => 'bool',
-        'activated_trial_date' => 'string',
-        'demo' => 'bool',
-        'api_enabled' => 'bool',
-        'drift_threshold' => 'float',
-        'preferred_currency' => '\SnapTrade\Model\Currency'
+        'timezone' => 'string',
+        'start_time' => 'string',
+        'close_time' => 'string',
+        'suffix' => 'string',
+        'allows_cryptocurrency_symbols' => 'bool'
     ];
 
     /**
@@ -71,16 +70,15 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'email' => 'email',
+        'id' => 'uuid',
+        'code' => null,
+        'mic_code' => null,
         'name' => null,
-        'receive_cash_notification' => null,
-        'receive_drift_notification' => null,
-        'user_trial_activated' => null,
-        'activated_trial_date' => 'dateTime',
-        'demo' => null,
-        'api_enabled' => null,
-        'drift_threshold' => null,
-        'preferred_currency' => null
+        'timezone' => null,
+        'start_time' => null,
+        'close_time' => null,
+        'suffix' => null,
+        'allows_cryptocurrency_symbols' => null
     ];
 
     /**
@@ -89,16 +87,15 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'email' => false,
+        'id' => false,
+		'code' => false,
+		'mic_code' => false,
 		'name' => false,
-		'receive_cash_notification' => false,
-		'receive_drift_notification' => false,
-		'user_trial_activated' => false,
-		'activated_trial_date' => false,
-		'demo' => false,
-		'api_enabled' => false,
-		'drift_threshold' => false,
-		'preferred_currency' => false
+		'timezone' => false,
+		'start_time' => false,
+		'close_time' => false,
+		'suffix' => true,
+		'allows_cryptocurrency_symbols' => false
     ];
 
     /**
@@ -187,16 +184,15 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'email' => 'email',
+        'id' => 'id',
+        'code' => 'code',
+        'mic_code' => 'mic_code',
         'name' => 'name',
-        'receive_cash_notification' => 'receive_cash_notification',
-        'receive_drift_notification' => 'receive_drift_notification',
-        'user_trial_activated' => 'user_trial_activated',
-        'activated_trial_date' => 'activated_trial_date',
-        'demo' => 'demo',
-        'api_enabled' => 'api_enabled',
-        'drift_threshold' => 'drift_threshold',
-        'preferred_currency' => 'preferred_currency'
+        'timezone' => 'timezone',
+        'start_time' => 'start_time',
+        'close_time' => 'close_time',
+        'suffix' => 'suffix',
+        'allows_cryptocurrency_symbols' => 'allows_cryptocurrency_symbols'
     ];
 
     /**
@@ -205,16 +201,15 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'email' => 'setEmail',
+        'id' => 'setId',
+        'code' => 'setCode',
+        'mic_code' => 'setMicCode',
         'name' => 'setName',
-        'receive_cash_notification' => 'setReceiveCashNotification',
-        'receive_drift_notification' => 'setReceiveDriftNotification',
-        'user_trial_activated' => 'setUserTrialActivated',
-        'activated_trial_date' => 'setActivatedTrialDate',
-        'demo' => 'setDemo',
-        'api_enabled' => 'setApiEnabled',
-        'drift_threshold' => 'setDriftThreshold',
-        'preferred_currency' => 'setPreferredCurrency'
+        'timezone' => 'setTimezone',
+        'start_time' => 'setStartTime',
+        'close_time' => 'setCloseTime',
+        'suffix' => 'setSuffix',
+        'allows_cryptocurrency_symbols' => 'setAllowsCryptocurrencySymbols'
     ];
 
     /**
@@ -223,16 +218,15 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'email' => 'getEmail',
+        'id' => 'getId',
+        'code' => 'getCode',
+        'mic_code' => 'getMicCode',
         'name' => 'getName',
-        'receive_cash_notification' => 'getReceiveCashNotification',
-        'receive_drift_notification' => 'getReceiveDriftNotification',
-        'user_trial_activated' => 'getUserTrialActivated',
-        'activated_trial_date' => 'getActivatedTrialDate',
-        'demo' => 'getDemo',
-        'api_enabled' => 'getApiEnabled',
-        'drift_threshold' => 'getDriftThreshold',
-        'preferred_currency' => 'getPreferredCurrency'
+        'timezone' => 'getTimezone',
+        'start_time' => 'getStartTime',
+        'close_time' => 'getCloseTime',
+        'suffix' => 'getSuffix',
+        'allows_cryptocurrency_symbols' => 'getAllowsCryptocurrencySymbols'
     ];
 
     /**
@@ -292,16 +286,15 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('mic_code', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('receive_cash_notification', $data ?? [], null);
-        $this->setIfExists('receive_drift_notification', $data ?? [], null);
-        $this->setIfExists('user_trial_activated', $data ?? [], null);
-        $this->setIfExists('activated_trial_date', $data ?? [], null);
-        $this->setIfExists('demo', $data ?? [], null);
-        $this->setIfExists('api_enabled', $data ?? [], null);
-        $this->setIfExists('drift_threshold', $data ?? [], null);
-        $this->setIfExists('preferred_currency', $data ?? [], null);
+        $this->setIfExists('timezone', $data ?? [], null);
+        $this->setIfExists('start_time', $data ?? [], null);
+        $this->setIfExists('close_time', $data ?? [], null);
+        $this->setIfExists('suffix', $data ?? [], null);
+        $this->setIfExists('allows_cryptocurrency_symbols', $data ?? [], null);
     }
 
     /**
@@ -347,30 +340,88 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets email
+     * Gets id
      *
      * @return string|null
      */
-    public function getEmail()
+    public function getId()
     {
-        return $this->container['email'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets email
+     * Sets id
      *
-     * @param string|null $email email
+     * @param string|null $id id
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setId($id)
     {
 
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
 
-        $this->container['email'] = $email;
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets code
+     *
+     * @return string|null
+     */
+    public function getCode()
+    {
+        return $this->container['code'];
+    }
+
+    /**
+     * Sets code
+     *
+     * @param string|null $code code
+     *
+     * @return self
+     */
+    public function setCode($code)
+    {
+
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        }
+
+        $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets mic_code
+     *
+     * @return string|null
+     */
+    public function getMicCode()
+    {
+        return $this->container['mic_code'];
+    }
+
+    /**
+     * Sets mic_code
+     *
+     * @param string|null $mic_code mic_code
+     *
+     * @return self
+     */
+    public function setMicCode($mic_code)
+    {
+
+        if (is_null($mic_code)) {
+            throw new \InvalidArgumentException('non-nullable mic_code cannot be null');
+        }
+
+        $this->container['mic_code'] = $mic_code;
 
         return $this;
     }
@@ -405,233 +456,153 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets receive_cash_notification
-     *
-     * @return bool|null
-     */
-    public function getReceiveCashNotification()
-    {
-        return $this->container['receive_cash_notification'];
-    }
-
-    /**
-     * Sets receive_cash_notification
-     *
-     * @param bool|null $receive_cash_notification receive_cash_notification
-     *
-     * @return self
-     */
-    public function setReceiveCashNotification($receive_cash_notification)
-    {
-
-        if (is_null($receive_cash_notification)) {
-            throw new \InvalidArgumentException('non-nullable receive_cash_notification cannot be null');
-        }
-
-        $this->container['receive_cash_notification'] = $receive_cash_notification;
-
-        return $this;
-    }
-
-    /**
-     * Gets receive_drift_notification
-     *
-     * @return bool|null
-     */
-    public function getReceiveDriftNotification()
-    {
-        return $this->container['receive_drift_notification'];
-    }
-
-    /**
-     * Sets receive_drift_notification
-     *
-     * @param bool|null $receive_drift_notification receive_drift_notification
-     *
-     * @return self
-     */
-    public function setReceiveDriftNotification($receive_drift_notification)
-    {
-
-        if (is_null($receive_drift_notification)) {
-            throw new \InvalidArgumentException('non-nullable receive_drift_notification cannot be null');
-        }
-
-        $this->container['receive_drift_notification'] = $receive_drift_notification;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_trial_activated
-     *
-     * @return bool|null
-     */
-    public function getUserTrialActivated()
-    {
-        return $this->container['user_trial_activated'];
-    }
-
-    /**
-     * Sets user_trial_activated
-     *
-     * @param bool|null $user_trial_activated user_trial_activated
-     *
-     * @return self
-     */
-    public function setUserTrialActivated($user_trial_activated)
-    {
-
-        if (is_null($user_trial_activated)) {
-            throw new \InvalidArgumentException('non-nullable user_trial_activated cannot be null');
-        }
-
-        $this->container['user_trial_activated'] = $user_trial_activated;
-
-        return $this;
-    }
-
-    /**
-     * Gets activated_trial_date
+     * Gets timezone
      *
      * @return string|null
      */
-    public function getActivatedTrialDate()
+    public function getTimezone()
     {
-        return $this->container['activated_trial_date'];
+        return $this->container['timezone'];
     }
 
     /**
-     * Sets activated_trial_date
+     * Sets timezone
      *
-     * @param string|null $activated_trial_date activated_trial_date
+     * @param string|null $timezone timezone
      *
      * @return self
      */
-    public function setActivatedTrialDate($activated_trial_date)
+    public function setTimezone($timezone)
     {
 
-        if (is_null($activated_trial_date)) {
-            throw new \InvalidArgumentException('non-nullable activated_trial_date cannot be null');
+        if (is_null($timezone)) {
+            throw new \InvalidArgumentException('non-nullable timezone cannot be null');
         }
 
-        $this->container['activated_trial_date'] = $activated_trial_date;
+        $this->container['timezone'] = $timezone;
 
         return $this;
     }
 
     /**
-     * Gets demo
+     * Gets start_time
+     *
+     * @return string|null
+     */
+    public function getStartTime()
+    {
+        return $this->container['start_time'];
+    }
+
+    /**
+     * Sets start_time
+     *
+     * @param string|null $start_time start_time
+     *
+     * @return self
+     */
+    public function setStartTime($start_time)
+    {
+
+        if (is_null($start_time)) {
+            throw new \InvalidArgumentException('non-nullable start_time cannot be null');
+        }
+
+        $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets close_time
+     *
+     * @return string|null
+     */
+    public function getCloseTime()
+    {
+        return $this->container['close_time'];
+    }
+
+    /**
+     * Sets close_time
+     *
+     * @param string|null $close_time close_time
+     *
+     * @return self
+     */
+    public function setCloseTime($close_time)
+    {
+
+        if (is_null($close_time)) {
+            throw new \InvalidArgumentException('non-nullable close_time cannot be null');
+        }
+
+        $this->container['close_time'] = $close_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets suffix
+     *
+     * @return string|null
+     */
+    public function getSuffix()
+    {
+        return $this->container['suffix'];
+    }
+
+    /**
+     * Sets suffix
+     *
+     * @param string|null $suffix suffix
+     *
+     * @return self
+     */
+    public function setSuffix($suffix)
+    {
+
+        if (is_null($suffix)) {
+            array_push($this->openAPINullablesSetToNull, 'suffix');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('suffix', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['suffix'] = $suffix;
+
+        return $this;
+    }
+
+    /**
+     * Gets allows_cryptocurrency_symbols
      *
      * @return bool|null
      */
-    public function getDemo()
+    public function getAllowsCryptocurrencySymbols()
     {
-        return $this->container['demo'];
+        return $this->container['allows_cryptocurrency_symbols'];
     }
 
     /**
-     * Sets demo
+     * Sets allows_cryptocurrency_symbols
      *
-     * @param bool|null $demo demo
+     * @param bool|null $allows_cryptocurrency_symbols allows_cryptocurrency_symbols
      *
      * @return self
      */
-    public function setDemo($demo)
+    public function setAllowsCryptocurrencySymbols($allows_cryptocurrency_symbols)
     {
 
-        if (is_null($demo)) {
-            throw new \InvalidArgumentException('non-nullable demo cannot be null');
+        if (is_null($allows_cryptocurrency_symbols)) {
+            throw new \InvalidArgumentException('non-nullable allows_cryptocurrency_symbols cannot be null');
         }
 
-        $this->container['demo'] = $demo;
-
-        return $this;
-    }
-
-    /**
-     * Gets api_enabled
-     *
-     * @return bool|null
-     */
-    public function getApiEnabled()
-    {
-        return $this->container['api_enabled'];
-    }
-
-    /**
-     * Sets api_enabled
-     *
-     * @param bool|null $api_enabled api_enabled
-     *
-     * @return self
-     */
-    public function setApiEnabled($api_enabled)
-    {
-
-        if (is_null($api_enabled)) {
-            throw new \InvalidArgumentException('non-nullable api_enabled cannot be null');
-        }
-
-        $this->container['api_enabled'] = $api_enabled;
-
-        return $this;
-    }
-
-    /**
-     * Gets drift_threshold
-     *
-     * @return float|null
-     */
-    public function getDriftThreshold()
-    {
-        return $this->container['drift_threshold'];
-    }
-
-    /**
-     * Sets drift_threshold
-     *
-     * @param float|null $drift_threshold drift_threshold
-     *
-     * @return self
-     */
-    public function setDriftThreshold($drift_threshold)
-    {
-
-        if (is_null($drift_threshold)) {
-            throw new \InvalidArgumentException('non-nullable drift_threshold cannot be null');
-        }
-
-        $this->container['drift_threshold'] = $drift_threshold;
-
-        return $this;
-    }
-
-    /**
-     * Gets preferred_currency
-     *
-     * @return \SnapTrade\Model\Currency|null
-     */
-    public function getPreferredCurrency()
-    {
-        return $this->container['preferred_currency'];
-    }
-
-    /**
-     * Sets preferred_currency
-     *
-     * @param \SnapTrade\Model\Currency|null $preferred_currency preferred_currency
-     *
-     * @return self
-     */
-    public function setPreferredCurrency($preferred_currency)
-    {
-
-        if (is_null($preferred_currency)) {
-            throw new \InvalidArgumentException('non-nullable preferred_currency cannot be null');
-        }
-
-        $this->container['preferred_currency'] = $preferred_currency;
+        $this->container['allows_cryptocurrency_symbols'] = $allows_cryptocurrency_symbols;
 
         return $this;
     }
