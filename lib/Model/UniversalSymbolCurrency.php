@@ -1,6 +1,6 @@
 <?php
 /**
- * BrokerageSymbol
+ * UniversalSymbolCurrency
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * BrokerageSymbol Class Doc Comment
+ * UniversalSymbolCurrency Class Doc Comment
  *
  * @category Class
- * @description Brokerage symbol
+ * @description The currency in which the security is traded.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
+class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BrokerageSymbol';
+    protected static $openAPIModelName = 'UniversalSymbol_currency';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -52,11 +52,8 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'symbol' => '\SnapTrade\Model\BrokerageSymbolSymbol',
-        'brokerage_authorization' => '\SnapTrade\Model\BrokerageAuthorization',
-        'description' => 'string',
-        'allows_fractional_units' => 'bool',
-        'option_symbol' => '\SnapTrade\Model\BrokerageSymbolOptionSymbol'
+        'code' => 'string',
+        'name' => 'string'
     ];
 
     /**
@@ -68,11 +65,8 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'uuid',
-        'symbol' => null,
-        'brokerage_authorization' => null,
-        'description' => null,
-        'allows_fractional_units' => null,
-        'option_symbol' => null
+        'code' => null,
+        'name' => null
     ];
 
     /**
@@ -82,11 +76,8 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'id' => false,
-		'symbol' => true,
-		'brokerage_authorization' => false,
-		'description' => false,
-		'allows_fractional_units' => true,
-		'option_symbol' => true
+		'code' => false,
+		'name' => false
     ];
 
     /**
@@ -176,11 +167,8 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'symbol' => 'symbol',
-        'brokerage_authorization' => 'brokerage_authorization',
-        'description' => 'description',
-        'allows_fractional_units' => 'allows_fractional_units',
-        'option_symbol' => 'option_symbol'
+        'code' => 'code',
+        'name' => 'name'
     ];
 
     /**
@@ -190,11 +178,8 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'symbol' => 'setSymbol',
-        'brokerage_authorization' => 'setBrokerageAuthorization',
-        'description' => 'setDescription',
-        'allows_fractional_units' => 'setAllowsFractionalUnits',
-        'option_symbol' => 'setOptionSymbol'
+        'code' => 'setCode',
+        'name' => 'setName'
     ];
 
     /**
@@ -204,11 +189,8 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'symbol' => 'getSymbol',
-        'brokerage_authorization' => 'getBrokerageAuthorization',
-        'description' => 'getDescription',
-        'allows_fractional_units' => 'getAllowsFractionalUnits',
-        'option_symbol' => 'getOptionSymbol'
+        'code' => 'getCode',
+        'name' => 'getName'
     ];
 
     /**
@@ -269,11 +251,8 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('symbol', $data ?? [], null);
-        $this->setIfExists('brokerage_authorization', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('allows_fractional_units', $data ?? [], null);
-        $this->setIfExists('option_symbol', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -331,7 +310,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param string|null $id Unique identifier for the currency. This is the UUID used to reference the currency in SnapTrade.
      *
      * @return self
      */
@@ -348,167 +327,59 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets symbol
-     *
-     * @return \SnapTrade\Model\BrokerageSymbolSymbol|null
-     */
-    public function getSymbol()
-    {
-        return $this->container['symbol'];
-    }
-
-    /**
-     * Sets symbol
-     *
-     * @param \SnapTrade\Model\BrokerageSymbolSymbol|null $symbol symbol
-     *
-     * @return self
-     */
-    public function setSymbol($symbol)
-    {
-
-        if (is_null($symbol)) {
-            array_push($this->openAPINullablesSetToNull, 'symbol');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('symbol', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['symbol'] = $symbol;
-
-        return $this;
-    }
-
-    /**
-     * Gets brokerage_authorization
-     *
-     * @return \SnapTrade\Model\BrokerageAuthorization|null
-     */
-    public function getBrokerageAuthorization()
-    {
-        return $this->container['brokerage_authorization'];
-    }
-
-    /**
-     * Sets brokerage_authorization
-     *
-     * @param \SnapTrade\Model\BrokerageAuthorization|null $brokerage_authorization brokerage_authorization
-     *
-     * @return self
-     */
-    public function setBrokerageAuthorization($brokerage_authorization)
-    {
-
-        if (is_null($brokerage_authorization)) {
-            throw new \InvalidArgumentException('non-nullable brokerage_authorization cannot be null');
-        }
-
-        $this->container['brokerage_authorization'] = $brokerage_authorization;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
+     * Gets code
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getCode()
     {
-        return $this->container['description'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets description
+     * Sets code
      *
-     * @param string|null $description description
+     * @param string|null $code The ISO-4217 currency code for the currency.
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setCode($code)
     {
 
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
         }
 
-        $this->container['description'] = $description;
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets allows_fractional_units
+     * Gets name
      *
-     * @return bool|null
+     * @return string|null
      */
-    public function getAllowsFractionalUnits()
+    public function getName()
     {
-        return $this->container['allows_fractional_units'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets allows_fractional_units
+     * Sets name
      *
-     * @param bool|null $allows_fractional_units allows_fractional_units
+     * @param string|null $name A human-friendly name of the currency.
      *
      * @return self
      */
-    public function setAllowsFractionalUnits($allows_fractional_units)
+    public function setName($name)
     {
 
-        if (is_null($allows_fractional_units)) {
-            array_push($this->openAPINullablesSetToNull, 'allows_fractional_units');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('allows_fractional_units', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
 
-        $this->container['allows_fractional_units'] = $allows_fractional_units;
-
-        return $this;
-    }
-
-    /**
-     * Gets option_symbol
-     *
-     * @return \SnapTrade\Model\BrokerageSymbolOptionSymbol|null
-     */
-    public function getOptionSymbol()
-    {
-        return $this->container['option_symbol'];
-    }
-
-    /**
-     * Sets option_symbol
-     *
-     * @param \SnapTrade\Model\BrokerageSymbolOptionSymbol|null $option_symbol option_symbol
-     *
-     * @return self
-     */
-    public function setOptionSymbol($option_symbol)
-    {
-
-        if (is_null($option_symbol)) {
-            array_push($this->openAPINullablesSetToNull, 'option_symbol');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('option_symbol', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['option_symbol'] = $option_symbol;
+        $this->container['name'] = $name;
 
         return $this;
     }
