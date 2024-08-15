@@ -1,6 +1,6 @@
 <?php
 /**
- * ModelPortfolio
+ * UnderlyingSymbolType
  *
  * PHP version 7.4
  *
@@ -27,13 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * ModelPortfolio Class Doc Comment
+ * UnderlyingSymbolType Class Doc Comment
  *
  * @category Class
+ * @description The type of security. For example, \&quot;Common Stock\&quot; or \&quot;ETF\&quot;.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
+class UnderlyingSymbolType implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -42,7 +43,7 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ModelPortfolio';
+    protected static $openAPIModelName = 'UnderlyingSymbol_type';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,8 +52,9 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'name' => 'string',
-        'model_type' => 'int'
+        'code' => 'string',
+        'description' => 'string',
+        'is_supported' => 'bool'
     ];
 
     /**
@@ -64,8 +66,9 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'uuid',
-        'name' => null,
-        'model_type' => null
+        'code' => null,
+        'description' => null,
+        'is_supported' => null
     ];
 
     /**
@@ -75,8 +78,9 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'id' => false,
-		'name' => false,
-		'model_type' => false
+		'code' => false,
+		'description' => false,
+		'is_supported' => false
     ];
 
     /**
@@ -166,8 +170,9 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'name' => 'name',
-        'model_type' => 'model_type'
+        'code' => 'code',
+        'description' => 'description',
+        'is_supported' => 'is_supported'
     ];
 
     /**
@@ -177,8 +182,9 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'name' => 'setName',
-        'model_type' => 'setModelType'
+        'code' => 'setCode',
+        'description' => 'setDescription',
+        'is_supported' => 'setIsSupported'
     ];
 
     /**
@@ -188,8 +194,9 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'name' => 'getName',
-        'model_type' => 'getModelType'
+        'code' => 'getCode',
+        'description' => 'getDescription',
+        'is_supported' => 'getIsSupported'
     ];
 
     /**
@@ -233,23 +240,6 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const MODEL_TYPE_MINUS_1 = -1;
-    public const MODEL_TYPE_0 = 0;
-    public const MODEL_TYPE_1 = 1;
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getModelTypeAllowableValues()
-    {
-        return [
-            self::MODEL_TYPE_MINUS_1,
-            self::MODEL_TYPE_0,
-            self::MODEL_TYPE_1,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -267,8 +257,9 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('model_type', $data ?? [], self::MODEL_TYPE_MINUS_1);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('is_supported', $data ?? [], null);
     }
 
     /**
@@ -298,15 +289,6 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getModelTypeAllowableValues();
-        if (!is_null($this->container['model_type']) && !in_array($this->container['model_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'model_type', must be one of '%s'",
-                $this->container['model_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -335,7 +317,7 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param string|null $id Unique identifier for the security type within SnapTrade. This is the ID used to reference the security type in SnapTrade API calls.
      *
      * @return self
      */
@@ -352,69 +334,90 @@ class ModelPortfolio implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets name
+     * Gets code
      *
      * @return string|null
      */
-    public function getName()
+    public function getCode()
     {
-        return $this->container['name'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets name
+     * Sets code
      *
-     * @param string|null $name name
+     * @param string|null $code A short code representing the security type. For example, \"cs\" for Common Stock. Here are some common values:   ad - ADR   bnd - Bond   cs - Common Stock   cef - Closed End Fund   et - ETF   oef - Open Ended Fund   ps - Preferred Stock   rt - Right   struct - Structured Product   ut - Unit   wi - When Issued   wt - Warrant
      *
      * @return self
      */
-    public function setName($name)
+    public function setCode($code)
     {
 
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
         }
 
-        $this->container['name'] = $name;
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets model_type
+     * Gets description
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getModelType()
+    public function getDescription()
     {
-        return $this->container['model_type'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets model_type
+     * Sets description
      *
-     * @param int|null $model_type Enum definitions -> [-1: Unassigned, 0: Security Model Portfolio, 1: Asset Class Portfolio]
+     * @param string|null $description A human-readable description of the security type. For example, \"Common Stock\" or \"ETF\".
      *
      * @return self
      */
-    public function setModelType($model_type)
+    public function setDescription($description)
     {
-        $allowedValues = $this->getModelTypeAllowableValues();
-        if (!is_null($model_type) && !in_array($model_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'model_type', must be one of '%s'",
-                    $model_type,
-                    implode("', '", $allowedValues)
-                )
-            );
+
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
 
-        if (is_null($model_type)) {
-            throw new \InvalidArgumentException('non-nullable model_type cannot be null');
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_supported
+     *
+     * @return bool|null
+     * @deprecated
+     */
+    public function getIsSupported()
+    {
+        return $this->container['is_supported'];
+    }
+
+    /**
+     * Sets is_supported
+     *
+     * @param bool|null $is_supported This field is deprecated and should not be used. Please reach out to SnapTrade support if you have a valid usecase for this.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setIsSupported($is_supported)
+    {
+
+        if (is_null($is_supported)) {
+            throw new \InvalidArgumentException('non-nullable is_supported cannot be null');
         }
 
-        $this->container['model_type'] = $model_type;
+        $this->container['is_supported'] = $is_supported;
 
         return $this;
     }

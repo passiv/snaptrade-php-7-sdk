@@ -1,6 +1,6 @@
 <?php
 /**
- * BrokerageSymbol
+ * AccountOrderRecordUniversalSymbol
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * BrokerageSymbol Class Doc Comment
+ * AccountOrderRecordUniversalSymbol Class Doc Comment
  *
  * @category Class
- * @description Brokerage symbol
+ * @description Contains information about the security that the order is for. This field is only present for stock/ETF/crypto/mutual fund orders. For option orders, this field will be null and the &#x60;option_symbol&#x60; field will be populated.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
+class AccountOrderRecordUniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BrokerageSymbol';
+    protected static $openAPIModelName = 'AccountOrderRecord_universal_symbol';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -52,11 +52,15 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'symbol' => '\SnapTrade\Model\BrokerageSymbolSymbol',
-        'brokerage_authorization' => '\SnapTrade\Model\BrokerageAuthorization',
+        'symbol' => 'string',
+        'raw_symbol' => 'string',
         'description' => 'string',
-        'allows_fractional_units' => 'bool',
-        'option_symbol' => '\SnapTrade\Model\BrokerageSymbolOptionSymbol'
+        'currency' => '\SnapTrade\Model\UniversalSymbolCurrency',
+        'exchange' => '\SnapTrade\Model\UniversalSymbolExchange',
+        'type' => '\SnapTrade\Model\SecurityType',
+        'currencies' => '\SnapTrade\Model\Currency[]',
+        'figi_code' => 'string',
+        'figi_instrument' => '\SnapTrade\Model\SymbolFigiInstrument'
     ];
 
     /**
@@ -69,10 +73,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'uuid',
         'symbol' => null,
-        'brokerage_authorization' => null,
+        'raw_symbol' => null,
         'description' => null,
-        'allows_fractional_units' => null,
-        'option_symbol' => null
+        'currency' => null,
+        'exchange' => null,
+        'type' => null,
+        'currencies' => null,
+        'figi_code' => null,
+        'figi_instrument' => null
     ];
 
     /**
@@ -82,11 +90,15 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'id' => false,
-		'symbol' => true,
-		'brokerage_authorization' => false,
-		'description' => false,
-		'allows_fractional_units' => true,
-		'option_symbol' => true
+		'symbol' => false,
+		'raw_symbol' => false,
+		'description' => true,
+		'currency' => false,
+		'exchange' => false,
+		'type' => false,
+		'currencies' => false,
+		'figi_code' => true,
+		'figi_instrument' => true
     ];
 
     /**
@@ -177,10 +189,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'symbol' => 'symbol',
-        'brokerage_authorization' => 'brokerage_authorization',
+        'raw_symbol' => 'raw_symbol',
         'description' => 'description',
-        'allows_fractional_units' => 'allows_fractional_units',
-        'option_symbol' => 'option_symbol'
+        'currency' => 'currency',
+        'exchange' => 'exchange',
+        'type' => 'type',
+        'currencies' => 'currencies',
+        'figi_code' => 'figi_code',
+        'figi_instrument' => 'figi_instrument'
     ];
 
     /**
@@ -191,10 +207,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'symbol' => 'setSymbol',
-        'brokerage_authorization' => 'setBrokerageAuthorization',
+        'raw_symbol' => 'setRawSymbol',
         'description' => 'setDescription',
-        'allows_fractional_units' => 'setAllowsFractionalUnits',
-        'option_symbol' => 'setOptionSymbol'
+        'currency' => 'setCurrency',
+        'exchange' => 'setExchange',
+        'type' => 'setType',
+        'currencies' => 'setCurrencies',
+        'figi_code' => 'setFigiCode',
+        'figi_instrument' => 'setFigiInstrument'
     ];
 
     /**
@@ -205,10 +225,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'symbol' => 'getSymbol',
-        'brokerage_authorization' => 'getBrokerageAuthorization',
+        'raw_symbol' => 'getRawSymbol',
         'description' => 'getDescription',
-        'allows_fractional_units' => 'getAllowsFractionalUnits',
-        'option_symbol' => 'getOptionSymbol'
+        'currency' => 'getCurrency',
+        'exchange' => 'getExchange',
+        'type' => 'getType',
+        'currencies' => 'getCurrencies',
+        'figi_code' => 'getFigiCode',
+        'figi_instrument' => 'getFigiInstrument'
     ];
 
     /**
@@ -270,10 +294,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('symbol', $data ?? [], null);
-        $this->setIfExists('brokerage_authorization', $data ?? [], null);
+        $this->setIfExists('raw_symbol', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('allows_fractional_units', $data ?? [], null);
-        $this->setIfExists('option_symbol', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('exchange', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('currencies', $data ?? [], null);
+        $this->setIfExists('figi_code', $data ?? [], null);
+        $this->setIfExists('figi_instrument', $data ?? [], null);
     }
 
     /**
@@ -303,6 +331,24 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['symbol'] === null) {
+            $invalidProperties[] = "'symbol' can't be null";
+        }
+        if ($this->container['raw_symbol'] === null) {
+            $invalidProperties[] = "'raw_symbol' can't be null";
+        }
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        if ($this->container['currencies'] === null) {
+            $invalidProperties[] = "'currencies' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -321,7 +367,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return string|null
+     * @return string
      */
     public function getId()
     {
@@ -331,7 +377,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param string $id Unique identifier for the symbol within SnapTrade. This is the ID used to reference the symbol in SnapTrade API calls.
      *
      * @return self
      */
@@ -350,7 +396,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets symbol
      *
-     * @return \SnapTrade\Model\BrokerageSymbolSymbol|null
+     * @return string
      */
     public function getSymbol()
     {
@@ -360,7 +406,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets symbol
      *
-     * @param \SnapTrade\Model\BrokerageSymbolSymbol|null $symbol symbol
+     * @param string $symbol The security's trading ticker symbol. For example \"AAPL\" for Apple Inc. We largely follow the [Yahoo Finance ticker format](https://help.yahoo.com/kb/SLN2310.html)(click on \"Yahoo Finance Market Coverage and Data Delays\"). For example, for securities traded on the Toronto Stock Exchange, the symbol has a '.TO' suffix. For securities traded on NASDAQ or NYSE, the symbol does not have a suffix.
      *
      * @return self
      */
@@ -368,14 +414,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($symbol)) {
-            array_push($this->openAPINullablesSetToNull, 'symbol');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('symbol', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable symbol cannot be null');
         }
 
         $this->container['symbol'] = $symbol;
@@ -384,30 +423,30 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets brokerage_authorization
+     * Gets raw_symbol
      *
-     * @return \SnapTrade\Model\BrokerageAuthorization|null
+     * @return string
      */
-    public function getBrokerageAuthorization()
+    public function getRawSymbol()
     {
-        return $this->container['brokerage_authorization'];
+        return $this->container['raw_symbol'];
     }
 
     /**
-     * Sets brokerage_authorization
+     * Sets raw_symbol
      *
-     * @param \SnapTrade\Model\BrokerageAuthorization|null $brokerage_authorization brokerage_authorization
+     * @param string $raw_symbol The raw symbol is `symbol` with the exchange suffix removed. For example, if `symbol` is \"VAB.TO\", then `raw_symbol` is \"VAB\".
      *
      * @return self
      */
-    public function setBrokerageAuthorization($brokerage_authorization)
+    public function setRawSymbol($raw_symbol)
     {
 
-        if (is_null($brokerage_authorization)) {
-            throw new \InvalidArgumentException('non-nullable brokerage_authorization cannot be null');
+        if (is_null($raw_symbol)) {
+            throw new \InvalidArgumentException('non-nullable raw_symbol cannot be null');
         }
 
-        $this->container['brokerage_authorization'] = $brokerage_authorization;
+        $this->container['raw_symbol'] = $raw_symbol;
 
         return $this;
     }
@@ -425,7 +464,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description description
+     * @param string|null $description A human-readable description of the security. This is usually the company name or ETF name.
      *
      * @return self
      */
@@ -433,7 +472,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['description'] = $description;
@@ -442,73 +488,191 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets allows_fractional_units
+     * Gets currency
      *
-     * @return bool|null
+     * @return \SnapTrade\Model\UniversalSymbolCurrency
      */
-    public function getAllowsFractionalUnits()
+    public function getCurrency()
     {
-        return $this->container['allows_fractional_units'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets allows_fractional_units
+     * Sets currency
      *
-     * @param bool|null $allows_fractional_units allows_fractional_units
+     * @param \SnapTrade\Model\UniversalSymbolCurrency $currency currency
      *
      * @return self
      */
-    public function setAllowsFractionalUnits($allows_fractional_units)
+    public function setCurrency($currency)
     {
 
-        if (is_null($allows_fractional_units)) {
-            array_push($this->openAPINullablesSetToNull, 'allows_fractional_units');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('allows_fractional_units', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
 
-        $this->container['allows_fractional_units'] = $allows_fractional_units;
+        $this->container['currency'] = $currency;
 
         return $this;
     }
 
     /**
-     * Gets option_symbol
+     * Gets exchange
      *
-     * @return \SnapTrade\Model\BrokerageSymbolOptionSymbol|null
+     * @return \SnapTrade\Model\UniversalSymbolExchange|null
      */
-    public function getOptionSymbol()
+    public function getExchange()
     {
-        return $this->container['option_symbol'];
+        return $this->container['exchange'];
     }
 
     /**
-     * Sets option_symbol
+     * Sets exchange
      *
-     * @param \SnapTrade\Model\BrokerageSymbolOptionSymbol|null $option_symbol option_symbol
+     * @param \SnapTrade\Model\UniversalSymbolExchange|null $exchange exchange
      *
      * @return self
      */
-    public function setOptionSymbol($option_symbol)
+    public function setExchange($exchange)
     {
 
-        if (is_null($option_symbol)) {
-            array_push($this->openAPINullablesSetToNull, 'option_symbol');
+        if (is_null($exchange)) {
+            throw new \InvalidArgumentException('non-nullable exchange cannot be null');
+        }
+
+        $this->container['exchange'] = $exchange;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \SnapTrade\Model\SecurityType
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \SnapTrade\Model\SecurityType $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets currencies
+     *
+     * @return \SnapTrade\Model\Currency[]
+     * @deprecated
+     */
+    public function getCurrencies()
+    {
+        return $this->container['currencies'];
+    }
+
+    /**
+     * Sets currencies
+     *
+     * @param \SnapTrade\Model\Currency[] $currencies This field is deprecated and should not be used. Please reach out to SnapTrade support if you have a valid usecase for this.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setCurrencies($currencies)
+    {
+
+        if (is_null($currencies)) {
+            throw new \InvalidArgumentException('non-nullable currencies cannot be null');
+        }
+
+        $this->container['currencies'] = $currencies;
+
+        return $this;
+    }
+
+    /**
+     * Gets figi_code
+     *
+     * @return string|null
+     */
+    public function getFigiCode()
+    {
+        return $this->container['figi_code'];
+    }
+
+    /**
+     * Sets figi_code
+     *
+     * @param string|null $figi_code This identifier is unique per security per trading venue. See section 1.4.1 of the [FIGI Standard](https://www.openfigi.com/assets/local/figi-allocation-rules.pdf) for more information. This value should be the same as the `figi_code` in the `figi_instrument` child property.
+     *
+     * @return self
+     */
+    public function setFigiCode($figi_code)
+    {
+
+        if (is_null($figi_code)) {
+            array_push($this->openAPINullablesSetToNull, 'figi_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('option_symbol', $nullablesSetToNull);
+            $index = array_search('figi_code', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
 
-        $this->container['option_symbol'] = $option_symbol;
+        $this->container['figi_code'] = $figi_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets figi_instrument
+     *
+     * @return \SnapTrade\Model\SymbolFigiInstrument|null
+     */
+    public function getFigiInstrument()
+    {
+        return $this->container['figi_instrument'];
+    }
+
+    /**
+     * Sets figi_instrument
+     *
+     * @param \SnapTrade\Model\SymbolFigiInstrument|null $figi_instrument figi_instrument
+     *
+     * @return self
+     */
+    public function setFigiInstrument($figi_instrument)
+    {
+
+        if (is_null($figi_instrument)) {
+            array_push($this->openAPINullablesSetToNull, 'figi_instrument');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('figi_instrument', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['figi_instrument'] = $figi_instrument;
 
         return $this;
     }
