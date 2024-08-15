@@ -1,6 +1,6 @@
 <?php
 /**
- * UserErrorLog
+ * UniversalSymbolCurrency
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * UserErrorLog Class Doc Comment
+ * UniversalSymbolCurrency Class Doc Comment
  *
  * @category Class
- * @description An API error log for a specific SnapTrade user.
+ * @description The currency in which the security is traded.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
+class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserErrorLog';
+    protected static $openAPIModelName = 'UniversalSymbol_currency';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,12 +51,9 @@ class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'requested_at' => 'string',
-        'response' => 'string',
-        'status_code' => 'float',
-        'query_params' => 'string',
-        'http_method' => 'string',
-        'endpoint' => 'string'
+        'id' => 'string',
+        'code' => 'string',
+        'name' => 'string'
     ];
 
     /**
@@ -67,12 +64,9 @@ class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'requested_at' => null,
-        'response' => null,
-        'status_code' => null,
-        'query_params' => null,
-        'http_method' => null,
-        'endpoint' => null
+        'id' => 'uuid',
+        'code' => null,
+        'name' => null
     ];
 
     /**
@@ -81,12 +75,9 @@ class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'requested_at' => false,
-		'response' => false,
-		'status_code' => false,
-		'query_params' => false,
-		'http_method' => false,
-		'endpoint' => false
+        'id' => false,
+		'code' => false,
+		'name' => false
     ];
 
     /**
@@ -175,12 +166,9 @@ class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'requested_at' => 'requestedAt',
-        'response' => 'response',
-        'status_code' => 'statusCode',
-        'query_params' => 'queryParams',
-        'http_method' => 'httpMethod',
-        'endpoint' => 'endpoint'
+        'id' => 'id',
+        'code' => 'code',
+        'name' => 'name'
     ];
 
     /**
@@ -189,12 +177,9 @@ class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'requested_at' => 'setRequestedAt',
-        'response' => 'setResponse',
-        'status_code' => 'setStatusCode',
-        'query_params' => 'setQueryParams',
-        'http_method' => 'setHttpMethod',
-        'endpoint' => 'setEndpoint'
+        'id' => 'setId',
+        'code' => 'setCode',
+        'name' => 'setName'
     ];
 
     /**
@@ -203,12 +188,9 @@ class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'requested_at' => 'getRequestedAt',
-        'response' => 'getResponse',
-        'status_code' => 'getStatusCode',
-        'query_params' => 'getQueryParams',
-        'http_method' => 'getHttpMethod',
-        'endpoint' => 'getEndpoint'
+        'id' => 'getId',
+        'code' => 'getCode',
+        'name' => 'getName'
     ];
 
     /**
@@ -268,12 +250,9 @@ class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('requested_at', $data ?? [], null);
-        $this->setIfExists('response', $data ?? [], null);
-        $this->setIfExists('status_code', $data ?? [], null);
-        $this->setIfExists('query_params', $data ?? [], null);
-        $this->setIfExists('http_method', $data ?? [], null);
-        $this->setIfExists('endpoint', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -319,175 +298,88 @@ class UserErrorLog implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets requested_at
+     * Gets id
      *
      * @return string|null
      */
-    public function getRequestedAt()
+    public function getId()
     {
-        return $this->container['requested_at'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets requested_at
+     * Sets id
      *
-     * @param string|null $requested_at requested_at
+     * @param string|null $id Unique identifier for the currency. This is the UUID used to reference the currency in SnapTrade.
      *
      * @return self
      */
-    public function setRequestedAt($requested_at)
+    public function setId($id)
     {
 
-        if (is_null($requested_at)) {
-            throw new \InvalidArgumentException('non-nullable requested_at cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
 
-        $this->container['requested_at'] = $requested_at;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets response
+     * Gets code
      *
      * @return string|null
      */
-    public function getResponse()
+    public function getCode()
     {
-        return $this->container['response'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets response
+     * Sets code
      *
-     * @param string|null $response response
+     * @param string|null $code The ISO-4217 currency code for the currency.
      *
      * @return self
      */
-    public function setResponse($response)
+    public function setCode($code)
     {
 
-        if (is_null($response)) {
-            throw new \InvalidArgumentException('non-nullable response cannot be null');
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
         }
 
-        $this->container['response'] = $response;
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets status_code
-     *
-     * @return float|null
-     */
-    public function getStatusCode()
-    {
-        return $this->container['status_code'];
-    }
-
-    /**
-     * Sets status_code
-     *
-     * @param float|null $status_code status_code
-     *
-     * @return self
-     */
-    public function setStatusCode($status_code)
-    {
-
-        if (is_null($status_code)) {
-            throw new \InvalidArgumentException('non-nullable status_code cannot be null');
-        }
-
-        $this->container['status_code'] = $status_code;
-
-        return $this;
-    }
-
-    /**
-     * Gets query_params
+     * Gets name
      *
      * @return string|null
      */
-    public function getQueryParams()
+    public function getName()
     {
-        return $this->container['query_params'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets query_params
+     * Sets name
      *
-     * @param string|null $query_params query_params
+     * @param string|null $name A human-friendly name of the currency.
      *
      * @return self
      */
-    public function setQueryParams($query_params)
+    public function setName($name)
     {
 
-        if (is_null($query_params)) {
-            throw new \InvalidArgumentException('non-nullable query_params cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
 
-        $this->container['query_params'] = $query_params;
-
-        return $this;
-    }
-
-    /**
-     * Gets http_method
-     *
-     * @return string|null
-     */
-    public function getHttpMethod()
-    {
-        return $this->container['http_method'];
-    }
-
-    /**
-     * Sets http_method
-     *
-     * @param string|null $http_method http_method
-     *
-     * @return self
-     */
-    public function setHttpMethod($http_method)
-    {
-
-        if (is_null($http_method)) {
-            throw new \InvalidArgumentException('non-nullable http_method cannot be null');
-        }
-
-        $this->container['http_method'] = $http_method;
-
-        return $this;
-    }
-
-    /**
-     * Gets endpoint
-     *
-     * @return string|null
-     */
-    public function getEndpoint()
-    {
-        return $this->container['endpoint'];
-    }
-
-    /**
-     * Sets endpoint
-     *
-     * @param string|null $endpoint endpoint
-     *
-     * @return self
-     */
-    public function setEndpoint($endpoint)
-    {
-
-        if (is_null($endpoint)) {
-            throw new \InvalidArgumentException('non-nullable endpoint cannot be null');
-        }
-
-        $this->container['endpoint'] = $endpoint;
+        $this->container['name'] = $name;
 
         return $this;
     }
