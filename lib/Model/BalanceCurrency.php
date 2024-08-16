@@ -1,6 +1,6 @@
 <?php
 /**
- * ModelAssetClass
+ * BalanceCurrency
  *
  * PHP version 7.4
  *
@@ -27,13 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * ModelAssetClass Class Doc Comment
+ * BalanceCurrency Class Doc Comment
  *
  * @category Class
+ * @description The currency of the balance. This applies to both &#x60;cash&#x60; and &#x60;buying_power&#x60;.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
+class BalanceCurrency implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -42,7 +43,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ModelAssetClass';
+    protected static $openAPIModelName = 'Balance_currency';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,6 +52,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
+        'code' => 'string',
         'name' => 'string'
     ];
 
@@ -63,6 +65,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'uuid',
+        'code' => null,
         'name' => null
     ];
 
@@ -73,6 +76,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'id' => false,
+		'code' => false,
 		'name' => false
     ];
 
@@ -163,6 +167,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'code' => 'code',
         'name' => 'name'
     ];
 
@@ -173,6 +178,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
+        'code' => 'setCode',
         'name' => 'setName'
     ];
 
@@ -183,6 +189,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
+        'code' => 'getCode',
         'name' => 'getName'
     ];
 
@@ -244,6 +251,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
     }
 
@@ -302,7 +310,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param string|null $id Unique identifier for the currency. This is the UUID used to reference the currency in SnapTrade.
      *
      * @return self
      */
@@ -314,6 +322,35 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets code
+     *
+     * @return string|null
+     */
+    public function getCode()
+    {
+        return $this->container['code'];
+    }
+
+    /**
+     * Sets code
+     *
+     * @param string|null $code The ISO-4217 currency code for the currency.
+     *
+     * @return self
+     */
+    public function setCode($code)
+    {
+
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        }
+
+        $this->container['code'] = $code;
 
         return $this;
     }
@@ -331,7 +368,7 @@ class ModelAssetClass implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string|null $name A human-friendly name of the currency.
      *
      * @return self
      */

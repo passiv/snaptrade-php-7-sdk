@@ -1,6 +1,6 @@
 <?php
 /**
- * UserSettings
+ * AccountOrderRecordOptionSymbol
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * UserSettings Class Doc Comment
+ * AccountOrderRecordOptionSymbol Class Doc Comment
  *
  * @category Class
- * @description User account settings
+ * @description Contains information about the option contract that the order is for. This field is only present for option orders. For stock/ETF/crypto/mutual fund orders, this field will be null and the &#x60;universal_symbol&#x60; field will be populated.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class AccountOrderRecordOptionSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserSettings';
+    protected static $openAPIModelName = 'AccountOrderRecord_option_symbol';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,16 +51,13 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email' => 'string',
-        'name' => 'string',
-        'receive_cash_notification' => 'bool',
-        'receive_drift_notification' => 'bool',
-        'user_trial_activated' => 'bool',
-        'activated_trial_date' => 'string',
-        'demo' => 'bool',
-        'api_enabled' => 'bool',
-        'drift_threshold' => 'float',
-        'preferred_currency' => '\SnapTrade\Model\Currency'
+        'id' => 'string',
+        'ticker' => 'string',
+        'option_type' => 'string',
+        'strike_price' => 'float',
+        'expiration_date' => '\DateTime',
+        'is_mini_option' => 'bool',
+        'underlying_symbol' => '\SnapTrade\Model\UnderlyingSymbol'
     ];
 
     /**
@@ -71,16 +68,13 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'email' => 'email',
-        'name' => null,
-        'receive_cash_notification' => null,
-        'receive_drift_notification' => null,
-        'user_trial_activated' => null,
-        'activated_trial_date' => 'dateTime',
-        'demo' => null,
-        'api_enabled' => null,
-        'drift_threshold' => null,
-        'preferred_currency' => null
+        'id' => 'uuid',
+        'ticker' => null,
+        'option_type' => null,
+        'strike_price' => null,
+        'expiration_date' => 'date',
+        'is_mini_option' => null,
+        'underlying_symbol' => null
     ];
 
     /**
@@ -89,16 +83,13 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'email' => false,
-		'name' => false,
-		'receive_cash_notification' => false,
-		'receive_drift_notification' => false,
-		'user_trial_activated' => false,
-		'activated_trial_date' => false,
-		'demo' => false,
-		'api_enabled' => false,
-		'drift_threshold' => false,
-		'preferred_currency' => false
+        'id' => false,
+		'ticker' => false,
+		'option_type' => false,
+		'strike_price' => false,
+		'expiration_date' => false,
+		'is_mini_option' => false,
+		'underlying_symbol' => false
     ];
 
     /**
@@ -187,16 +178,13 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'email' => 'email',
-        'name' => 'name',
-        'receive_cash_notification' => 'receive_cash_notification',
-        'receive_drift_notification' => 'receive_drift_notification',
-        'user_trial_activated' => 'user_trial_activated',
-        'activated_trial_date' => 'activated_trial_date',
-        'demo' => 'demo',
-        'api_enabled' => 'api_enabled',
-        'drift_threshold' => 'drift_threshold',
-        'preferred_currency' => 'preferred_currency'
+        'id' => 'id',
+        'ticker' => 'ticker',
+        'option_type' => 'option_type',
+        'strike_price' => 'strike_price',
+        'expiration_date' => 'expiration_date',
+        'is_mini_option' => 'is_mini_option',
+        'underlying_symbol' => 'underlying_symbol'
     ];
 
     /**
@@ -205,16 +193,13 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'email' => 'setEmail',
-        'name' => 'setName',
-        'receive_cash_notification' => 'setReceiveCashNotification',
-        'receive_drift_notification' => 'setReceiveDriftNotification',
-        'user_trial_activated' => 'setUserTrialActivated',
-        'activated_trial_date' => 'setActivatedTrialDate',
-        'demo' => 'setDemo',
-        'api_enabled' => 'setApiEnabled',
-        'drift_threshold' => 'setDriftThreshold',
-        'preferred_currency' => 'setPreferredCurrency'
+        'id' => 'setId',
+        'ticker' => 'setTicker',
+        'option_type' => 'setOptionType',
+        'strike_price' => 'setStrikePrice',
+        'expiration_date' => 'setExpirationDate',
+        'is_mini_option' => 'setIsMiniOption',
+        'underlying_symbol' => 'setUnderlyingSymbol'
     ];
 
     /**
@@ -223,16 +208,13 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'email' => 'getEmail',
-        'name' => 'getName',
-        'receive_cash_notification' => 'getReceiveCashNotification',
-        'receive_drift_notification' => 'getReceiveDriftNotification',
-        'user_trial_activated' => 'getUserTrialActivated',
-        'activated_trial_date' => 'getActivatedTrialDate',
-        'demo' => 'getDemo',
-        'api_enabled' => 'getApiEnabled',
-        'drift_threshold' => 'getDriftThreshold',
-        'preferred_currency' => 'getPreferredCurrency'
+        'id' => 'getId',
+        'ticker' => 'getTicker',
+        'option_type' => 'getOptionType',
+        'strike_price' => 'getStrikePrice',
+        'expiration_date' => 'getExpirationDate',
+        'is_mini_option' => 'getIsMiniOption',
+        'underlying_symbol' => 'getUnderlyingSymbol'
     ];
 
     /**
@@ -276,6 +258,21 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const OPTION_TYPE_CALL = 'CALL';
+    public const OPTION_TYPE_PUT = 'PUT';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getOptionTypeAllowableValues()
+    {
+        return [
+            self::OPTION_TYPE_CALL,
+            self::OPTION_TYPE_PUT,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -292,16 +289,13 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('receive_cash_notification', $data ?? [], null);
-        $this->setIfExists('receive_drift_notification', $data ?? [], null);
-        $this->setIfExists('user_trial_activated', $data ?? [], null);
-        $this->setIfExists('activated_trial_date', $data ?? [], null);
-        $this->setIfExists('demo', $data ?? [], null);
-        $this->setIfExists('api_enabled', $data ?? [], null);
-        $this->setIfExists('drift_threshold', $data ?? [], null);
-        $this->setIfExists('preferred_currency', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('ticker', $data ?? [], null);
+        $this->setIfExists('option_type', $data ?? [], null);
+        $this->setIfExists('strike_price', $data ?? [], null);
+        $this->setIfExists('expiration_date', $data ?? [], null);
+        $this->setIfExists('is_mini_option', $data ?? [], null);
+        $this->setIfExists('underlying_symbol', $data ?? [], null);
     }
 
     /**
@@ -331,6 +325,33 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['ticker'] === null) {
+            $invalidProperties[] = "'ticker' can't be null";
+        }
+        if ($this->container['option_type'] === null) {
+            $invalidProperties[] = "'option_type' can't be null";
+        }
+        $allowedValues = $this->getOptionTypeAllowableValues();
+        if (!is_null($this->container['option_type']) && !in_array($this->container['option_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'option_type', must be one of '%s'",
+                $this->container['option_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['strike_price'] === null) {
+            $invalidProperties[] = "'strike_price' can't be null";
+        }
+        if ($this->container['expiration_date'] === null) {
+            $invalidProperties[] = "'expiration_date' can't be null";
+        }
+        if ($this->container['underlying_symbol'] === null) {
+            $invalidProperties[] = "'underlying_symbol' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -347,291 +368,214 @@ class UserSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets email
+     * Gets id
      *
-     * @return string|null
+     * @return string
      */
-    public function getEmail()
+    public function getId()
     {
-        return $this->container['email'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets email
+     * Sets id
      *
-     * @param string|null $email email
+     * @param string $id Unique identifier for the option symbol within SnapTrade. This is the ID used to reference the symbol in SnapTrade API calls.
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setId($id)
     {
 
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
 
-        $this->container['email'] = $email;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets ticker
      *
-     * @return string|null
+     * @return string
      */
-    public function getName()
+    public function getTicker()
     {
-        return $this->container['name'];
+        return $this->container['ticker'];
     }
 
     /**
-     * Sets name
+     * Sets ticker
      *
-     * @param string|null $name name
+     * @param string $ticker The [OCC symbol](https://en.wikipedia.org/wiki/Option_symbol) for the option.
      *
      * @return self
      */
-    public function setName($name)
+    public function setTicker($ticker)
     {
 
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($ticker)) {
+            throw new \InvalidArgumentException('non-nullable ticker cannot be null');
         }
 
-        $this->container['name'] = $name;
+        $this->container['ticker'] = $ticker;
 
         return $this;
     }
 
     /**
-     * Gets receive_cash_notification
+     * Gets option_type
+     *
+     * @return string
+     */
+    public function getOptionType()
+    {
+        return $this->container['option_type'];
+    }
+
+    /**
+     * Sets option_type
+     *
+     * @param string $option_type The type of option. Either \"CALL\" or \"PUT\".
+     *
+     * @return self
+     */
+    public function setOptionType($option_type)
+    {
+        $allowedValues = $this->getOptionTypeAllowableValues();
+        if (!in_array($option_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'option_type', must be one of '%s'",
+                    $option_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($option_type)) {
+            throw new \InvalidArgumentException('non-nullable option_type cannot be null');
+        }
+
+        $this->container['option_type'] = $option_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets strike_price
+     *
+     * @return float
+     */
+    public function getStrikePrice()
+    {
+        return $this->container['strike_price'];
+    }
+
+    /**
+     * Sets strike_price
+     *
+     * @param float $strike_price The option strike price.
+     *
+     * @return self
+     */
+    public function setStrikePrice($strike_price)
+    {
+
+        if (is_null($strike_price)) {
+            throw new \InvalidArgumentException('non-nullable strike_price cannot be null');
+        }
+
+        $this->container['strike_price'] = $strike_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets expiration_date
+     *
+     * @return \DateTime
+     */
+    public function getExpirationDate()
+    {
+        return $this->container['expiration_date'];
+    }
+
+    /**
+     * Sets expiration_date
+     *
+     * @param \DateTime $expiration_date The option expiration date.
+     *
+     * @return self
+     */
+    public function setExpirationDate($expiration_date)
+    {
+
+        if (is_null($expiration_date)) {
+            throw new \InvalidArgumentException('non-nullable expiration_date cannot be null');
+        }
+
+        $this->container['expiration_date'] = $expiration_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_mini_option
      *
      * @return bool|null
      */
-    public function getReceiveCashNotification()
+    public function getIsMiniOption()
     {
-        return $this->container['receive_cash_notification'];
+        return $this->container['is_mini_option'];
     }
 
     /**
-     * Sets receive_cash_notification
+     * Sets is_mini_option
      *
-     * @param bool|null $receive_cash_notification receive_cash_notification
+     * @param bool|null $is_mini_option Whether the option is a mini option. Mini options have 10 underlying shares per contract instead of the standard 100.
      *
      * @return self
      */
-    public function setReceiveCashNotification($receive_cash_notification)
+    public function setIsMiniOption($is_mini_option)
     {
 
-        if (is_null($receive_cash_notification)) {
-            throw new \InvalidArgumentException('non-nullable receive_cash_notification cannot be null');
+        if (is_null($is_mini_option)) {
+            throw new \InvalidArgumentException('non-nullable is_mini_option cannot be null');
         }
 
-        $this->container['receive_cash_notification'] = $receive_cash_notification;
+        $this->container['is_mini_option'] = $is_mini_option;
 
         return $this;
     }
 
     /**
-     * Gets receive_drift_notification
+     * Gets underlying_symbol
      *
-     * @return bool|null
+     * @return \SnapTrade\Model\UnderlyingSymbol
      */
-    public function getReceiveDriftNotification()
+    public function getUnderlyingSymbol()
     {
-        return $this->container['receive_drift_notification'];
+        return $this->container['underlying_symbol'];
     }
 
     /**
-     * Sets receive_drift_notification
+     * Sets underlying_symbol
      *
-     * @param bool|null $receive_drift_notification receive_drift_notification
+     * @param \SnapTrade\Model\UnderlyingSymbol $underlying_symbol underlying_symbol
      *
      * @return self
      */
-    public function setReceiveDriftNotification($receive_drift_notification)
+    public function setUnderlyingSymbol($underlying_symbol)
     {
 
-        if (is_null($receive_drift_notification)) {
-            throw new \InvalidArgumentException('non-nullable receive_drift_notification cannot be null');
+        if (is_null($underlying_symbol)) {
+            throw new \InvalidArgumentException('non-nullable underlying_symbol cannot be null');
         }
 
-        $this->container['receive_drift_notification'] = $receive_drift_notification;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_trial_activated
-     *
-     * @return bool|null
-     */
-    public function getUserTrialActivated()
-    {
-        return $this->container['user_trial_activated'];
-    }
-
-    /**
-     * Sets user_trial_activated
-     *
-     * @param bool|null $user_trial_activated user_trial_activated
-     *
-     * @return self
-     */
-    public function setUserTrialActivated($user_trial_activated)
-    {
-
-        if (is_null($user_trial_activated)) {
-            throw new \InvalidArgumentException('non-nullable user_trial_activated cannot be null');
-        }
-
-        $this->container['user_trial_activated'] = $user_trial_activated;
-
-        return $this;
-    }
-
-    /**
-     * Gets activated_trial_date
-     *
-     * @return string|null
-     */
-    public function getActivatedTrialDate()
-    {
-        return $this->container['activated_trial_date'];
-    }
-
-    /**
-     * Sets activated_trial_date
-     *
-     * @param string|null $activated_trial_date activated_trial_date
-     *
-     * @return self
-     */
-    public function setActivatedTrialDate($activated_trial_date)
-    {
-
-        if (is_null($activated_trial_date)) {
-            throw new \InvalidArgumentException('non-nullable activated_trial_date cannot be null');
-        }
-
-        $this->container['activated_trial_date'] = $activated_trial_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets demo
-     *
-     * @return bool|null
-     */
-    public function getDemo()
-    {
-        return $this->container['demo'];
-    }
-
-    /**
-     * Sets demo
-     *
-     * @param bool|null $demo demo
-     *
-     * @return self
-     */
-    public function setDemo($demo)
-    {
-
-        if (is_null($demo)) {
-            throw new \InvalidArgumentException('non-nullable demo cannot be null');
-        }
-
-        $this->container['demo'] = $demo;
-
-        return $this;
-    }
-
-    /**
-     * Gets api_enabled
-     *
-     * @return bool|null
-     */
-    public function getApiEnabled()
-    {
-        return $this->container['api_enabled'];
-    }
-
-    /**
-     * Sets api_enabled
-     *
-     * @param bool|null $api_enabled api_enabled
-     *
-     * @return self
-     */
-    public function setApiEnabled($api_enabled)
-    {
-
-        if (is_null($api_enabled)) {
-            throw new \InvalidArgumentException('non-nullable api_enabled cannot be null');
-        }
-
-        $this->container['api_enabled'] = $api_enabled;
-
-        return $this;
-    }
-
-    /**
-     * Gets drift_threshold
-     *
-     * @return float|null
-     */
-    public function getDriftThreshold()
-    {
-        return $this->container['drift_threshold'];
-    }
-
-    /**
-     * Sets drift_threshold
-     *
-     * @param float|null $drift_threshold drift_threshold
-     *
-     * @return self
-     */
-    public function setDriftThreshold($drift_threshold)
-    {
-
-        if (is_null($drift_threshold)) {
-            throw new \InvalidArgumentException('non-nullable drift_threshold cannot be null');
-        }
-
-        $this->container['drift_threshold'] = $drift_threshold;
-
-        return $this;
-    }
-
-    /**
-     * Gets preferred_currency
-     *
-     * @return \SnapTrade\Model\Currency|null
-     */
-    public function getPreferredCurrency()
-    {
-        return $this->container['preferred_currency'];
-    }
-
-    /**
-     * Sets preferred_currency
-     *
-     * @param \SnapTrade\Model\Currency|null $preferred_currency preferred_currency
-     *
-     * @return self
-     */
-    public function setPreferredCurrency($preferred_currency)
-    {
-
-        if (is_null($preferred_currency)) {
-            throw new \InvalidArgumentException('non-nullable preferred_currency cannot be null');
-        }
-
-        $this->container['preferred_currency'] = $preferred_currency;
+        $this->container['underlying_symbol'] = $underlying_symbol;
 
         return $this;
     }

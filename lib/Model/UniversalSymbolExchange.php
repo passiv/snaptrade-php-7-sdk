@@ -1,6 +1,6 @@
 <?php
 /**
- * CashRestriction
+ * UniversalSymbolExchange
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * CashRestriction Class Doc Comment
+ * UniversalSymbolExchange Class Doc Comment
  *
  * @category Class
- * @description Cash restriction rules that apply to this account when undergoing portfolio rebalance calculations.
+ * @description The exchange on which the security is listed and traded.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
+class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CashRestriction';
+    protected static $openAPIModelName = 'UniversalSymbol_exchange';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -52,10 +52,13 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'account' => 'string',
-        'currency' => 'string',
-        'type' => 'string',
-        'amount' => 'float'
+        'code' => 'string',
+        'mic_code' => 'string',
+        'name' => 'string',
+        'timezone' => 'string',
+        'start_time' => 'string',
+        'close_time' => 'string',
+        'suffix' => 'string'
     ];
 
     /**
@@ -67,10 +70,13 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'uuid',
-        'account' => 'uuid',
-        'currency' => 'uuid',
-        'type' => null,
-        'amount' => null
+        'code' => null,
+        'mic_code' => null,
+        'name' => null,
+        'timezone' => null,
+        'start_time' => null,
+        'close_time' => null,
+        'suffix' => null
     ];
 
     /**
@@ -80,10 +86,13 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'id' => false,
-		'account' => false,
-		'currency' => false,
-		'type' => false,
-		'amount' => false
+		'code' => false,
+		'mic_code' => false,
+		'name' => false,
+		'timezone' => false,
+		'start_time' => false,
+		'close_time' => false,
+		'suffix' => true
     ];
 
     /**
@@ -173,10 +182,13 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'account' => 'account',
-        'currency' => 'currency',
-        'type' => 'type',
-        'amount' => 'amount'
+        'code' => 'code',
+        'mic_code' => 'mic_code',
+        'name' => 'name',
+        'timezone' => 'timezone',
+        'start_time' => 'start_time',
+        'close_time' => 'close_time',
+        'suffix' => 'suffix'
     ];
 
     /**
@@ -186,10 +198,13 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'account' => 'setAccount',
-        'currency' => 'setCurrency',
-        'type' => 'setType',
-        'amount' => 'setAmount'
+        'code' => 'setCode',
+        'mic_code' => 'setMicCode',
+        'name' => 'setName',
+        'timezone' => 'setTimezone',
+        'start_time' => 'setStartTime',
+        'close_time' => 'setCloseTime',
+        'suffix' => 'setSuffix'
     ];
 
     /**
@@ -199,10 +214,13 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'account' => 'getAccount',
-        'currency' => 'getCurrency',
-        'type' => 'getType',
-        'amount' => 'getAmount'
+        'code' => 'getCode',
+        'mic_code' => 'getMicCode',
+        'name' => 'getName',
+        'timezone' => 'getTimezone',
+        'start_time' => 'getStartTime',
+        'close_time' => 'getCloseTime',
+        'suffix' => 'getSuffix'
     ];
 
     /**
@@ -246,21 +264,6 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_ALLOCATE_MAX = 'ALLOCATE_MAX';
-    public const TYPE_RETAIN_MIN = 'RETAIN_MIN';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_ALLOCATE_MAX,
-            self::TYPE_RETAIN_MIN,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -278,10 +281,13 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('account', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('mic_code', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('timezone', $data ?? [], null);
+        $this->setIfExists('start_time', $data ?? [], null);
+        $this->setIfExists('close_time', $data ?? [], null);
+        $this->setIfExists('suffix', $data ?? [], null);
     }
 
     /**
@@ -311,15 +317,6 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -348,7 +345,7 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param string|null $id Unique ID for the exchange in SnapTrade.
      *
      * @return self
      */
@@ -365,127 +362,211 @@ class CashRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets account
+     * Gets code
      *
      * @return string|null
      */
-    public function getAccount()
+    public function getCode()
     {
-        return $this->container['account'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets account
+     * Sets code
      *
-     * @param string|null $account account
+     * @param string|null $code A short name for the exchange. For standardized exchange code, please us the `mic_code` field.
      *
      * @return self
      */
-    public function setAccount($account)
+    public function setCode($code)
     {
 
-        if (is_null($account)) {
-            throw new \InvalidArgumentException('non-nullable account cannot be null');
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
         }
 
-        $this->container['account'] = $account;
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets currency
+     * Gets mic_code
      *
      * @return string|null
      */
-    public function getCurrency()
+    public function getMicCode()
     {
-        return $this->container['currency'];
+        return $this->container['mic_code'];
     }
 
     /**
-     * Sets currency
+     * Sets mic_code
      *
-     * @param string|null $currency currency
+     * @param string|null $mic_code The [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) (MIC) for the exchange.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setMicCode($mic_code)
     {
 
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($mic_code)) {
+            throw new \InvalidArgumentException('non-nullable mic_code cannot be null');
         }
 
-        $this->container['currency'] = $currency;
+        $this->container['mic_code'] = $mic_code;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets name
      *
      * @return string|null
      */
-    public function getType()
+    public function getName()
     {
-        return $this->container['type'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets type
+     * Sets name
      *
-     * @param string|null $type type
+     * @param string|null $name The full name of the exchange.
      *
      * @return self
      */
-    public function setType($type)
+    public function setName($name)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
 
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-
-        $this->container['type'] = $type;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets amount
+     * Gets timezone
      *
-     * @return float|null
+     * @return string|null
      */
-    public function getAmount()
+    public function getTimezone()
     {
-        return $this->container['amount'];
+        return $this->container['timezone'];
     }
 
     /**
-     * Sets amount
+     * Sets timezone
      *
-     * @param float|null $amount amount
+     * @param string|null $timezone The timezone for the trading hours (`start_time` and `close_time`) of the exchange.
      *
      * @return self
      */
-    public function setAmount($amount)
+    public function setTimezone($timezone)
     {
 
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
+        if (is_null($timezone)) {
+            throw new \InvalidArgumentException('non-nullable timezone cannot be null');
         }
 
-        $this->container['amount'] = $amount;
+        $this->container['timezone'] = $timezone;
+
+        return $this;
+    }
+
+    /**
+     * Gets start_time
+     *
+     * @return string|null
+     */
+    public function getStartTime()
+    {
+        return $this->container['start_time'];
+    }
+
+    /**
+     * Sets start_time
+     *
+     * @param string|null $start_time The time when the exchange opens for trading.
+     *
+     * @return self
+     */
+    public function setStartTime($start_time)
+    {
+
+        if (is_null($start_time)) {
+            throw new \InvalidArgumentException('non-nullable start_time cannot be null');
+        }
+
+        $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets close_time
+     *
+     * @return string|null
+     */
+    public function getCloseTime()
+    {
+        return $this->container['close_time'];
+    }
+
+    /**
+     * Sets close_time
+     *
+     * @param string|null $close_time The time when the exchange closes for trading.
+     *
+     * @return self
+     */
+    public function setCloseTime($close_time)
+    {
+
+        if (is_null($close_time)) {
+            throw new \InvalidArgumentException('non-nullable close_time cannot be null');
+        }
+
+        $this->container['close_time'] = $close_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets suffix
+     *
+     * @return string|null
+     */
+    public function getSuffix()
+    {
+        return $this->container['suffix'];
+    }
+
+    /**
+     * Sets suffix
+     *
+     * @param string|null $suffix The suffix to be appended to the symbol when trading on this exchange. For example, the suffix for the Toronto Stock Exchange is `.TO`. See `UniversalSymbol->symbol` and `UniversalSymbol->raw_symbol` for more detail.
+     *
+     * @return self
+     */
+    public function setSuffix($suffix)
+    {
+
+        if (is_null($suffix)) {
+            array_push($this->openAPINullablesSetToNull, 'suffix');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('suffix', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['suffix'] = $suffix;
 
         return $this;
     }
