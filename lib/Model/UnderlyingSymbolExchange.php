@@ -1,6 +1,6 @@
 <?php
 /**
- * BrokerageSymbol
+ * UnderlyingSymbolExchange
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * BrokerageSymbol Class Doc Comment
+ * UnderlyingSymbolExchange Class Doc Comment
  *
  * @category Class
- * @description Brokerage symbol
+ * @description The exchange on which the security is listed and traded.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
+class UnderlyingSymbolExchange implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BrokerageSymbol';
+    protected static $openAPIModelName = 'UnderlyingSymbol_exchange';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -52,11 +52,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'symbol' => '\SnapTrade\Model\BrokerageSymbolSymbol',
-        'brokerage_authorization' => '\SnapTrade\Model\BrokerageAuthorization',
-        'description' => 'string',
-        'allows_fractional_units' => 'bool',
-        'option_symbol' => '\SnapTrade\Model\BrokerageSymbolOptionSymbol'
+        'code' => 'string',
+        'mic_code' => 'string',
+        'name' => 'string',
+        'timezone' => 'string',
+        'start_time' => 'string',
+        'close_time' => 'string',
+        'suffix' => 'string',
+        'allows_cryptocurrency_symbols' => 'bool'
     ];
 
     /**
@@ -68,11 +71,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'uuid',
-        'symbol' => null,
-        'brokerage_authorization' => null,
-        'description' => null,
-        'allows_fractional_units' => null,
-        'option_symbol' => null
+        'code' => null,
+        'mic_code' => null,
+        'name' => null,
+        'timezone' => null,
+        'start_time' => null,
+        'close_time' => null,
+        'suffix' => null,
+        'allows_cryptocurrency_symbols' => null
     ];
 
     /**
@@ -82,11 +88,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'id' => false,
-		'symbol' => true,
-		'brokerage_authorization' => false,
-		'description' => false,
-		'allows_fractional_units' => true,
-		'option_symbol' => true
+		'code' => false,
+		'mic_code' => false,
+		'name' => false,
+		'timezone' => false,
+		'start_time' => false,
+		'close_time' => false,
+		'suffix' => true,
+		'allows_cryptocurrency_symbols' => false
     ];
 
     /**
@@ -176,11 +185,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'symbol' => 'symbol',
-        'brokerage_authorization' => 'brokerage_authorization',
-        'description' => 'description',
-        'allows_fractional_units' => 'allows_fractional_units',
-        'option_symbol' => 'option_symbol'
+        'code' => 'code',
+        'mic_code' => 'mic_code',
+        'name' => 'name',
+        'timezone' => 'timezone',
+        'start_time' => 'start_time',
+        'close_time' => 'close_time',
+        'suffix' => 'suffix',
+        'allows_cryptocurrency_symbols' => 'allows_cryptocurrency_symbols'
     ];
 
     /**
@@ -190,11 +202,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'symbol' => 'setSymbol',
-        'brokerage_authorization' => 'setBrokerageAuthorization',
-        'description' => 'setDescription',
-        'allows_fractional_units' => 'setAllowsFractionalUnits',
-        'option_symbol' => 'setOptionSymbol'
+        'code' => 'setCode',
+        'mic_code' => 'setMicCode',
+        'name' => 'setName',
+        'timezone' => 'setTimezone',
+        'start_time' => 'setStartTime',
+        'close_time' => 'setCloseTime',
+        'suffix' => 'setSuffix',
+        'allows_cryptocurrency_symbols' => 'setAllowsCryptocurrencySymbols'
     ];
 
     /**
@@ -204,11 +219,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'symbol' => 'getSymbol',
-        'brokerage_authorization' => 'getBrokerageAuthorization',
-        'description' => 'getDescription',
-        'allows_fractional_units' => 'getAllowsFractionalUnits',
-        'option_symbol' => 'getOptionSymbol'
+        'code' => 'getCode',
+        'mic_code' => 'getMicCode',
+        'name' => 'getName',
+        'timezone' => 'getTimezone',
+        'start_time' => 'getStartTime',
+        'close_time' => 'getCloseTime',
+        'suffix' => 'getSuffix',
+        'allows_cryptocurrency_symbols' => 'getAllowsCryptocurrencySymbols'
     ];
 
     /**
@@ -269,11 +287,14 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('symbol', $data ?? [], null);
-        $this->setIfExists('brokerage_authorization', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('allows_fractional_units', $data ?? [], null);
-        $this->setIfExists('option_symbol', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('mic_code', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('timezone', $data ?? [], null);
+        $this->setIfExists('start_time', $data ?? [], null);
+        $this->setIfExists('close_time', $data ?? [], null);
+        $this->setIfExists('suffix', $data ?? [], null);
+        $this->setIfExists('allows_cryptocurrency_symbols', $data ?? [], null);
     }
 
     /**
@@ -348,167 +369,240 @@ class BrokerageSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets symbol
-     *
-     * @return \SnapTrade\Model\BrokerageSymbolSymbol|null
-     */
-    public function getSymbol()
-    {
-        return $this->container['symbol'];
-    }
-
-    /**
-     * Sets symbol
-     *
-     * @param \SnapTrade\Model\BrokerageSymbolSymbol|null $symbol symbol
-     *
-     * @return self
-     */
-    public function setSymbol($symbol)
-    {
-
-        if (is_null($symbol)) {
-            array_push($this->openAPINullablesSetToNull, 'symbol');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('symbol', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['symbol'] = $symbol;
-
-        return $this;
-    }
-
-    /**
-     * Gets brokerage_authorization
-     *
-     * @return \SnapTrade\Model\BrokerageAuthorization|null
-     */
-    public function getBrokerageAuthorization()
-    {
-        return $this->container['brokerage_authorization'];
-    }
-
-    /**
-     * Sets brokerage_authorization
-     *
-     * @param \SnapTrade\Model\BrokerageAuthorization|null $brokerage_authorization brokerage_authorization
-     *
-     * @return self
-     */
-    public function setBrokerageAuthorization($brokerage_authorization)
-    {
-
-        if (is_null($brokerage_authorization)) {
-            throw new \InvalidArgumentException('non-nullable brokerage_authorization cannot be null');
-        }
-
-        $this->container['brokerage_authorization'] = $brokerage_authorization;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
+     * Gets code
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getCode()
     {
-        return $this->container['description'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets description
+     * Sets code
      *
-     * @param string|null $description description
+     * @param string|null $code code
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setCode($code)
     {
 
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
         }
 
-        $this->container['description'] = $description;
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets allows_fractional_units
+     * Gets mic_code
+     *
+     * @return string|null
+     */
+    public function getMicCode()
+    {
+        return $this->container['mic_code'];
+    }
+
+    /**
+     * Sets mic_code
+     *
+     * @param string|null $mic_code mic_code
+     *
+     * @return self
+     */
+    public function setMicCode($mic_code)
+    {
+
+        if (is_null($mic_code)) {
+            throw new \InvalidArgumentException('non-nullable mic_code cannot be null');
+        }
+
+        $this->container['mic_code'] = $mic_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets timezone
+     *
+     * @return string|null
+     */
+    public function getTimezone()
+    {
+        return $this->container['timezone'];
+    }
+
+    /**
+     * Sets timezone
+     *
+     * @param string|null $timezone timezone
+     *
+     * @return self
+     */
+    public function setTimezone($timezone)
+    {
+
+        if (is_null($timezone)) {
+            throw new \InvalidArgumentException('non-nullable timezone cannot be null');
+        }
+
+        $this->container['timezone'] = $timezone;
+
+        return $this;
+    }
+
+    /**
+     * Gets start_time
+     *
+     * @return string|null
+     */
+    public function getStartTime()
+    {
+        return $this->container['start_time'];
+    }
+
+    /**
+     * Sets start_time
+     *
+     * @param string|null $start_time start_time
+     *
+     * @return self
+     */
+    public function setStartTime($start_time)
+    {
+
+        if (is_null($start_time)) {
+            throw new \InvalidArgumentException('non-nullable start_time cannot be null');
+        }
+
+        $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets close_time
+     *
+     * @return string|null
+     */
+    public function getCloseTime()
+    {
+        return $this->container['close_time'];
+    }
+
+    /**
+     * Sets close_time
+     *
+     * @param string|null $close_time close_time
+     *
+     * @return self
+     */
+    public function setCloseTime($close_time)
+    {
+
+        if (is_null($close_time)) {
+            throw new \InvalidArgumentException('non-nullable close_time cannot be null');
+        }
+
+        $this->container['close_time'] = $close_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets suffix
+     *
+     * @return string|null
+     */
+    public function getSuffix()
+    {
+        return $this->container['suffix'];
+    }
+
+    /**
+     * Sets suffix
+     *
+     * @param string|null $suffix suffix
+     *
+     * @return self
+     */
+    public function setSuffix($suffix)
+    {
+
+        if (is_null($suffix)) {
+            array_push($this->openAPINullablesSetToNull, 'suffix');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('suffix', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['suffix'] = $suffix;
+
+        return $this;
+    }
+
+    /**
+     * Gets allows_cryptocurrency_symbols
      *
      * @return bool|null
      */
-    public function getAllowsFractionalUnits()
+    public function getAllowsCryptocurrencySymbols()
     {
-        return $this->container['allows_fractional_units'];
+        return $this->container['allows_cryptocurrency_symbols'];
     }
 
     /**
-     * Sets allows_fractional_units
+     * Sets allows_cryptocurrency_symbols
      *
-     * @param bool|null $allows_fractional_units allows_fractional_units
+     * @param bool|null $allows_cryptocurrency_symbols allows_cryptocurrency_symbols
      *
      * @return self
      */
-    public function setAllowsFractionalUnits($allows_fractional_units)
+    public function setAllowsCryptocurrencySymbols($allows_cryptocurrency_symbols)
     {
 
-        if (is_null($allows_fractional_units)) {
-            array_push($this->openAPINullablesSetToNull, 'allows_fractional_units');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('allows_fractional_units', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($allows_cryptocurrency_symbols)) {
+            throw new \InvalidArgumentException('non-nullable allows_cryptocurrency_symbols cannot be null');
         }
 
-        $this->container['allows_fractional_units'] = $allows_fractional_units;
-
-        return $this;
-    }
-
-    /**
-     * Gets option_symbol
-     *
-     * @return \SnapTrade\Model\BrokerageSymbolOptionSymbol|null
-     */
-    public function getOptionSymbol()
-    {
-        return $this->container['option_symbol'];
-    }
-
-    /**
-     * Sets option_symbol
-     *
-     * @param \SnapTrade\Model\BrokerageSymbolOptionSymbol|null $option_symbol option_symbol
-     *
-     * @return self
-     */
-    public function setOptionSymbol($option_symbol)
-    {
-
-        if (is_null($option_symbol)) {
-            array_push($this->openAPINullablesSetToNull, 'option_symbol');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('option_symbol', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['option_symbol'] = $option_symbol;
+        $this->container['allows_cryptocurrency_symbols'] = $allows_cryptocurrency_symbols;
 
         return $this;
     }

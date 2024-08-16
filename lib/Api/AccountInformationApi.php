@@ -609,7 +609,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
-     * @param  string $account_id The ID of the account to get balances. (required)
+     * @param  string $account_id account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountBalance'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -636,7 +636,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get balances. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountBalance'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -757,7 +757,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get balances. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountBalance'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -788,7 +788,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get balances. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -844,7 +844,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get balances. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountBalance'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -927,7 +927,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['*/*', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1003,11 +1003,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     /**
      * Operation getUserAccountDetails
      *
-     * Return details of a specific investment account
+     * Get account detail
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
-     * @param  string $account_id The ID of the account to get detail of. (required)
+     * @param  string $account_id account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountDetails'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -1030,11 +1030,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     /**
      * Operation getUserAccountDetailsWithHttpInfo
      *
-     * Return details of a specific investment account
+     * Get account detail
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get detail of. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountDetails'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -1151,11 +1151,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     /**
      * Operation getUserAccountDetailsAsync
      *
-     * Return details of a specific investment account
+     * Get account detail
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get detail of. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountDetails'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -1182,11 +1182,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     /**
      * Operation getUserAccountDetailsAsyncWithHttpInfo
      *
-     * Return details of a specific investment account
+     * Get account detail
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get detail of. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountDetails'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1242,7 +1242,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get detail of. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountDetails'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1401,11 +1401,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     /**
      * Operation getUserAccountOrders
      *
-     * List account orders
+     * List account recent orders
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
-     * @param  string $account_id The ID of the account to get orders. (required)
+     * @param  string $account_id account_id (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
@@ -1432,11 +1432,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     /**
      * Operation getUserAccountOrdersWithHttpInfo
      *
-     * List account orders
+     * List account recent orders
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get orders. (required)
+     * @param  string $account_id (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
@@ -1580,11 +1580,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     /**
      * Operation getUserAccountOrdersAsync
      *
-     * List account orders
+     * List account recent orders
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get orders. (required)
+     * @param  string $account_id (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
@@ -1615,11 +1615,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     /**
      * Operation getUserAccountOrdersAsyncWithHttpInfo
      *
-     * List account orders
+     * List account recent orders
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get orders. (required)
+     * @param  string $account_id (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
@@ -1677,7 +1677,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get orders. (required)
+     * @param  string $account_id (required)
      * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
@@ -1871,7 +1871,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
-     * @param  string $account_id The ID of the account to get positions. (required)
+     * @param  string $account_id account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountPositions'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -1898,7 +1898,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get positions. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountPositions'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -2019,7 +2019,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get positions. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountPositions'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -2050,7 +2050,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get positions. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2106,7 +2106,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $account_id The ID of the account to get positions. (required)
+     * @param  string $account_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountPositions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2189,7 +2189,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['*/*', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
