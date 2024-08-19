@@ -1,6 +1,6 @@
 <?php
 /**
- * UniversalSymbol
+ * UniversalActivitySymbol
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * UniversalSymbol Class Doc Comment
+ * UniversalActivitySymbol Class Doc Comment
  *
  * @category Class
- * @description Uniquely describes a single security + exchange combination across all brokerages.
+ * @description The security for the transaction. The field is &#x60;null&#x60; if the transaction is not related to a security (like a deposit, withdrawal, fee, etc). SnapTrade does a best effort to map the brokerage&#39;s symbol. In cases where the brokerage symbol is not recognized, the field will be set to &#x60;null&#x60;.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
+class UniversalActivitySymbol implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UniversalSymbol';
+    protected static $openAPIModelName = 'UniversalActivity_symbol';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,6 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => '\SnapTrade\Model\SymbolCurrency',
         'exchange' => '\SnapTrade\Model\SymbolExchange',
         'type' => '\SnapTrade\Model\SecurityType',
-        'currencies' => '\SnapTrade\Model\Currency[]',
         'figi_code' => 'string',
         'figi_instrument' => '\SnapTrade\Model\SymbolFigiInstrument'
     ];
@@ -78,7 +77,6 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => null,
         'exchange' => null,
         'type' => null,
-        'currencies' => null,
         'figi_code' => null,
         'figi_instrument' => null
     ];
@@ -96,7 +94,6 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
 		'currency' => false,
 		'exchange' => false,
 		'type' => false,
-		'currencies' => false,
 		'figi_code' => true,
 		'figi_instrument' => true
     ];
@@ -194,7 +191,6 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => 'currency',
         'exchange' => 'exchange',
         'type' => 'type',
-        'currencies' => 'currencies',
         'figi_code' => 'figi_code',
         'figi_instrument' => 'figi_instrument'
     ];
@@ -212,7 +208,6 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => 'setCurrency',
         'exchange' => 'setExchange',
         'type' => 'setType',
-        'currencies' => 'setCurrencies',
         'figi_code' => 'setFigiCode',
         'figi_instrument' => 'setFigiInstrument'
     ];
@@ -230,7 +225,6 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => 'getCurrency',
         'exchange' => 'getExchange',
         'type' => 'getType',
-        'currencies' => 'getCurrencies',
         'figi_code' => 'getFigiCode',
         'figi_instrument' => 'getFigiInstrument'
     ];
@@ -299,7 +293,6 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('exchange', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('currencies', $data ?? [], null);
         $this->setIfExists('figi_code', $data ?? [], null);
         $this->setIfExists('figi_instrument', $data ?? [], null);
     }
@@ -331,24 +324,6 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['symbol'] === null) {
-            $invalidProperties[] = "'symbol' can't be null";
-        }
-        if ($this->container['raw_symbol'] === null) {
-            $invalidProperties[] = "'raw_symbol' can't be null";
-        }
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['currencies'] === null) {
-            $invalidProperties[] = "'currencies' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -367,7 +342,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return string
+     * @return string|null
      */
     public function getId()
     {
@@ -377,7 +352,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string $id Unique identifier for the symbol within SnapTrade. This is the ID used to reference the symbol in SnapTrade API calls.
+     * @param string|null $id Unique identifier for the symbol within SnapTrade. This is the ID used to reference the symbol in SnapTrade API calls.
      *
      * @return self
      */
@@ -396,7 +371,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets symbol
      *
-     * @return string
+     * @return string|null
      */
     public function getSymbol()
     {
@@ -406,7 +381,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets symbol
      *
-     * @param string $symbol The security's trading ticker symbol. For example \"AAPL\" for Apple Inc. We largely follow the [Yahoo Finance ticker format](https://help.yahoo.com/kb/SLN2310.html)(click on \"Yahoo Finance Market Coverage and Data Delays\"). For example, for securities traded on the Toronto Stock Exchange, the symbol has a '.TO' suffix. For securities traded on NASDAQ or NYSE, the symbol does not have a suffix.
+     * @param string|null $symbol The security's trading ticker symbol. For example \"AAPL\" for Apple Inc. We largely follow the [Yahoo Finance ticker format](https://help.yahoo.com/kb/SLN2310.html)(click on \"Yahoo Finance Market Coverage and Data Delays\"). For example, for securities traded on the Toronto Stock Exchange, the symbol has a '.TO' suffix. For securities traded on NASDAQ or NYSE, the symbol does not have a suffix.
      *
      * @return self
      */
@@ -425,7 +400,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets raw_symbol
      *
-     * @return string
+     * @return string|null
      */
     public function getRawSymbol()
     {
@@ -435,7 +410,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets raw_symbol
      *
-     * @param string $raw_symbol The raw symbol is `symbol` with the exchange suffix removed. For example, if `symbol` is \"VAB.TO\", then `raw_symbol` is \"VAB\".
+     * @param string|null $raw_symbol The raw symbol is `symbol` with the exchange suffix removed. For example, if `symbol` is \"VAB.TO\", then `raw_symbol` is \"VAB\".
      *
      * @return self
      */
@@ -490,7 +465,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets currency
      *
-     * @return \SnapTrade\Model\SymbolCurrency
+     * @return \SnapTrade\Model\SymbolCurrency|null
      */
     public function getCurrency()
     {
@@ -500,7 +475,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param \SnapTrade\Model\SymbolCurrency $currency currency
+     * @param \SnapTrade\Model\SymbolCurrency|null $currency currency
      *
      * @return self
      */
@@ -548,7 +523,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return \SnapTrade\Model\SecurityType
+     * @return \SnapTrade\Model\SecurityType|null
      */
     public function getType()
     {
@@ -558,7 +533,7 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \SnapTrade\Model\SecurityType $type type
+     * @param \SnapTrade\Model\SecurityType|null $type type
      *
      * @return self
      */
@@ -570,37 +545,6 @@ class UniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets currencies
-     *
-     * @return \SnapTrade\Model\Currency[]
-     * @deprecated
-     */
-    public function getCurrencies()
-    {
-        return $this->container['currencies'];
-    }
-
-    /**
-     * Sets currencies
-     *
-     * @param \SnapTrade\Model\Currency[] $currencies This field is deprecated and should not be used. Please reach out to SnapTrade support if you have a valid usecase for this.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setCurrencies($currencies)
-    {
-
-        if (is_null($currencies)) {
-            throw new \InvalidArgumentException('non-nullable currencies cannot be null');
-        }
-
-        $this->container['currencies'] = $currencies;
 
         return $this;
     }

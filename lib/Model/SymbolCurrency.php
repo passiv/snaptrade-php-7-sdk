@@ -1,6 +1,6 @@
 <?php
 /**
- * UniversalSymbolCurrency
+ * SymbolCurrency
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * UniversalSymbolCurrency Class Doc Comment
+ * SymbolCurrency Class Doc Comment
  *
  * @category Class
  * @description The currency in which the security is traded.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSerializable
+class SymbolCurrency implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UniversalSymbol_currency';
+    protected static $openAPIModelName = 'Symbol_currency';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
