@@ -163,7 +163,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -191,7 +191,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -359,7 +359,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -391,7 +391,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -448,7 +448,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
