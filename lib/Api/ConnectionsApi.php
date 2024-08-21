@@ -155,6 +155,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Get brokerage authorization details
      *
+     * Returns a single brokerage authorization object for the specified ID.
+     *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -181,6 +183,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation detailBrokerageAuthorizationWithHttpInfo
      *
      * Get brokerage authorization details
+     *
+     * Returns a single brokerage authorization object for the specified ID.
      *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id (required)
@@ -303,6 +307,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Get brokerage authorization details
      *
+     * Returns a single brokerage authorization object for the specified ID.
+     *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -333,6 +339,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation detailBrokerageAuthorizationAsyncWithHttpInfo
      *
      * Get brokerage authorization details
+     *
+     * Returns a single brokerage authorization object for the specified ID.
      *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id (required)
@@ -553,6 +561,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Manually disable a connection for testing
      *
+     * Manually disable a connection. This should only be used for testing a reconnect flow, and never used on production connections. Will trigger a disconnect as if it happened naturally, and send a CONNECTION_BROKEN webhook for the connection. Please contact us in order to use this endpoint as it is disabled by default.
+     *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -579,6 +589,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation disableBrokerageAuthorizationWithHttpInfo
      *
      * Manually disable a connection for testing
+     *
+     * Manually disable a connection. This should only be used for testing a reconnect flow, and never used on production connections. Will trigger a disconnect as if it happened naturally, and send a CONNECTION_BROKEN webhook for the connection. Please contact us in order to use this endpoint as it is disabled by default.
      *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id (required)
@@ -793,6 +805,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Manually disable a connection for testing
      *
+     * Manually disable a connection. This should only be used for testing a reconnect flow, and never used on production connections. Will trigger a disconnect as if it happened naturally, and send a CONNECTION_BROKEN webhook for the connection. Please contact us in order to use this endpoint as it is disabled by default.
+     *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -823,6 +837,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation disableBrokerageAuthorizationAsyncWithHttpInfo
      *
      * Manually disable a connection for testing
+     *
+     * Manually disable a connection. This should only be used for testing a reconnect flow, and never used on production connections. Will trigger a disconnect as if it happened naturally, and send a CONNECTION_BROKEN webhook for the connection. Please contact us in order to use this endpoint as it is disabled by default.
      *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id (required)
@@ -1043,6 +1059,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * List all brokerage authorizations for the User
      *
+     * Returns a list of Brokerage Authorization objects for the user
+     *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBrokerageAuthorizations'] to see the possible values for this operation
@@ -1067,6 +1085,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation listBrokerageAuthorizationsWithHttpInfo
      *
      * List all brokerage authorizations for the User
+     *
+     * Returns a list of Brokerage Authorization objects for the user
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1187,6 +1207,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * List all brokerage authorizations for the User
      *
+     * Returns a list of Brokerage Authorization objects for the user
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBrokerageAuthorizations'] to see the possible values for this operation
@@ -1215,6 +1237,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation listBrokerageAuthorizationsAsyncWithHttpInfo
      *
      * List all brokerage authorizations for the User
+     *
+     * Returns a list of Brokerage Authorization objects for the user
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1415,6 +1439,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Refresh holdings for a connection
      *
+     * Trigger a holdings update for all accounts under this authorization. Updates will be queued asynchronously. ACCOUNT_HOLDINGS_UPDATED webhook will be sent once the sync completes. Please contact support for access as this endpoint is not enabled by default
+     *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -1441,6 +1467,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation refreshBrokerageAuthorizationWithHttpInfo
      *
      * Refresh holdings for a connection
+     *
+     * Trigger a holdings update for all accounts under this authorization. Updates will be queued asynchronously. ACCOUNT_HOLDINGS_UPDATED webhook will be sent once the sync completes. Please contact support for access as this endpoint is not enabled by default
      *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id (required)
@@ -1655,6 +1683,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Refresh holdings for a connection
      *
+     * Trigger a holdings update for all accounts under this authorization. Updates will be queued asynchronously. ACCOUNT_HOLDINGS_UPDATED webhook will be sent once the sync completes. Please contact support for access as this endpoint is not enabled by default
+     *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1685,6 +1715,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation refreshBrokerageAuthorizationAsyncWithHttpInfo
      *
      * Refresh holdings for a connection
+     *
+     * Trigger a holdings update for all accounts under this authorization. Updates will be queued asynchronously. ACCOUNT_HOLDINGS_UPDATED webhook will be sent once the sync completes. Please contact support for access as this endpoint is not enabled by default
      *
      * @param  string $authorization_id The ID of a brokerage authorization object. (required)
      * @param  string $user_id (required)
@@ -1905,6 +1937,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Delete brokerage authorization
      *
+     * Deletes a specified brokerage authorization given by the ID.
+     *
      * @param  string $authorization_id The ID of the Authorization to delete. (required)
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -1930,6 +1964,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation removeBrokerageAuthorizationWithHttpInfo
      *
      * Delete brokerage authorization
+     *
+     * Deletes a specified brokerage authorization given by the ID.
      *
      * @param  string $authorization_id The ID of the Authorization to delete. (required)
      * @param  string $user_id (required)
@@ -2012,6 +2048,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Delete brokerage authorization
      *
+     * Deletes a specified brokerage authorization given by the ID.
+     *
      * @param  string $authorization_id The ID of the Authorization to delete. (required)
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -2042,6 +2080,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Operation removeBrokerageAuthorizationAsyncWithHttpInfo
      *
      * Delete brokerage authorization
+     *
+     * Deletes a specified brokerage authorization given by the ID.
      *
      * @param  string $authorization_id The ID of the Authorization to delete. (required)
      * @param  string $user_id (required)
@@ -2249,9 +2289,11 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Get all session events for a user
      *
+     * Returns a list of session events associated with a user.
+     *
      * @param  string $partner_client_id partner_client_id (required)
-     * @param  string $user_id Optional comma seperated list of user IDs used to filter the request on specific users (optional)
-     * @param  string $session_id Optional comma seperated list of session IDs used to filter the request on specific users (optional)
+     * @param  string $user_id Optional comma separated list of user IDs used to filter the request on specific users (optional)
+     * @param  string $session_id Optional comma separated list of session IDs used to filter the request on specific users (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionEvents'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -2276,9 +2318,11 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Get all session events for a user
      *
+     * Returns a list of session events associated with a user.
+     *
      * @param  string $partner_client_id (required)
-     * @param  string $user_id Optional comma seperated list of user IDs used to filter the request on specific users (optional)
-     * @param  string $session_id Optional comma seperated list of session IDs used to filter the request on specific users (optional)
+     * @param  string $user_id Optional comma separated list of user IDs used to filter the request on specific users (optional)
+     * @param  string $session_id Optional comma separated list of session IDs used to filter the request on specific users (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionEvents'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -2397,9 +2441,11 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Get all session events for a user
      *
+     * Returns a list of session events associated with a user.
+     *
      * @param  string $partner_client_id (required)
-     * @param  string $user_id Optional comma seperated list of user IDs used to filter the request on specific users (optional)
-     * @param  string $session_id Optional comma seperated list of session IDs used to filter the request on specific users (optional)
+     * @param  string $user_id Optional comma separated list of user IDs used to filter the request on specific users (optional)
+     * @param  string $session_id Optional comma separated list of session IDs used to filter the request on specific users (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionEvents'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -2428,9 +2474,11 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      *
      * Get all session events for a user
      *
+     * Returns a list of session events associated with a user.
+     *
      * @param  string $partner_client_id (required)
-     * @param  string $user_id Optional comma seperated list of user IDs used to filter the request on specific users (optional)
-     * @param  string $session_id Optional comma seperated list of session IDs used to filter the request on specific users (optional)
+     * @param  string $user_id Optional comma separated list of user IDs used to filter the request on specific users (optional)
+     * @param  string $session_id Optional comma separated list of session IDs used to filter the request on specific users (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2485,8 +2533,8 @@ class ConnectionsApi extends \SnapTrade\CustomApi
      * Create request for operation 'sessionEvents'
      *
      * @param  string $partner_client_id (required)
-     * @param  string $user_id Optional comma seperated list of user IDs used to filter the request on specific users (optional)
-     * @param  string $session_id Optional comma seperated list of session IDs used to filter the request on specific users (optional)
+     * @param  string $user_id Optional comma separated list of user IDs used to filter the request on specific users (optional)
+     * @param  string $session_id Optional comma separated list of session IDs used to filter the request on specific users (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
