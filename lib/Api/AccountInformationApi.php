@@ -161,9 +161,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List all accounts for the user, plus balances, positions, and orders for each account.
      *
+     * **Deprecated, please use the account-specific holdings endpoint instead.**  List all accounts for the user, plus balances, positions, and orders for each account.
+     *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -189,9 +191,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List all accounts for the user, plus balances, positions, and orders for each account.
      *
+     * **Deprecated, please use the account-specific holdings endpoint instead.**  List all accounts for the user, plus balances, positions, and orders for each account.
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -357,9 +361,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List all accounts for the user, plus balances, positions, and orders for each account.
      *
+     * **Deprecated, please use the account-specific holdings endpoint instead.**  List all accounts for the user, plus balances, positions, and orders for each account.
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -389,9 +395,11 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List all accounts for the user, plus balances, positions, and orders for each account.
      *
+     * **Deprecated, please use the account-specific holdings endpoint instead.**  List all accounts for the user, plus balances, positions, and orders for each account.
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -448,7 +456,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
-     * @param  string $brokerage_authorizations Optional. Comma seperated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
+     * @param  string $brokerage_authorizations Optional. Comma separated list of authorization IDs (only use if filtering is needed on one or more authorizations). (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllUserHoldings'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -607,6 +615,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account balances
      *
+     * Returns a list of balances for the account. Each element of the list has a distinct currency. Some brokerages like Questrade [allows holding multiple currencies in the same account](https://www.questrade.com/learning/questrade-basics/balances-and-reports/understanding-your-account-balances).  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id account_id (required)
@@ -633,6 +643,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserAccountBalanceWithHttpInfo
      *
      * List account balances
+     *
+     * Returns a list of balances for the account. Each element of the list has a distinct currency. Some brokerages like Questrade [allows holding multiple currencies in the same account](https://www.questrade.com/learning/questrade-basics/balances-and-reports/understanding-your-account-balances).  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -755,6 +767,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account balances
      *
+     * Returns a list of balances for the account. Each element of the list has a distinct currency. Some brokerages like Questrade [allows holding multiple currencies in the same account](https://www.questrade.com/learning/questrade-basics/balances-and-reports/understanding-your-account-balances).  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
@@ -785,6 +799,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserAccountBalanceAsyncWithHttpInfo
      *
      * List account balances
+     *
+     * Returns a list of balances for the account. Each element of the list has a distinct currency. Some brokerages like Questrade [allows holding multiple currencies in the same account](https://www.questrade.com/learning/questrade-basics/balances-and-reports/understanding-your-account-balances).  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1005,6 +1021,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * Get account detail
      *
+     * Returns account detail known to SnapTrade for the specified account.  The data returned here is always cached and refreshed once a day. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id account_id (required)
@@ -1031,6 +1049,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserAccountDetailsWithHttpInfo
      *
      * Get account detail
+     *
+     * Returns account detail known to SnapTrade for the specified account.  The data returned here is always cached and refreshed once a day. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1153,6 +1173,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * Get account detail
      *
+     * Returns account detail known to SnapTrade for the specified account.  The data returned here is always cached and refreshed once a day. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
@@ -1183,6 +1205,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserAccountDetailsAsyncWithHttpInfo
      *
      * Get account detail
+     *
+     * Returns account detail known to SnapTrade for the specified account.  The data returned here is always cached and refreshed once a day. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1403,6 +1427,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account recent orders
      *
+     * Returns a list of recent orders in the specified account.  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id account_id (required)
@@ -1433,6 +1459,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserAccountOrdersWithHttpInfo
      *
      * List account recent orders
+     *
+     * Returns a list of recent orders in the specified account.  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1582,6 +1610,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account recent orders
      *
+     * Returns a list of recent orders in the specified account.  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
@@ -1616,6 +1646,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserAccountOrdersAsyncWithHttpInfo
      *
      * List account recent orders
+     *
+     * Returns a list of recent orders in the specified account.  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1869,6 +1901,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account positions
      *
+     * Returns a list of stock/ETF/crypto/mutual fund positions in the specified account. For option positions, please use the [options endpoint](/reference/Options/Options_listOptionHoldings).  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id account_id (required)
@@ -1895,6 +1929,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserAccountPositionsWithHttpInfo
      *
      * List account positions
+     *
+     * Returns a list of stock/ETF/crypto/mutual fund positions in the specified account. For option positions, please use the [options endpoint](/reference/Options/Options_listOptionHoldings).  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -2017,6 +2053,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account positions
      *
+     * Returns a list of stock/ETF/crypto/mutual fund positions in the specified account. For option positions, please use the [options endpoint](/reference/Options/Options_listOptionHoldings).  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
@@ -2047,6 +2085,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserAccountPositionsAsyncWithHttpInfo
      *
      * List account positions
+     *
+     * Returns a list of stock/ETF/crypto/mutual fund positions in the specified account. For option positions, please use the [options endpoint](/reference/Options/Options_listOptionHoldings).  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -2267,6 +2307,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account holdings
      *
+     * Returns a list of balances, positions, and recent orders for the specified account. The data returned is similar to the data returned over the more fine-grained [balances](/reference/Account%20Information/AccountInformation_getUserAccountBalance), [positions](/reference/Account%20Information/AccountInformation_getUserAccountPositions) and [orders](/reference/Account%20Information/AccountInformation_getUserAccountOrders) endpoints. __The finer-grained APIs are preferred. They are easier to work with, faster, and have better error handling than this coarse-grained API.__  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $account_id account_id (required)
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -2293,6 +2335,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserHoldingsWithHttpInfo
      *
      * List account holdings
+     *
+     * Returns a list of balances, positions, and recent orders for the specified account. The data returned is similar to the data returned over the more fine-grained [balances](/reference/Account%20Information/AccountInformation_getUserAccountBalance), [positions](/reference/Account%20Information/AccountInformation_getUserAccountPositions) and [orders](/reference/Account%20Information/AccountInformation_getUserAccountOrders) endpoints. __The finer-grained APIs are preferred. They are easier to work with, faster, and have better error handling than this coarse-grained API.__  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $account_id (required)
      * @param  string $user_id (required)
@@ -2461,6 +2505,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account holdings
      *
+     * Returns a list of balances, positions, and recent orders for the specified account. The data returned is similar to the data returned over the more fine-grained [balances](/reference/Account%20Information/AccountInformation_getUserAccountBalance), [positions](/reference/Account%20Information/AccountInformation_getUserAccountPositions) and [orders](/reference/Account%20Information/AccountInformation_getUserAccountOrders) endpoints. __The finer-grained APIs are preferred. They are easier to work with, faster, and have better error handling than this coarse-grained API.__  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $account_id (required)
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -2491,6 +2537,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation getUserHoldingsAsyncWithHttpInfo
      *
      * List account holdings
+     *
+     * Returns a list of balances, positions, and recent orders for the specified account. The data returned is similar to the data returned over the more fine-grained [balances](/reference/Account%20Information/AccountInformation_getUserAccountBalance), [positions](/reference/Account%20Information/AccountInformation_getUserAccountPositions) and [orders](/reference/Account%20Information/AccountInformation_getUserAccountOrders) endpoints. __The finer-grained APIs are preferred. They are easier to work with, faster, and have better error handling than this coarse-grained API.__  The data returned here is cached. How long the data is cached for varies by brokerage. Check the [brokerage integrations doc](https://snaptrade.notion.site/66793431ad0b416489eaabaf248d0afb?v&#x3D;d16c4c97b8d5438bbb2d8581ac53b11e) and look for \&quot;Cache Expiry Time\&quot; to see the exact value for a specific brokerage. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $account_id (required)
      * @param  string $user_id (required)
@@ -2711,6 +2759,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List accounts
      *
+     * Returns all brokerage accounts known to SnapTrade for the authenticated user.  The data returned here is always cached and refreshed once a day. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUserAccounts'] to see the possible values for this operation
@@ -2735,6 +2785,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation listUserAccountsWithHttpInfo
      *
      * List accounts
+     *
+     * Returns all brokerage accounts known to SnapTrade for the authenticated user.  The data returned here is always cached and refreshed once a day. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -2855,6 +2907,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List accounts
      *
+     * Returns all brokerage accounts known to SnapTrade for the authenticated user.  The data returned here is always cached and refreshed once a day. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUserAccounts'] to see the possible values for this operation
@@ -2883,6 +2937,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation listUserAccountsAsyncWithHttpInfo
      *
      * List accounts
+     *
+     * Returns all brokerage accounts known to SnapTrade for the authenticated user.  The data returned here is always cached and refreshed once a day. **If you need real-time data, please use the [manual refresh](/reference/Connections/Connections_refreshBrokerageAuthorization) endpoint**.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -3083,6 +3139,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * Update details of an investment account
      *
+     * Updates various properties of a specified account.
+     *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id The ID of the account to update. (required)
@@ -3109,6 +3167,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation updateUserAccountWithHttpInfo
      *
      * Update details of an investment account
+     *
+     * Updates various properties of a specified account.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -3231,6 +3291,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * Update details of an investment account
      *
+     * Updates various properties of a specified account.
+     *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id The ID of the account to update. (required)
@@ -3261,6 +3323,8 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * Operation updateUserAccountAsyncWithHttpInfo
      *
      * Update details of an investment account
+     *
+     * Updates various properties of a specified account.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
