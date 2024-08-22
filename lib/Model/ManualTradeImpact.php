@@ -1,6 +1,6 @@
 <?php
 /**
- * ManualTradeForm
+ * ManualTradeImpact
  *
  * PHP version 7.4
  *
@@ -27,14 +27,13 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * ManualTradeForm Class Doc Comment
+ * ManualTradeImpact Class Doc Comment
  *
  * @category Class
- * @description Inputs for placing an order with the brokerage.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
+class ManualTradeImpact implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +42,7 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ManualTradeForm';
+    protected static $openAPIModelName = 'ManualTradeImpact';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,15 +50,11 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_id' => 'string',
-        'action' => '\SnapTrade\Model\ActionStrict',
-        'universal_symbol_id' => 'string',
-        'order_type' => '\SnapTrade\Model\OrderTypeStrict',
-        'time_in_force' => '\SnapTrade\Model\TimeInForceStrict',
-        'price' => 'float',
-        'stop' => 'float',
-        'units' => 'float',
-        'notional_value' => '\SnapTrade\Model\ManualTradeFormNotionalValue'
+        'account' => 'string',
+        'currency' => 'string',
+        'remaining_cash' => 'float',
+        'estimated_commission' => 'float',
+        'forex_fees' => 'float'
     ];
 
     /**
@@ -70,15 +65,11 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'account_id' => 'uuid',
-        'action' => null,
-        'universal_symbol_id' => 'uuid',
-        'order_type' => null,
-        'time_in_force' => null,
-        'price' => null,
-        'stop' => null,
-        'units' => null,
-        'notional_value' => null
+        'account' => 'uuid',
+        'currency' => 'uuid',
+        'remaining_cash' => null,
+        'estimated_commission' => null,
+        'forex_fees' => null
     ];
 
     /**
@@ -87,15 +78,11 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'account_id' => false,
-		'action' => false,
-		'universal_symbol_id' => false,
-		'order_type' => false,
-		'time_in_force' => false,
-		'price' => true,
-		'stop' => true,
-		'units' => true,
-		'notional_value' => true
+        'account' => false,
+		'currency' => false,
+		'remaining_cash' => true,
+		'estimated_commission' => true,
+		'forex_fees' => true
     ];
 
     /**
@@ -184,15 +171,11 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_id' => 'account_id',
-        'action' => 'action',
-        'universal_symbol_id' => 'universal_symbol_id',
-        'order_type' => 'order_type',
-        'time_in_force' => 'time_in_force',
-        'price' => 'price',
-        'stop' => 'stop',
-        'units' => 'units',
-        'notional_value' => 'notional_value'
+        'account' => 'account',
+        'currency' => 'currency',
+        'remaining_cash' => 'remaining_cash',
+        'estimated_commission' => 'estimated_commission',
+        'forex_fees' => 'forex_fees'
     ];
 
     /**
@@ -201,15 +184,11 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'account_id' => 'setAccountId',
-        'action' => 'setAction',
-        'universal_symbol_id' => 'setUniversalSymbolId',
-        'order_type' => 'setOrderType',
-        'time_in_force' => 'setTimeInForce',
-        'price' => 'setPrice',
-        'stop' => 'setStop',
-        'units' => 'setUnits',
-        'notional_value' => 'setNotionalValue'
+        'account' => 'setAccount',
+        'currency' => 'setCurrency',
+        'remaining_cash' => 'setRemainingCash',
+        'estimated_commission' => 'setEstimatedCommission',
+        'forex_fees' => 'setForexFees'
     ];
 
     /**
@@ -218,15 +197,11 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'account_id' => 'getAccountId',
-        'action' => 'getAction',
-        'universal_symbol_id' => 'getUniversalSymbolId',
-        'order_type' => 'getOrderType',
-        'time_in_force' => 'getTimeInForce',
-        'price' => 'getPrice',
-        'stop' => 'getStop',
-        'units' => 'getUnits',
-        'notional_value' => 'getNotionalValue'
+        'account' => 'getAccount',
+        'currency' => 'getCurrency',
+        'remaining_cash' => 'getRemainingCash',
+        'estimated_commission' => 'getEstimatedCommission',
+        'forex_fees' => 'getForexFees'
     ];
 
     /**
@@ -286,15 +261,11 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('action', $data ?? [], null);
-        $this->setIfExists('universal_symbol_id', $data ?? [], null);
-        $this->setIfExists('order_type', $data ?? [], null);
-        $this->setIfExists('time_in_force', $data ?? [], null);
-        $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('stop', $data ?? [], null);
-        $this->setIfExists('units', $data ?? [], null);
-        $this->setIfExists('notional_value', $data ?? [], null);
+        $this->setIfExists('account', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('remaining_cash', $data ?? [], null);
+        $this->setIfExists('estimated_commission', $data ?? [], null);
+        $this->setIfExists('forex_fees', $data ?? [], null);
     }
 
     /**
@@ -324,21 +295,6 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['account_id'] === null) {
-            $invalidProperties[] = "'account_id' can't be null";
-        }
-        if ($this->container['action'] === null) {
-            $invalidProperties[] = "'action' can't be null";
-        }
-        if ($this->container['universal_symbol_id'] === null) {
-            $invalidProperties[] = "'universal_symbol_id' can't be null";
-        }
-        if ($this->container['order_type'] === null) {
-            $invalidProperties[] = "'order_type' can't be null";
-        }
-        if ($this->container['time_in_force'] === null) {
-            $invalidProperties[] = "'time_in_force' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -355,290 +311,167 @@ class ManualTradeForm implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets account_id
+     * Gets account
      *
-     * @return string
+     * @return string|null
      */
-    public function getAccountId()
+    public function getAccount()
     {
-        return $this->container['account_id'];
+        return $this->container['account'];
     }
 
     /**
-     * Sets account_id
+     * Sets account
      *
-     * @param string $account_id Unique identifier for the connected brokerage account. This is the UUID used to reference the account in SnapTrade.
+     * @param string|null $account Unique identifier for the connected brokerage account. This is the UUID used to reference the account in SnapTrade.
      *
      * @return self
      */
-    public function setAccountId($account_id)
+    public function setAccount($account)
     {
 
-        if (is_null($account_id)) {
-            throw new \InvalidArgumentException('non-nullable account_id cannot be null');
+        if (is_null($account)) {
+            throw new \InvalidArgumentException('non-nullable account cannot be null');
         }
 
-        $this->container['account_id'] = $account_id;
+        $this->container['account'] = $account;
 
         return $this;
     }
 
     /**
-     * Gets action
+     * Gets currency
      *
-     * @return \SnapTrade\Model\ActionStrict
+     * @return string|null
      */
-    public function getAction()
+    public function getCurrency()
     {
-        return $this->container['action'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets action
+     * Sets currency
      *
-     * @param \SnapTrade\Model\ActionStrict $action action
+     * @param string|null $currency Unique identifier for the currency. This is the UUID used to reference the currency in SnapTrade.
      *
      * @return self
      */
-    public function setAction($action)
+    public function setCurrency($currency)
     {
 
-        if (is_null($action)) {
-            throw new \InvalidArgumentException('non-nullable action cannot be null');
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
 
-        $this->container['action'] = $action;
+        $this->container['currency'] = $currency;
 
         return $this;
     }
 
     /**
-     * Gets universal_symbol_id
-     *
-     * @return string
-     */
-    public function getUniversalSymbolId()
-    {
-        return $this->container['universal_symbol_id'];
-    }
-
-    /**
-     * Sets universal_symbol_id
-     *
-     * @param string $universal_symbol_id Unique identifier for the symbol within SnapTrade. This is the ID used to reference the symbol in SnapTrade API calls.
-     *
-     * @return self
-     */
-    public function setUniversalSymbolId($universal_symbol_id)
-    {
-
-        if (is_null($universal_symbol_id)) {
-            throw new \InvalidArgumentException('non-nullable universal_symbol_id cannot be null');
-        }
-
-        $this->container['universal_symbol_id'] = $universal_symbol_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_type
-     *
-     * @return \SnapTrade\Model\OrderTypeStrict
-     */
-    public function getOrderType()
-    {
-        return $this->container['order_type'];
-    }
-
-    /**
-     * Sets order_type
-     *
-     * @param \SnapTrade\Model\OrderTypeStrict $order_type order_type
-     *
-     * @return self
-     */
-    public function setOrderType($order_type)
-    {
-
-        if (is_null($order_type)) {
-            throw new \InvalidArgumentException('non-nullable order_type cannot be null');
-        }
-
-        $this->container['order_type'] = $order_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets time_in_force
-     *
-     * @return \SnapTrade\Model\TimeInForceStrict
-     */
-    public function getTimeInForce()
-    {
-        return $this->container['time_in_force'];
-    }
-
-    /**
-     * Sets time_in_force
-     *
-     * @param \SnapTrade\Model\TimeInForceStrict $time_in_force time_in_force
-     *
-     * @return self
-     */
-    public function setTimeInForce($time_in_force)
-    {
-
-        if (is_null($time_in_force)) {
-            throw new \InvalidArgumentException('non-nullable time_in_force cannot be null');
-        }
-
-        $this->container['time_in_force'] = $time_in_force;
-
-        return $this;
-    }
-
-    /**
-     * Gets price
+     * Gets remaining_cash
      *
      * @return float|null
      */
-    public function getPrice()
+    public function getRemainingCash()
     {
-        return $this->container['price'];
+        return $this->container['remaining_cash'];
     }
 
     /**
-     * Sets price
+     * Sets remaining_cash
      *
-     * @param float|null $price The limit price for `Limit` and `StopLimit` orders.
+     * @param float|null $remaining_cash Estimated amount of cash remaining in the account after the trade.
      *
      * @return self
      */
-    public function setPrice($price)
+    public function setRemainingCash($remaining_cash)
     {
 
-        if (is_null($price)) {
-            array_push($this->openAPINullablesSetToNull, 'price');
+        if (is_null($remaining_cash)) {
+            array_push($this->openAPINullablesSetToNull, 'remaining_cash');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price', $nullablesSetToNull);
+            $index = array_search('remaining_cash', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
 
-        $this->container['price'] = $price;
+        $this->container['remaining_cash'] = $remaining_cash;
 
         return $this;
     }
 
     /**
-     * Gets stop
+     * Gets estimated_commission
      *
      * @return float|null
      */
-    public function getStop()
+    public function getEstimatedCommission()
     {
-        return $this->container['stop'];
+        return $this->container['estimated_commission'];
     }
 
     /**
-     * Sets stop
+     * Sets estimated_commission
      *
-     * @param float|null $stop The price at which a stop order is triggered for `Stop` and `StopLimit` orders.
+     * @param float|null $estimated_commission Estimated commission for the trade.
      *
      * @return self
      */
-    public function setStop($stop)
+    public function setEstimatedCommission($estimated_commission)
     {
 
-        if (is_null($stop)) {
-            array_push($this->openAPINullablesSetToNull, 'stop');
+        if (is_null($estimated_commission)) {
+            array_push($this->openAPINullablesSetToNull, 'estimated_commission');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('stop', $nullablesSetToNull);
+            $index = array_search('estimated_commission', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
 
-        $this->container['stop'] = $stop;
+        $this->container['estimated_commission'] = $estimated_commission;
 
         return $this;
     }
 
     /**
-     * Gets units
+     * Gets forex_fees
      *
      * @return float|null
      */
-    public function getUnits()
+    public function getForexFees()
     {
-        return $this->container['units'];
+        return $this->container['forex_fees'];
     }
 
     /**
-     * Sets units
+     * Sets forex_fees
      *
-     * @param float|null $units units
+     * @param float|null $forex_fees Estimated foreign transaction fees for the trade.
      *
      * @return self
      */
-    public function setUnits($units)
+    public function setForexFees($forex_fees)
     {
 
-        if (is_null($units)) {
-            array_push($this->openAPINullablesSetToNull, 'units');
+        if (is_null($forex_fees)) {
+            array_push($this->openAPINullablesSetToNull, 'forex_fees');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('units', $nullablesSetToNull);
+            $index = array_search('forex_fees', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
 
-        $this->container['units'] = $units;
-
-        return $this;
-    }
-
-    /**
-     * Gets notional_value
-     *
-     * @return \SnapTrade\Model\ManualTradeFormNotionalValue|null
-     */
-    public function getNotionalValue()
-    {
-        return $this->container['notional_value'];
-    }
-
-    /**
-     * Sets notional_value
-     *
-     * @param \SnapTrade\Model\ManualTradeFormNotionalValue|null $notional_value notional_value
-     *
-     * @return self
-     */
-    public function setNotionalValue($notional_value)
-    {
-
-        if (is_null($notional_value)) {
-            array_push($this->openAPINullablesSetToNull, 'notional_value');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('notional_value', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['notional_value'] = $notional_value;
+        $this->container['forex_fees'] = $forex_fees;
 
         return $this;
     }
