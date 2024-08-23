@@ -963,9 +963,9 @@ class AuthenticationApi extends \SnapTrade\CustomApi
     /**
      * Operation loginSnapTradeUser
      *
-     * Login user &amp; generate connection link
+     * Generate Connection Portal URL
      *
-     * Logs in a SnapTrade user and returns an authenticated connection portal URL for them to use to connect a brokerage account.
+     * Authenticates a SnapTrade user and returns the Connection Portal URL used for connecting brokerage accounts. Please check [this guide](/docs/implement-connection-portal) for how to integrate the Connection Portal into your app.  Please note that the returned URL expires in 5 minutes.
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -1005,9 +1005,9 @@ class AuthenticationApi extends \SnapTrade\CustomApi
     /**
      * Operation loginSnapTradeUserWithHttpInfo
      *
-     * Login user &amp; generate connection link
+     * Generate Connection Portal URL
      *
-     * Logs in a SnapTrade user and returns an authenticated connection portal URL for them to use to connect a brokerage account.
+     * Authenticates a SnapTrade user and returns the Connection Portal URL used for connecting brokerage accounts. Please check [this guide](/docs/implement-connection-portal) for how to integrate the Connection Portal into your app.  Please note that the returned URL expires in 5 minutes.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1197,9 +1197,9 @@ class AuthenticationApi extends \SnapTrade\CustomApi
     /**
      * Operation loginSnapTradeUserAsync
      *
-     * Login user &amp; generate connection link
+     * Generate Connection Portal URL
      *
-     * Logs in a SnapTrade user and returns an authenticated connection portal URL for them to use to connect a brokerage account.
+     * Authenticates a SnapTrade user and returns the Connection Portal URL used for connecting brokerage accounts. Please check [this guide](/docs/implement-connection-portal) for how to integrate the Connection Portal into your app.  Please note that the returned URL expires in 5 minutes.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -1243,9 +1243,9 @@ class AuthenticationApi extends \SnapTrade\CustomApi
     /**
      * Operation loginSnapTradeUserAsyncWithHttpInfo
      *
-     * Login user &amp; generate connection link
+     * Generate Connection Portal URL
      *
-     * Logs in a SnapTrade user and returns an authenticated connection portal URL for them to use to connect a brokerage account.
+     * Authenticates a SnapTrade user and returns the Connection Portal URL used for connecting brokerage accounts. Please check [this guide](/docs/implement-connection-portal) for how to integrate the Connection Portal into your app.  Please note that the returned URL expires in 5 minutes.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
