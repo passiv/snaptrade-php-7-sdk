@@ -984,7 +984,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
         $custom_redirect = SENTINEL_VALUE,
         $reconnect = SENTINEL_VALUE,
         $connection_type = 'read',
-        $connection_portal_version = 'v3',
+        $connection_portal_version = 'v4',
 
         string $contentType = self::contentTypes['loginSnapTradeUser'][0]
     )
@@ -1218,7 +1218,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
         $custom_redirect = SENTINEL_VALUE,
         $reconnect = SENTINEL_VALUE,
         $connection_type = 'read',
-        $connection_portal_version = 'v3',
+        $connection_portal_version = 'v4',
 
         string $contentType = self::contentTypes['loginSnapTradeUser'][0]
     )
