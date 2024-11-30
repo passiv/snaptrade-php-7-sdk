@@ -1,6 +1,6 @@
 <?php
 /**
- * UniversalSymbolCurrency
+ * RateOfReturnObject
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * UniversalSymbolCurrency Class Doc Comment
+ * RateOfReturnObject Class Doc Comment
  *
  * @category Class
- * @description The currency in which the security is traded.
+ * @description Individual rate of return object with return percent and timeframe
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSerializable
+class RateOfReturnObject implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UniversalSymbol_currency';
+    protected static $openAPIModelName = 'RateOfReturnObject';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,9 +51,9 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'code' => 'string',
-        'name' => 'string'
+        'timeframe' => 'string',
+        'return_percent' => 'float',
+        'created_date' => '\DateTime'
     ];
 
     /**
@@ -64,9 +64,9 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => 'uuid',
-        'code' => null,
-        'name' => null
+        'timeframe' => null,
+        'return_percent' => null,
+        'created_date' => 'date-time'
     ];
 
     /**
@@ -75,9 +75,9 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'id' => false,
-		'code' => false,
-		'name' => false
+        'timeframe' => false,
+		'return_percent' => false,
+		'created_date' => false
     ];
 
     /**
@@ -166,9 +166,9 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'code' => 'code',
-        'name' => 'name'
+        'timeframe' => 'timeframe',
+        'return_percent' => 'return_percent',
+        'created_date' => 'created_date'
     ];
 
     /**
@@ -177,9 +177,9 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'code' => 'setCode',
-        'name' => 'setName'
+        'timeframe' => 'setTimeframe',
+        'return_percent' => 'setReturnPercent',
+        'created_date' => 'setCreatedDate'
     ];
 
     /**
@@ -188,9 +188,9 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'code' => 'getCode',
-        'name' => 'getName'
+        'timeframe' => 'getTimeframe',
+        'return_percent' => 'getReturnPercent',
+        'created_date' => 'getCreatedDate'
     ];
 
     /**
@@ -234,6 +234,27 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
+    public const TIMEFRAME_ALL = 'ALL';
+    public const TIMEFRAME__1_Y = '1Y';
+    public const TIMEFRAME__6_M = '6M';
+    public const TIMEFRAME__3_M = '3M';
+    public const TIMEFRAME__1_M = '1M';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTimeframeAllowableValues()
+    {
+        return [
+            self::TIMEFRAME_ALL,
+            self::TIMEFRAME__1_Y,
+            self::TIMEFRAME__6_M,
+            self::TIMEFRAME__3_M,
+            self::TIMEFRAME__1_M,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -250,9 +271,9 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('return_percent', $data ?? [], null);
+        $this->setIfExists('created_date', $data ?? [], null);
     }
 
     /**
@@ -282,6 +303,15 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getTimeframeAllowableValues();
+        if (!is_null($this->container['timeframe']) && !in_array($this->container['timeframe'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'timeframe', must be one of '%s'",
+                $this->container['timeframe'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -298,88 +328,98 @@ class UniversalSymbolCurrency implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets id
+     * Gets timeframe
      *
      * @return string|null
      */
-    public function getId()
+    public function getTimeframe()
     {
-        return $this->container['id'];
+        return $this->container['timeframe'];
     }
 
     /**
-     * Sets id
+     * Sets timeframe
      *
-     * @param string|null $id Unique identifier for the currency. This is the UUID used to reference the currency in SnapTrade.
+     * @param string|null $timeframe The timeframe this return percent is reflecting
      *
      * @return self
      */
-    public function setId($id)
+    public function setTimeframe($timeframe)
     {
-
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        $allowedValues = $this->getTimeframeAllowableValues();
+        if (!is_null($timeframe) && !in_array($timeframe, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'timeframe', must be one of '%s'",
+                    $timeframe,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
 
-        $this->container['id'] = $id;
+        if (is_null($timeframe)) {
+            throw new \InvalidArgumentException('non-nullable timeframe cannot be null');
+        }
+
+        $this->container['timeframe'] = $timeframe;
 
         return $this;
     }
 
     /**
-     * Gets code
+     * Gets return_percent
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getCode()
+    public function getReturnPercent()
     {
-        return $this->container['code'];
+        return $this->container['return_percent'];
     }
 
     /**
-     * Sets code
+     * Sets return_percent
      *
-     * @param string|null $code The ISO-4217 currency code for the currency.
+     * @param float|null $return_percent The percent return of the portfolio, directly from the brokerage. 5.97 indicates a 5.97% return over the timeframe
      *
      * @return self
      */
-    public function setCode($code)
+    public function setReturnPercent($return_percent)
     {
 
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($return_percent)) {
+            throw new \InvalidArgumentException('non-nullable return_percent cannot be null');
         }
 
-        $this->container['code'] = $code;
+        $this->container['return_percent'] = $return_percent;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets created_date
      *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getName()
+    public function getCreatedDate()
     {
-        return $this->container['name'];
+        return $this->container['created_date'];
     }
 
     /**
-     * Sets name
+     * Sets created_date
      *
-     * @param string|null $name A human-friendly name of the currency.
+     * @param \DateTime|null $created_date The date this was fetched
      *
      * @return self
      */
-    public function setName($name)
+    public function setCreatedDate($created_date)
     {
 
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($created_date)) {
+            throw new \InvalidArgumentException('non-nullable created_date cannot be null');
         }
 
-        $this->container['name'] = $name;
+        $this->container['created_date'] = $created_date;
 
         return $this;
     }

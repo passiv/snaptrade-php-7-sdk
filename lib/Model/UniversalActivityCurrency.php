@@ -1,6 +1,6 @@
 <?php
 /**
- * UniversalSymbolExchange
+ * UniversalActivityCurrency
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * UniversalSymbolExchange Class Doc Comment
+ * UniversalActivityCurrency Class Doc Comment
  *
  * @category Class
- * @description The exchange on which the security is listed and traded.
+ * @description The currency in which the transaction &#x60;price&#x60; and &#x60;amount&#x60; is denominated.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSerializable
+class UniversalActivityCurrency implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UniversalSymbol_exchange';
+    protected static $openAPIModelName = 'UniversalActivity_currency';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -53,12 +53,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPITypes = [
         'id' => 'string',
         'code' => 'string',
-        'mic_code' => 'string',
-        'name' => 'string',
-        'timezone' => 'string',
-        'start_time' => 'string',
-        'close_time' => 'string',
-        'suffix' => 'string'
+        'name' => 'string'
     ];
 
     /**
@@ -71,12 +66,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPIFormats = [
         'id' => 'uuid',
         'code' => null,
-        'mic_code' => null,
-        'name' => null,
-        'timezone' => null,
-        'start_time' => null,
-        'close_time' => null,
-        'suffix' => null
+        'name' => null
     ];
 
     /**
@@ -87,12 +77,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPINullables = [
         'id' => false,
 		'code' => false,
-		'mic_code' => false,
-		'name' => false,
-		'timezone' => false,
-		'start_time' => false,
-		'close_time' => false,
-		'suffix' => true
+		'name' => false
     ];
 
     /**
@@ -183,12 +168,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $attributeMap = [
         'id' => 'id',
         'code' => 'code',
-        'mic_code' => 'mic_code',
-        'name' => 'name',
-        'timezone' => 'timezone',
-        'start_time' => 'start_time',
-        'close_time' => 'close_time',
-        'suffix' => 'suffix'
+        'name' => 'name'
     ];
 
     /**
@@ -199,12 +179,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $setters = [
         'id' => 'setId',
         'code' => 'setCode',
-        'mic_code' => 'setMicCode',
-        'name' => 'setName',
-        'timezone' => 'setTimezone',
-        'start_time' => 'setStartTime',
-        'close_time' => 'setCloseTime',
-        'suffix' => 'setSuffix'
+        'name' => 'setName'
     ];
 
     /**
@@ -215,12 +190,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $getters = [
         'id' => 'getId',
         'code' => 'getCode',
-        'mic_code' => 'getMicCode',
-        'name' => 'getName',
-        'timezone' => 'getTimezone',
-        'start_time' => 'getStartTime',
-        'close_time' => 'getCloseTime',
-        'suffix' => 'getSuffix'
+        'name' => 'getName'
     ];
 
     /**
@@ -282,12 +252,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('mic_code', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('timezone', $data ?? [], null);
-        $this->setIfExists('start_time', $data ?? [], null);
-        $this->setIfExists('close_time', $data ?? [], null);
-        $this->setIfExists('suffix', $data ?? [], null);
     }
 
     /**
@@ -345,7 +310,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets id
      *
-     * @param string|null $id Unique ID for the exchange in SnapTrade.
+     * @param string|null $id Unique identifier for the currency. This is the UUID used to reference the currency in SnapTrade.
      *
      * @return self
      */
@@ -374,7 +339,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets code
      *
-     * @param string|null $code A short name for the exchange. For standardized exchange code, please us the `mic_code` field.
+     * @param string|null $code The ISO-4217 currency code for the currency.
      *
      * @return self
      */
@@ -386,35 +351,6 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
         }
 
         $this->container['code'] = $code;
-
-        return $this;
-    }
-
-    /**
-     * Gets mic_code
-     *
-     * @return string|null
-     */
-    public function getMicCode()
-    {
-        return $this->container['mic_code'];
-    }
-
-    /**
-     * Sets mic_code
-     *
-     * @param string|null $mic_code The [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) (MIC) for the exchange.
-     *
-     * @return self
-     */
-    public function setMicCode($mic_code)
-    {
-
-        if (is_null($mic_code)) {
-            throw new \InvalidArgumentException('non-nullable mic_code cannot be null');
-        }
-
-        $this->container['mic_code'] = $mic_code;
 
         return $this;
     }
@@ -432,7 +368,7 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets name
      *
-     * @param string|null $name The full name of the exchange.
+     * @param string|null $name A human-friendly name of the currency.
      *
      * @return self
      */
@@ -444,129 +380,6 @@ class UniversalSymbolExchange implements ModelInterface, ArrayAccess, \JsonSeria
         }
 
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets timezone
-     *
-     * @return string|null
-     */
-    public function getTimezone()
-    {
-        return $this->container['timezone'];
-    }
-
-    /**
-     * Sets timezone
-     *
-     * @param string|null $timezone The timezone for the trading hours (`start_time` and `close_time`) of the exchange.
-     *
-     * @return self
-     */
-    public function setTimezone($timezone)
-    {
-
-        if (is_null($timezone)) {
-            throw new \InvalidArgumentException('non-nullable timezone cannot be null');
-        }
-
-        $this->container['timezone'] = $timezone;
-
-        return $this;
-    }
-
-    /**
-     * Gets start_time
-     *
-     * @return string|null
-     */
-    public function getStartTime()
-    {
-        return $this->container['start_time'];
-    }
-
-    /**
-     * Sets start_time
-     *
-     * @param string|null $start_time The time when the exchange opens for trading.
-     *
-     * @return self
-     */
-    public function setStartTime($start_time)
-    {
-
-        if (is_null($start_time)) {
-            throw new \InvalidArgumentException('non-nullable start_time cannot be null');
-        }
-
-        $this->container['start_time'] = $start_time;
-
-        return $this;
-    }
-
-    /**
-     * Gets close_time
-     *
-     * @return string|null
-     */
-    public function getCloseTime()
-    {
-        return $this->container['close_time'];
-    }
-
-    /**
-     * Sets close_time
-     *
-     * @param string|null $close_time The time when the exchange closes for trading.
-     *
-     * @return self
-     */
-    public function setCloseTime($close_time)
-    {
-
-        if (is_null($close_time)) {
-            throw new \InvalidArgumentException('non-nullable close_time cannot be null');
-        }
-
-        $this->container['close_time'] = $close_time;
-
-        return $this;
-    }
-
-    /**
-     * Gets suffix
-     *
-     * @return string|null
-     */
-    public function getSuffix()
-    {
-        return $this->container['suffix'];
-    }
-
-    /**
-     * Sets suffix
-     *
-     * @param string|null $suffix The suffix to be appended to the symbol when trading on this exchange. For example, the suffix for the Toronto Stock Exchange is `.TO`. See `UniversalSymbol->symbol` and `UniversalSymbol->raw_symbol` for more detail.
-     *
-     * @return self
-     */
-    public function setSuffix($suffix)
-    {
-
-        if (is_null($suffix)) {
-            array_push($this->openAPINullablesSetToNull, 'suffix');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('suffix', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['suffix'] = $suffix;
 
         return $this;
     }
