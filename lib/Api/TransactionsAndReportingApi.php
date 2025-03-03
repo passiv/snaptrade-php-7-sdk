@@ -157,6 +157,7 @@ class TransactionsAndReportingApi extends \SnapTrade\CustomApi
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \SnapTrade\Model\UniversalActivity[]
+     * @deprecated
      */
     public function getActivities(
         $user_id,
@@ -195,6 +196,7 @@ class TransactionsAndReportingApi extends \SnapTrade\CustomApi
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \SnapTrade\Model\UniversalActivity[], HTTP status code, HTTP response headers (array of strings)
+     * @deprecated
      */
     public function getActivitiesWithHttpInfo($user_id, $user_secret, $start_date = null, $end_date = null, $accounts = null, $brokerage_authorizations = null, $type = null, string $contentType = self::contentTypes['getActivities'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
@@ -325,6 +327,7 @@ class TransactionsAndReportingApi extends \SnapTrade\CustomApi
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
+     * @deprecated
      */
     public function getActivitiesAsync(
         $user_id,
@@ -365,6 +368,7 @@ class TransactionsAndReportingApi extends \SnapTrade\CustomApi
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
+     * @deprecated
      */
     public function getActivitiesAsyncWithHttpInfo($user_id, $user_secret, $start_date = null, $end_date = null, $accounts = null, $brokerage_authorizations = null, $type = null, string $contentType = self::contentTypes['getActivities'][0], $requestOptions = null)
     {
@@ -425,6 +429,7 @@ class TransactionsAndReportingApi extends \SnapTrade\CustomApi
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
+     * @deprecated
      */
     public function getActivitiesRequest($user_id, $user_secret, $start_date = SENTINEL_VALUE, $end_date = SENTINEL_VALUE, $accounts = SENTINEL_VALUE, $brokerage_authorizations = SENTINEL_VALUE, $type = SENTINEL_VALUE, string $contentType = self::contentTypes['getActivities'][0])
     {
