@@ -1,6 +1,6 @@
 <?php
 /**
- * TradingCryptoSpotCancelOrderRequest
+ * SimpleOrderPreviewEstimatedFee
  *
  * PHP version 7.4
  *
@@ -27,13 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * TradingCryptoSpotCancelOrderRequest Class Doc Comment
+ * SimpleOrderPreviewEstimatedFee Class Doc Comment
  *
  * @category Class
+ * @description The estimated order fee.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class SimpleOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -42,7 +43,7 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Trading_cryptoSpotCancelOrder_request';
+    protected static $openAPIModelName = 'SimpleOrderPreview_estimated_fee';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -50,7 +51,8 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'brokerage_order_id' => 'string'
+        'currency' => 'string',
+        'amount' => 'float'
     ];
 
     /**
@@ -61,7 +63,8 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'brokerage_order_id' => null
+        'currency' => null,
+        'amount' => 'decimal'
     ];
 
     /**
@@ -70,7 +73,8 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'brokerage_order_id' => false
+        'currency' => false,
+		'amount' => false
     ];
 
     /**
@@ -159,7 +163,8 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'brokerage_order_id' => 'brokerage_order_id'
+        'currency' => 'currency',
+        'amount' => 'amount'
     ];
 
     /**
@@ -168,7 +173,8 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'brokerage_order_id' => 'setBrokerageOrderId'
+        'currency' => 'setCurrency',
+        'amount' => 'setAmount'
     ];
 
     /**
@@ -177,7 +183,8 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'brokerage_order_id' => 'getBrokerageOrderId'
+        'currency' => 'getCurrency',
+        'amount' => 'getAmount'
     ];
 
     /**
@@ -237,7 +244,8 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('brokerage_order_id', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
     }
 
     /**
@@ -267,8 +275,11 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['brokerage_order_id'] === null) {
-            $invalidProperties[] = "'brokerage_order_id' can't be null";
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['amount'] === null) {
+            $invalidProperties[] = "'amount' can't be null";
         }
         return $invalidProperties;
     }
@@ -286,30 +297,59 @@ class TradingCryptoSpotCancelOrderRequest implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets brokerage_order_id
+     * Gets currency
      *
      * @return string
      */
-    public function getBrokerageOrderId()
+    public function getCurrency()
     {
-        return $this->container['brokerage_order_id'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets brokerage_order_id
+     * Sets currency
      *
-     * @param string $brokerage_order_id Order ID returned by brokerage. This is the unique identifier for the order in the brokerage system.
+     * @param string $currency Symbol to identify a cryptocurrency or fiat currency on a crypto exchange. Fiat currencies symbols are ISO-4217 codes.
      *
      * @return self
      */
-    public function setBrokerageOrderId($brokerage_order_id)
+    public function setCurrency($currency)
     {
 
-        if (is_null($brokerage_order_id)) {
-            throw new \InvalidArgumentException('non-nullable brokerage_order_id cannot be null');
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
 
-        $this->container['brokerage_order_id'] = $brokerage_order_id;
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets amount
+     *
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     *
+     * @param float $amount amount
+     *
+     * @return self
+     */
+    public function setAmount($amount)
+    {
+
+        if (is_null($amount)) {
+            throw new \InvalidArgumentException('non-nullable amount cannot be null');
+        }
+
+        $this->container['amount'] = $amount;
 
         return $this;
     }
