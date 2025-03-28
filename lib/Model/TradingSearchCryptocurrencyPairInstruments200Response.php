@@ -1,6 +1,6 @@
 <?php
 /**
- * CryptoSpotOrderPreviewEstimatedFee
+ * TradingSearchCryptocurrencyPairInstruments200Response
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * CryptoSpotOrderPreviewEstimatedFee Class Doc Comment
+ * TradingSearchCryptocurrencyPairInstruments200Response Class Doc Comment
  *
  * @category Class
- * @description The estimated order fee.
+ * @description The symbols
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess, \JsonSerializable
+class TradingSearchCryptocurrencyPairInstruments200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CryptoSpotOrderPreview_estimated_fee';
+    protected static $openAPIModelName = 'Trading_searchCryptocurrencyPairInstruments_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,8 +51,7 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'amount' => 'float'
+        'items' => '\SnapTrade\Model\CryptocurrencyPair[]'
     ];
 
     /**
@@ -63,8 +62,7 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'amount' => 'decimal'
+        'items' => null
     ];
 
     /**
@@ -73,8 +71,7 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-		'amount' => false
+        'items' => false
     ];
 
     /**
@@ -163,8 +160,7 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'amount' => 'amount'
+        'items' => 'items'
     ];
 
     /**
@@ -173,8 +169,7 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'amount' => 'setAmount'
+        'items' => 'setItems'
     ];
 
     /**
@@ -183,8 +178,7 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'amount' => 'getAmount'
+        'items' => 'getItems'
     ];
 
     /**
@@ -244,8 +238,7 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('items', $data ?? [], null);
     }
 
     /**
@@ -275,11 +268,8 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['amount'] === null) {
-            $invalidProperties[] = "'amount' can't be null";
+        if ($this->container['items'] === null) {
+            $invalidProperties[] = "'items' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,59 +287,30 @@ class CryptoSpotOrderPreviewEstimatedFee implements ModelInterface, ArrayAccess,
 
 
     /**
-     * Gets currency
+     * Gets items
      *
-     * @return string
+     * @return \SnapTrade\Model\CryptocurrencyPair[]
      */
-    public function getCurrency()
+    public function getItems()
     {
-        return $this->container['currency'];
+        return $this->container['items'];
     }
 
     /**
-     * Sets currency
+     * Sets items
      *
-     * @param string $currency Symbol to identify a cryptocurrency or fiat currency on a crypto exchange. Fiat currencies symbols are ISO-4217 codes.
+     * @param \SnapTrade\Model\CryptocurrencyPair[] $items items
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setItems($items)
     {
 
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($items)) {
+            throw new \InvalidArgumentException('non-nullable items cannot be null');
         }
 
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets amount
-     *
-     * @return float
-     */
-    public function getAmount()
-    {
-        return $this->container['amount'];
-    }
-
-    /**
-     * Sets amount
-     *
-     * @param float $amount amount
-     *
-     * @return self
-     */
-    public function setAmount($amount)
-    {
-
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
-
-        $this->container['amount'] = $amount;
+        $this->container['items'] = $items;
 
         return $this;
     }
