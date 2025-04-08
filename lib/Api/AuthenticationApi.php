@@ -1474,7 +1474,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
      */
     public function registerSnapTradeUser(
 
-        $user_id = SENTINEL_VALUE,
+        $user_id,
         string $contentType = self::contentTypes['registerSnapTradeUser'][0]
     )
     {
@@ -1690,7 +1690,7 @@ class AuthenticationApi extends \SnapTrade\CustomApi
      */
     public function registerSnapTradeUserAsync(
 
-        $user_id = SENTINEL_VALUE,
+        $user_id,
         string $contentType = self::contentTypes['registerSnapTradeUser'][0]
     )
     {
