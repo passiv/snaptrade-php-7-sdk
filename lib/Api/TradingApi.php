@@ -5033,6 +5033,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $user_id,
         $user_secret,
         $price = SENTINEL_VALUE,
+        $symbol = SENTINEL_VALUE,
         $stop = SENTINEL_VALUE,
         $units = SENTINEL_VALUE,
         string $contentType = self::contentTypes['replaceOrder'][0]
@@ -5043,6 +5044,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $this->setRequestBodyProperty($_body, "order_type", $order_type);
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "price", $price);
+        $this->setRequestBodyProperty($_body, "symbol", $symbol);
         $this->setRequestBodyProperty($_body, "stop", $stop);
         $this->setRequestBodyProperty($_body, "units", $units);
         $manual_trade_replace_form = $_body;
@@ -5252,6 +5254,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $user_id,
         $user_secret,
         $price = SENTINEL_VALUE,
+        $symbol = SENTINEL_VALUE,
         $stop = SENTINEL_VALUE,
         $units = SENTINEL_VALUE,
         string $contentType = self::contentTypes['replaceOrder'][0]
@@ -5262,6 +5265,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $this->setRequestBodyProperty($_body, "order_type", $order_type);
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "price", $price);
+        $this->setRequestBodyProperty($_body, "symbol", $symbol);
         $this->setRequestBodyProperty($_body, "stop", $stop);
         $this->setRequestBodyProperty($_body, "units", $units);
         $manual_trade_replace_form = $_body;

@@ -2329,6 +2329,7 @@ $result = $snaptrade->trading->replaceOrder(
     "snaptrade-user-123", 
     "adf2aa34-8219-40f7-a6b3-60156985cc61", 
     31.33, 
+    "AAPL", 
     31.33, 
     10.5
 );
@@ -2357,6 +2358,10 @@ The Brokerage Order ID of the order to replace.
 ##### price: `float`<a id="price-float"></a>
 
 The limit price for `Limit` and `StopLimit` orders.
+
+##### symbol: `string`<a id="symbol-string"></a>
+
+The security's trading ticker symbol
 
 ##### stop: `float`<a id="stop-float"></a>
 
