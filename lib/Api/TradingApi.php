@@ -3577,7 +3577,7 @@ class TradingApi extends \SnapTrade\CustomApi
      */
     public function placeMlegOrder(
 
-        $type,
+        $order_type,
         $time_in_force,
         $legs,
         $user_id,
@@ -3589,7 +3589,7 @@ class TradingApi extends \SnapTrade\CustomApi
     )
     {
         $_body = [];
-        $this->setRequestBodyProperty($_body, "type", $type);
+        $this->setRequestBodyProperty($_body, "order_type", $order_type);
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "limit_price", $limit_price);
         $this->setRequestBodyProperty($_body, "stop_price", $stop_price);
@@ -3767,7 +3767,7 @@ class TradingApi extends \SnapTrade\CustomApi
      */
     public function placeMlegOrderAsync(
 
-        $type,
+        $order_type,
         $time_in_force,
         $legs,
         $user_id,
@@ -3779,7 +3779,7 @@ class TradingApi extends \SnapTrade\CustomApi
     )
     {
         $_body = [];
-        $this->setRequestBodyProperty($_body, "type", $type);
+        $this->setRequestBodyProperty($_body, "order_type", $order_type);
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "limit_price", $limit_price);
         $this->setRequestBodyProperty($_body, "stop_price", $stop_price);
