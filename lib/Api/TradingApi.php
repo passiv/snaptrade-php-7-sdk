@@ -3585,6 +3585,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $account_id,
         $limit_price = SENTINEL_VALUE,
         $stop_price = SENTINEL_VALUE,
+        $price_effect = SENTINEL_VALUE,
         string $contentType = self::contentTypes['placeMlegOrder'][0]
     )
     {
@@ -3593,6 +3594,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "limit_price", $limit_price);
         $this->setRequestBodyProperty($_body, "stop_price", $stop_price);
+        $this->setRequestBodyProperty($_body, "price_effect", $price_effect);
         $this->setRequestBodyProperty($_body, "legs", $legs);
         $mleg_trade_form = $_body;
 
@@ -3775,6 +3777,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $account_id,
         $limit_price = SENTINEL_VALUE,
         $stop_price = SENTINEL_VALUE,
+        $price_effect = SENTINEL_VALUE,
         string $contentType = self::contentTypes['placeMlegOrder'][0]
     )
     {
@@ -3783,6 +3786,7 @@ class TradingApi extends \SnapTrade\CustomApi
         $this->setRequestBodyProperty($_body, "time_in_force", $time_in_force);
         $this->setRequestBodyProperty($_body, "limit_price", $limit_price);
         $this->setRequestBodyProperty($_body, "stop_price", $stop_price);
+        $this->setRequestBodyProperty($_body, "price_effect", $price_effect);
         $this->setRequestBodyProperty($_body, "legs", $legs);
         $mleg_trade_form = $_body;
 
