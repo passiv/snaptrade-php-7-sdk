@@ -2124,7 +2124,8 @@ $result = $snaptrade->trading->placeMlegOrder(
     "adf2aa34-8219-40f7-a6b3-60156985cc61", 
     "917c8734-8470-4a3e-a18f-57c3f2ee6631", 
     "", 
-    ""
+    "", 
+    "DEBIT"
 );
 ```
 
@@ -2149,6 +2150,8 @@ The limit price. Required if the order type is LIMIT, STOP_LOSS_LIMIT.
 ##### stop_price: `float`<a id="stop_price-float"></a>
 
 The stop price. Required if the order type is STOP_LOSS_MARKET, STOP_LOSS_LIMIT.
+
+##### price_effect: [`string`](./lib/Model/string.php)<a id="price_effect-stringlibmodelstringphp"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
