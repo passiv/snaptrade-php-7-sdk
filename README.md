@@ -2157,7 +2157,7 @@ $result = $snaptrade->trading->placeForceOrder(
     "snaptrade-user-123", 
     "adf2aa34-8219-40f7-a6b3-60156985cc61", 
     "2bcd7cc3-e922-4976-bce1-9858296801c3", 
-    "AAPL  131124C00240000", 
+    "AAPL", 
     31.33, 
     31.33, 
     10.5, 
@@ -2187,7 +2187,7 @@ The universal symbol ID of the security to trade. Must be 'null' if `symbol` is 
 
 ##### symbol: `string`<a id="symbol-string"></a>
 
-The security's trading ticker symbol. This currently supports stock symbols and Options symbols in the 21 character OCC format. For example `AAPL  131124C00240000` represents a call option on AAPL expiring on 2024-11-13 with a strike price of $240. For more information on the OCC format, see [here](https://en.wikipedia.org/wiki/Option_symbol#OCC_format). If 'symbol' is provided, then 'universal_symbol_id' must be 'null'.
+The security's trading ticker symbol. If 'symbol' is provided, then 'universal_symbol_id' must be 'null'.
 
 ##### price: `float`<a id="price-float"></a>
 
