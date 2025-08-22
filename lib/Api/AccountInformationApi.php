@@ -1973,7 +1973,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * Get account order detail
      *
-     * Returns the detail of a single order in the specified account. This endpoint is always realtime and does not rely on cached data.
+     * Returns the detail of a single order in the specified account.  This endpoint is always realtime and does not rely on cached data.  This endpoint only returns orders placed through SnapTrade. In other words, orders placed outside of the SnapTrade network are not returned by this endpoint.
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -2004,7 +2004,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * Get account order detail
      *
-     * Returns the detail of a single order in the specified account. This endpoint is always realtime and does not rely on cached data.
+     * Returns the detail of a single order in the specified account.  This endpoint is always realtime and does not rely on cached data.  This endpoint only returns orders placed through SnapTrade. In other words, orders placed outside of the SnapTrade network are not returned by this endpoint.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -2175,7 +2175,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * Get account order detail
      *
-     * Returns the detail of a single order in the specified account. This endpoint is always realtime and does not rely on cached data.
+     * Returns the detail of a single order in the specified account.  This endpoint is always realtime and does not rely on cached data.  This endpoint only returns orders placed through SnapTrade. In other words, orders placed outside of the SnapTrade network are not returned by this endpoint.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -2210,7 +2210,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * Get account order detail
      *
-     * Returns the detail of a single order in the specified account. This endpoint is always realtime and does not rely on cached data.
+     * Returns the detail of a single order in the specified account.  This endpoint is always realtime and does not rely on cached data.  This endpoint only returns orders placed through SnapTrade. In other words, orders placed outside of the SnapTrade network are not returned by this endpoint.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
