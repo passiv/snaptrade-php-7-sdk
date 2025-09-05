@@ -1987,7 +1987,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      */
     public function getUserAccountOrderDetail(
 
-        $external_order_id,
+        $brokerage_order_id,
         $account_id,
         $user_id,
         $user_secret,
@@ -1995,7 +1995,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     )
     {
         $_body = [];
-        $this->setRequestBodyProperty($_body, "external_order_id", $external_order_id);
+        $this->setRequestBodyProperty($_body, "brokerage_order_id", $brokerage_order_id);
         $account_information_get_user_account_order_detail_request = $_body;
 
         list($response) = $this->getUserAccountOrderDetailWithHttpInfo($account_id, $user_id, $user_secret, $account_information_get_user_account_order_detail_request, $contentType);
@@ -2215,7 +2215,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      */
     public function getUserAccountOrderDetailAsync(
 
-        $external_order_id,
+        $brokerage_order_id,
         $account_id,
         $user_id,
         $user_secret,
@@ -2223,7 +2223,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
     )
     {
         $_body = [];
-        $this->setRequestBodyProperty($_body, "external_order_id", $external_order_id);
+        $this->setRequestBodyProperty($_body, "brokerage_order_id", $brokerage_order_id);
         $account_information_get_user_account_order_detail_request = $_body;
 
         return $this->getUserAccountOrderDetailAsyncWithHttpInfo($account_id, $user_id, $user_secret, $account_information_get_user_account_order_detail_request, $contentType)

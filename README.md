@@ -356,7 +356,7 @@ $result = $snaptrade->accountInformation->getUserAccountOrderDetail(
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### external_order_id: `string`<a id="external_order_id-string"></a>
+##### brokerage_order_id: `string`<a id="brokerage_order_id-string"></a>
 
 Order ID returned by brokerage. This is the unique identifier for the order in the brokerage system.
 
