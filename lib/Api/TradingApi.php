@@ -181,7 +181,7 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrder'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -190,18 +190,18 @@ class TradingApi extends \SnapTrade\CustomApi
      */
     public function cancelOrder(
 
+        $brokerage_order_id,
         $user_id,
         $user_secret,
         $account_id,
-        $brokerage_order_id = SENTINEL_VALUE,
         string $contentType = self::contentTypes['cancelOrder'][0]
     )
     {
         $_body = [];
         $this->setRequestBodyProperty($_body, "brokerage_order_id", $brokerage_order_id);
-        $trading_cancel_user_account_order_request = $_body;
+        $account_information_get_user_account_order_detail_request = $_body;
 
-        list($response) = $this->cancelOrderWithHttpInfo($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, $contentType);
+        list($response) = $this->cancelOrderWithHttpInfo($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, $contentType);
         return $response;
     }
 
@@ -215,7 +215,7 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrder'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -223,10 +223,10 @@ class TradingApi extends \SnapTrade\CustomApi
      * @throws \InvalidArgumentException
      * @return array of \SnapTrade\Model\CancelOrderResponse|\SnapTrade\Model\Model400FailedRequestResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function cancelOrderWithHttpInfo($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, string $contentType = self::contentTypes['cancelOrder'][0], \SnapTrade\RequestOptions $requestOptions = null)
+    public function cancelOrderWithHttpInfo($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, string $contentType = self::contentTypes['cancelOrder'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
         if ($requestOptions == null) $requestOptions = new \SnapTrade\RequestOptions();
-        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelOrderRequest($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, $contentType);
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelOrderRequest($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, $contentType);
 
         // Customization hook
         $this->beforeSendHook($request, $requestOptions, $this->config, $serializedBody);
@@ -245,7 +245,7 @@ class TradingApi extends \SnapTrade\CustomApi
                         $user_id,
                         $user_secret,
                         $account_id,
-                        $trading_cancel_user_account_order_request,
+                        $account_information_get_user_account_order_detail_request,
                         $contentType,
                         $requestOptions->setRetryOAuth(false)
                     );
@@ -363,7 +363,7 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrder'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -372,18 +372,18 @@ class TradingApi extends \SnapTrade\CustomApi
      */
     public function cancelOrderAsync(
 
+        $brokerage_order_id,
         $user_id,
         $user_secret,
         $account_id,
-        $brokerage_order_id = SENTINEL_VALUE,
         string $contentType = self::contentTypes['cancelOrder'][0]
     )
     {
         $_body = [];
         $this->setRequestBodyProperty($_body, "brokerage_order_id", $brokerage_order_id);
-        $trading_cancel_user_account_order_request = $_body;
+        $account_information_get_user_account_order_detail_request = $_body;
 
-        return $this->cancelOrderAsyncWithHttpInfo($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, $contentType)
+        return $this->cancelOrderAsyncWithHttpInfo($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -401,17 +401,17 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelOrderAsyncWithHttpInfo($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, string $contentType = self::contentTypes['cancelOrder'][0], $requestOptions = null)
+    public function cancelOrderAsyncWithHttpInfo($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, string $contentType = self::contentTypes['cancelOrder'][0], $requestOptions = null)
     {
         if ($requestOptions == null) $requestOptions = new \SnapTrade\RequestOptions();
         $returnType = '\SnapTrade\Model\CancelOrderResponse';
-        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelOrderRequest($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, $contentType);
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelOrderRequest($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, $contentType);
 
         // Customization hook
         $this->beforeSendHook($request, $requestOptions, $this->config, $serializedBody);
@@ -458,13 +458,13 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelOrderRequest($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, string $contentType = self::contentTypes['cancelOrder'][0])
+    public function cancelOrderRequest($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, string $contentType = self::contentTypes['cancelOrder'][0])
     {
 
         // Check if $user_id is a string
@@ -497,18 +497,18 @@ class TradingApi extends \SnapTrade\CustomApi
                 'Missing the required parameter account_id when calling cancelOrder'
             );
         }
-        if ($trading_cancel_user_account_order_request !== SENTINEL_VALUE) {
-            if (!($trading_cancel_user_account_order_request instanceof \SnapTrade\Model\TradingCancelUserAccountOrderRequest)) {
-                if (!is_array($trading_cancel_user_account_order_request))
-                    throw new \InvalidArgumentException('"trading_cancel_user_account_order_request" must be associative array or an instance of \SnapTrade\Model\TradingCancelUserAccountOrderRequest TradingApi.cancelOrder.');
+        if ($account_information_get_user_account_order_detail_request !== SENTINEL_VALUE) {
+            if (!($account_information_get_user_account_order_detail_request instanceof \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest)) {
+                if (!is_array($account_information_get_user_account_order_detail_request))
+                    throw new \InvalidArgumentException('"account_information_get_user_account_order_detail_request" must be associative array or an instance of \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest TradingApi.cancelOrder.');
                 else
-                    $trading_cancel_user_account_order_request = new \SnapTrade\Model\TradingCancelUserAccountOrderRequest($trading_cancel_user_account_order_request);
+                    $account_information_get_user_account_order_detail_request = new \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest($account_information_get_user_account_order_detail_request);
             }
         }
-        // verify the required parameter 'trading_cancel_user_account_order_request' is set
-        if ($trading_cancel_user_account_order_request === SENTINEL_VALUE || (is_array($trading_cancel_user_account_order_request) && count($trading_cancel_user_account_order_request) === 0)) {
+        // verify the required parameter 'account_information_get_user_account_order_detail_request' is set
+        if ($account_information_get_user_account_order_detail_request === SENTINEL_VALUE || (is_array($account_information_get_user_account_order_detail_request) && count($account_information_get_user_account_order_detail_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter trading_cancel_user_account_order_request when calling cancelOrder'
+                'Missing the required parameter account_information_get_user_account_order_detail_request when calling cancelOrder'
             );
         }
 
@@ -561,12 +561,12 @@ class TradingApi extends \SnapTrade\CustomApi
         );
 
         // for model (json/xml)
-        if (isset($trading_cancel_user_account_order_request)) {
+        if (isset($account_information_get_user_account_order_detail_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($trading_cancel_user_account_order_request));
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($account_information_get_user_account_order_detail_request));
             } else {
-                $httpBody = $trading_cancel_user_account_order_request;
+                $httpBody = $account_information_get_user_account_order_detail_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -645,7 +645,7 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelUserAccountOrder'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -655,18 +655,18 @@ class TradingApi extends \SnapTrade\CustomApi
      */
     public function cancelUserAccountOrder(
 
+        $brokerage_order_id,
         $user_id,
         $user_secret,
         $account_id,
-        $brokerage_order_id = SENTINEL_VALUE,
         string $contentType = self::contentTypes['cancelUserAccountOrder'][0]
     )
     {
         $_body = [];
         $this->setRequestBodyProperty($_body, "brokerage_order_id", $brokerage_order_id);
-        $trading_cancel_user_account_order_request = $_body;
+        $account_information_get_user_account_order_detail_request = $_body;
 
-        list($response) = $this->cancelUserAccountOrderWithHttpInfo($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, $contentType);
+        list($response) = $this->cancelUserAccountOrderWithHttpInfo($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, $contentType);
         return $response;
     }
 
@@ -680,7 +680,7 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelUserAccountOrder'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -689,10 +689,10 @@ class TradingApi extends \SnapTrade\CustomApi
      * @return array of \SnapTrade\Model\AccountOrderRecord|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function cancelUserAccountOrderWithHttpInfo($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, string $contentType = self::contentTypes['cancelUserAccountOrder'][0], \SnapTrade\RequestOptions $requestOptions = null)
+    public function cancelUserAccountOrderWithHttpInfo($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, string $contentType = self::contentTypes['cancelUserAccountOrder'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
         if ($requestOptions == null) $requestOptions = new \SnapTrade\RequestOptions();
-        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelUserAccountOrderRequest($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, $contentType);
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelUserAccountOrderRequest($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, $contentType);
 
         // Customization hook
         $this->beforeSendHook($request, $requestOptions, $this->config, $serializedBody);
@@ -711,7 +711,7 @@ class TradingApi extends \SnapTrade\CustomApi
                         $user_id,
                         $user_secret,
                         $account_id,
-                        $trading_cancel_user_account_order_request,
+                        $account_information_get_user_account_order_detail_request,
                         $contentType,
                         $requestOptions->setRetryOAuth(false)
                     );
@@ -852,7 +852,7 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelUserAccountOrder'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -862,18 +862,18 @@ class TradingApi extends \SnapTrade\CustomApi
      */
     public function cancelUserAccountOrderAsync(
 
+        $brokerage_order_id,
         $user_id,
         $user_secret,
         $account_id,
-        $brokerage_order_id = SENTINEL_VALUE,
         string $contentType = self::contentTypes['cancelUserAccountOrder'][0]
     )
     {
         $_body = [];
         $this->setRequestBodyProperty($_body, "brokerage_order_id", $brokerage_order_id);
-        $trading_cancel_user_account_order_request = $_body;
+        $account_information_get_user_account_order_detail_request = $_body;
 
-        return $this->cancelUserAccountOrderAsyncWithHttpInfo($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, $contentType)
+        return $this->cancelUserAccountOrderAsyncWithHttpInfo($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -891,18 +891,18 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelUserAccountOrder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function cancelUserAccountOrderAsyncWithHttpInfo($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, string $contentType = self::contentTypes['cancelUserAccountOrder'][0], $requestOptions = null)
+    public function cancelUserAccountOrderAsyncWithHttpInfo($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, string $contentType = self::contentTypes['cancelUserAccountOrder'][0], $requestOptions = null)
     {
         if ($requestOptions == null) $requestOptions = new \SnapTrade\RequestOptions();
         $returnType = '\SnapTrade\Model\AccountOrderRecord';
-        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelUserAccountOrderRequest($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, $contentType);
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelUserAccountOrderRequest($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, $contentType);
 
         // Customization hook
         $this->beforeSendHook($request, $requestOptions, $this->config, $serializedBody);
@@ -949,14 +949,14 @@ class TradingApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  \SnapTrade\Model\TradingCancelUserAccountOrderRequest $trading_cancel_user_account_order_request (required)
+     * @param  \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest $account_information_get_user_account_order_detail_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelUserAccountOrder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function cancelUserAccountOrderRequest($user_id, $user_secret, $account_id, $trading_cancel_user_account_order_request, string $contentType = self::contentTypes['cancelUserAccountOrder'][0])
+    public function cancelUserAccountOrderRequest($user_id, $user_secret, $account_id, $account_information_get_user_account_order_detail_request, string $contentType = self::contentTypes['cancelUserAccountOrder'][0])
     {
 
         // Check if $user_id is a string
@@ -989,18 +989,18 @@ class TradingApi extends \SnapTrade\CustomApi
                 'Missing the required parameter account_id when calling cancelUserAccountOrder'
             );
         }
-        if ($trading_cancel_user_account_order_request !== SENTINEL_VALUE) {
-            if (!($trading_cancel_user_account_order_request instanceof \SnapTrade\Model\TradingCancelUserAccountOrderRequest)) {
-                if (!is_array($trading_cancel_user_account_order_request))
-                    throw new \InvalidArgumentException('"trading_cancel_user_account_order_request" must be associative array or an instance of \SnapTrade\Model\TradingCancelUserAccountOrderRequest TradingApi.cancelUserAccountOrder.');
+        if ($account_information_get_user_account_order_detail_request !== SENTINEL_VALUE) {
+            if (!($account_information_get_user_account_order_detail_request instanceof \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest)) {
+                if (!is_array($account_information_get_user_account_order_detail_request))
+                    throw new \InvalidArgumentException('"account_information_get_user_account_order_detail_request" must be associative array or an instance of \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest TradingApi.cancelUserAccountOrder.');
                 else
-                    $trading_cancel_user_account_order_request = new \SnapTrade\Model\TradingCancelUserAccountOrderRequest($trading_cancel_user_account_order_request);
+                    $account_information_get_user_account_order_detail_request = new \SnapTrade\Model\AccountInformationGetUserAccountOrderDetailRequest($account_information_get_user_account_order_detail_request);
             }
         }
-        // verify the required parameter 'trading_cancel_user_account_order_request' is set
-        if ($trading_cancel_user_account_order_request === SENTINEL_VALUE || (is_array($trading_cancel_user_account_order_request) && count($trading_cancel_user_account_order_request) === 0)) {
+        // verify the required parameter 'account_information_get_user_account_order_detail_request' is set
+        if ($account_information_get_user_account_order_detail_request === SENTINEL_VALUE || (is_array($account_information_get_user_account_order_detail_request) && count($account_information_get_user_account_order_detail_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter trading_cancel_user_account_order_request when calling cancelUserAccountOrder'
+                'Missing the required parameter account_information_get_user_account_order_detail_request when calling cancelUserAccountOrder'
             );
         }
 
@@ -1053,12 +1053,12 @@ class TradingApi extends \SnapTrade\CustomApi
         );
 
         // for model (json/xml)
-        if (isset($trading_cancel_user_account_order_request)) {
+        if (isset($account_information_get_user_account_order_detail_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($trading_cancel_user_account_order_request));
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($account_information_get_user_account_order_detail_request));
             } else {
-                $httpBody = $trading_cancel_user_account_order_request;
+                $httpBody = $account_information_get_user_account_order_detail_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
