@@ -6022,7 +6022,7 @@ class TradingApi extends \SnapTrade\CustomApi
      *
      * Get crypto pairs
      *
-     * Searches cryptocurrency pairs instruments accessible to the specified account.
+     * Searches cryptocurrency pairs instruments accessible to the specified account. Both &#x60;base&#x60; and &#x60;quote&#x60; are optional. Omit both for a full list of cryptocurrency pairs.
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -6055,7 +6055,7 @@ class TradingApi extends \SnapTrade\CustomApi
      *
      * Get crypto pairs
      *
-     * Searches cryptocurrency pairs instruments accessible to the specified account.
+     * Searches cryptocurrency pairs instruments accessible to the specified account. Both &#x60;base&#x60; and &#x60;quote&#x60; are optional. Omit both for a full list of cryptocurrency pairs.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -6205,7 +6205,7 @@ class TradingApi extends \SnapTrade\CustomApi
      *
      * Get crypto pairs
      *
-     * Searches cryptocurrency pairs instruments accessible to the specified account.
+     * Searches cryptocurrency pairs instruments accessible to the specified account. Both &#x60;base&#x60; and &#x60;quote&#x60; are optional. Omit both for a full list of cryptocurrency pairs.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -6242,7 +6242,7 @@ class TradingApi extends \SnapTrade\CustomApi
      *
      * Get crypto pairs
      *
-     * Searches cryptocurrency pairs instruments accessible to the specified account.
+     * Searches cryptocurrency pairs instruments accessible to the specified account. Both &#x60;base&#x60; and &#x60;quote&#x60; are optional. Omit both for a full list of cryptocurrency pairs.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
