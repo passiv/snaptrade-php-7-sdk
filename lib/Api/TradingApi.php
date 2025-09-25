@@ -2555,7 +2555,7 @@ class TradingApi extends \SnapTrade\CustomApi
     /**
      * Operation placeBracketOrder
      *
-     * Place bracket equity order
+     * Place bracket order
      *
      * Places a bracket order (entry order + OCO of stop loss and take profit). Disabled by default please contact support for use. Only supported on certain brokerages
      *
@@ -2605,7 +2605,7 @@ class TradingApi extends \SnapTrade\CustomApi
     /**
      * Operation placeBracketOrderWithHttpInfo
      *
-     * Place bracket equity order
+     * Place bracket order
      *
      * Places a bracket order (entry order + OCO of stop loss and take profit). Disabled by default please contact support for use. Only supported on certain brokerages
      *
@@ -2776,7 +2776,7 @@ class TradingApi extends \SnapTrade\CustomApi
     /**
      * Operation placeBracketOrderAsync
      *
-     * Place bracket equity order
+     * Place bracket order
      *
      * Places a bracket order (entry order + OCO of stop loss and take profit). Disabled by default please contact support for use. Only supported on certain brokerages
      *
@@ -2830,7 +2830,7 @@ class TradingApi extends \SnapTrade\CustomApi
     /**
      * Operation placeBracketOrderAsyncWithHttpInfo
      *
-     * Place bracket equity order
+     * Place bracket order
      *
      * Places a bracket order (entry order + OCO of stop loss and take profit). Disabled by default please contact support for use. Only supported on certain brokerages
      *
