@@ -6,7 +6,7 @@
 
 Connect brokerage accounts to your app for live positions and trading
 
-[![Packagist](https://img.shields.io/badge/Packagist-v2.0.150-blue)](https://packagist.org/packages/konfig/snaptrade-php-7-sdk)
+[![Packagist](https://img.shields.io/badge/Packagist-v2.0.151-blue)](https://packagist.org/packages/konfig/snaptrade-php-7-sdk)
 [![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://snaptrade.com/)
 
 </div>
@@ -99,7 +99,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
     }
   ],
   "require": {
-    "konfig/snaptrade-php-7-sdk": "2.0.150"
+    "konfig/snaptrade-php-7-sdk": "2.0.151"
   }
 }
 ```
