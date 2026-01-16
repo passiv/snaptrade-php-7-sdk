@@ -29,7 +29,7 @@ use PHPUnit\Framework\TestCase;
  * AccountTest Class Doc Comment
  *
  * @category    Class
- * @description A single brokerage account at a financial institution.
+ * @description A single account at a brokerage.
  * @package     SnapTrade
  */
 class AccountTest extends TestCase
@@ -91,15 +91,6 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Test attribute "portfolio_group"
-     */
-    public function testPropertyPortfolioGroup()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "name"
      */
     public function testPropertyName()
@@ -136,9 +127,54 @@ class AccountTest extends TestCase
     }
 
     /**
+     * Test attribute "sync_status"
+     */
+    public function testPropertySyncStatus()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "balance"
+     */
+    public function testPropertyBalance()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "status"
+     */
+    public function testPropertyStatus()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "raw_type"
+     */
+    public function testPropertyRawType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "meta"
      */
     public function testPropertyMeta()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "portfolio_group"
+     */
+    public function testPropertyPortfolioGroup()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -154,18 +190,9 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Test attribute "sync_status"
+     * Test attribute "is_paper"
      */
-    public function testPropertySyncStatus()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "balance"
-     */
-    public function testPropertyBalance()
+    public function testPropertyIsPaper()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
