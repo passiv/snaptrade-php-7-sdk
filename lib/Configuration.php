@@ -93,11 +93,11 @@ class Configuration
     protected $host = 'https://api.snaptrade.com/api/v1';
 
     /**
-     * User agent of the HTTP request, set to "Konfig/{version}/PHP" by default
+     * User agent of the HTTP request, set to "Konfig/{version}/PHP7" by default
      *
      * @var string
      */
-    protected $userAgent = 'Konfig/2.0.32/PHP';
+    protected $userAgent = 'Konfig/2.0.165/PHP7';
 
     /**
      * Debug switch (default set to false)
@@ -487,7 +487,7 @@ class Configuration
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    The version of the OpenAPI document: 1.0.0' . PHP_EOL;
-        $report .= '    SDK Package Version: 2.0.32' . PHP_EOL;
+        $report .= '    SDK Package Version: 2.0.165' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
 
         return $report;

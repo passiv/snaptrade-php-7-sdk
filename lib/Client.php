@@ -12,6 +12,8 @@ class Client
     public $authentication;
     /** @var \SnapTrade\Api\ConnectionsApi */
     public $connections;
+    /** @var \SnapTrade\Api\ExperimentalEndpointsApi */
+    public $experimentalEndpoints;
     /** @var \SnapTrade\Api\OptionsApi */
     public $options;
     /** @var \SnapTrade\Api\ReferenceDataApi */
@@ -48,6 +50,7 @@ class Client
         $this->apiStatus = new \SnapTrade\Api\ApiStatusApi($config);
         $this->authentication = new \SnapTrade\Api\AuthenticationApi($config);
         $this->connections = new \SnapTrade\Api\ConnectionsApi($config);
+        $this->experimentalEndpoints = new \SnapTrade\Api\ExperimentalEndpointsApi($config);
         $this->options = new \SnapTrade\Api\OptionsApi($config);
         $this->referenceData = new \SnapTrade\Api\ReferenceDataApi($config);
         $this->trading = new \SnapTrade\Api\TradingApi($config);
