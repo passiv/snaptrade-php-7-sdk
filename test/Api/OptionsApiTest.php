@@ -59,36 +59,12 @@ class OptionsApiTest extends TestCase
     }
 
     /**
-     * Test case for getOptionStrategy
+     * Test case for getOptionQuote
      *
-     * Create options strategy.
-     *
-     */
-    public function testGetOptionStrategy()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for getOptionsChain
-     *
-     * Get the options chain for a symbol.
+     * Get option quote.
      *
      */
-    public function testGetOptionsChain()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for getOptionsStrategyQuote
-     *
-     * Get options strategy quotes.
-     *
-     */
-    public function testGetOptionsStrategyQuote()
+    public function testGetOptionQuote()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -101,18 +77,6 @@ class OptionsApiTest extends TestCase
      *
      */
     public function testListOptionHoldings()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for placeOptionStrategy
-     *
-     * Place an option strategy order.
-     *
-     */
-    public function testPlaceOptionStrategy()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
