@@ -3834,11 +3834,12 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account rate of returns
      *
-     * Returns a list of rate of return percents for a given account. Will include timeframes available from the brokerage, for example \&quot;ALL\&quot;, \&quot;1Y\&quot;, \&quot;6M\&quot;, \&quot;3M\&quot;, \&quot;1M\&quot;
+     * Returns a list of rate of return percents for a given account.
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id account_id (required)
+     * @param  string $timeframes Optional comma separated list of rate-of-return timeframes to return. Supported values are &#x60;ALL&#x60;, &#x60;1Y&#x60;, &#x60;YTD&#x60;, &#x60;1M&#x60;, &#x60;1W&#x60;, and &#x60;1D&#x60;. If omitted, SnapTrade returns all six supported timeframes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountReturnRates'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -3849,12 +3850,13 @@ class AccountInformationApi extends \SnapTrade\CustomApi
         $user_id,
         $user_secret,
         $account_id,
+        $timeframes = SENTINEL_VALUE,
 
         string $contentType = self::contentTypes['getUserAccountReturnRates'][0]
     )
     {
 
-        list($response) = $this->getUserAccountReturnRatesWithHttpInfo($user_id, $user_secret, $account_id, $contentType);
+        list($response) = $this->getUserAccountReturnRatesWithHttpInfo($user_id, $user_secret, $account_id, $timeframes, $contentType);
         return $response;
     }
 
@@ -3863,11 +3865,12 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account rate of returns
      *
-     * Returns a list of rate of return percents for a given account. Will include timeframes available from the brokerage, for example \&quot;ALL\&quot;, \&quot;1Y\&quot;, \&quot;6M\&quot;, \&quot;3M\&quot;, \&quot;1M\&quot;
+     * Returns a list of rate of return percents for a given account.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
+     * @param  string $timeframes Optional comma separated list of rate-of-return timeframes to return. Supported values are &#x60;ALL&#x60;, &#x60;1Y&#x60;, &#x60;YTD&#x60;, &#x60;1M&#x60;, &#x60;1W&#x60;, and &#x60;1D&#x60;. If omitted, SnapTrade returns all six supported timeframes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountReturnRates'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -3875,10 +3878,10 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @throws \InvalidArgumentException
      * @return array of \SnapTrade\Model\RateOfReturnResponse|\SnapTrade\Model\Model403FeatureNotEnabledResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getUserAccountReturnRatesWithHttpInfo($user_id, $user_secret, $account_id, string $contentType = self::contentTypes['getUserAccountReturnRates'][0], \SnapTrade\RequestOptions $requestOptions = null)
+    public function getUserAccountReturnRatesWithHttpInfo($user_id, $user_secret, $account_id, $timeframes = null, string $contentType = self::contentTypes['getUserAccountReturnRates'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
         if ($requestOptions == null) $requestOptions = new \SnapTrade\RequestOptions();
-        ["request" => $request, "serializedBody" => $serializedBody] = $this->getUserAccountReturnRatesRequest($user_id, $user_secret, $account_id, $contentType);
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->getUserAccountReturnRatesRequest($user_id, $user_secret, $account_id, $timeframes, $contentType);
 
         // Customization hook
         $this->beforeSendHook($request, $requestOptions, $this->config);
@@ -3897,6 +3900,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                         $user_id,
                         $user_secret,
                         $account_id,
+                        $timeframes,
                         $contentType,
                         $requestOptions->setRetryOAuth(false)
                     );
@@ -4032,11 +4036,12 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account rate of returns
      *
-     * Returns a list of rate of return percents for a given account. Will include timeframes available from the brokerage, for example \&quot;ALL\&quot;, \&quot;1Y\&quot;, \&quot;6M\&quot;, \&quot;3M\&quot;, \&quot;1M\&quot;
+     * Returns a list of rate of return percents for a given account.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
+     * @param  string $timeframes Optional comma separated list of rate-of-return timeframes to return. Supported values are &#x60;ALL&#x60;, &#x60;1Y&#x60;, &#x60;YTD&#x60;, &#x60;1M&#x60;, &#x60;1W&#x60;, and &#x60;1D&#x60;. If omitted, SnapTrade returns all six supported timeframes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountReturnRates'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -4047,12 +4052,13 @@ class AccountInformationApi extends \SnapTrade\CustomApi
         $user_id,
         $user_secret,
         $account_id,
+        $timeframes = SENTINEL_VALUE,
 
         string $contentType = self::contentTypes['getUserAccountReturnRates'][0]
     )
     {
 
-        return $this->getUserAccountReturnRatesAsyncWithHttpInfo($user_id, $user_secret, $account_id, $contentType)
+        return $this->getUserAccountReturnRatesAsyncWithHttpInfo($user_id, $user_secret, $account_id, $timeframes, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4065,21 +4071,22 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List account rate of returns
      *
-     * Returns a list of rate of return percents for a given account. Will include timeframes available from the brokerage, for example \&quot;ALL\&quot;, \&quot;1Y\&quot;, \&quot;6M\&quot;, \&quot;3M\&quot;, \&quot;1M\&quot;
+     * Returns a list of rate of return percents for a given account.
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
+     * @param  string $timeframes Optional comma separated list of rate-of-return timeframes to return. Supported values are &#x60;ALL&#x60;, &#x60;1Y&#x60;, &#x60;YTD&#x60;, &#x60;1M&#x60;, &#x60;1W&#x60;, and &#x60;1D&#x60;. If omitted, SnapTrade returns all six supported timeframes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountReturnRates'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserAccountReturnRatesAsyncWithHttpInfo($user_id, $user_secret, $account_id, string $contentType = self::contentTypes['getUserAccountReturnRates'][0], $requestOptions = null)
+    public function getUserAccountReturnRatesAsyncWithHttpInfo($user_id, $user_secret, $account_id, $timeframes = null, string $contentType = self::contentTypes['getUserAccountReturnRates'][0], $requestOptions = null)
     {
         if ($requestOptions == null) $requestOptions = new \SnapTrade\RequestOptions();
         $returnType = '\SnapTrade\Model\RateOfReturnResponse';
-        ["request" => $request, "serializedBody" => $serializedBody] = $this->getUserAccountReturnRatesRequest($user_id, $user_secret, $account_id, $contentType);
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->getUserAccountReturnRatesRequest($user_id, $user_secret, $account_id, $timeframes, $contentType);
 
         // Customization hook
         $this->beforeSendHook($request, $requestOptions, $this->config);
@@ -4126,12 +4133,13 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
+     * @param  string $timeframes Optional comma separated list of rate-of-return timeframes to return. Supported values are &#x60;ALL&#x60;, &#x60;1Y&#x60;, &#x60;YTD&#x60;, &#x60;1M&#x60;, &#x60;1W&#x60;, and &#x60;1D&#x60;. If omitted, SnapTrade returns all six supported timeframes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountReturnRates'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getUserAccountReturnRatesRequest($user_id, $user_secret, $account_id, string $contentType = self::contentTypes['getUserAccountReturnRates'][0])
+    public function getUserAccountReturnRatesRequest($user_id, $user_secret, $account_id, $timeframes = SENTINEL_VALUE, string $contentType = self::contentTypes['getUserAccountReturnRates'][0])
     {
 
         // Check if $user_id is a string
@@ -4164,6 +4172,10 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                 'Missing the required parameter account_id when calling getUserAccountReturnRates'
             );
         }
+        // Check if $timeframes is a string
+        if ($timeframes !== SENTINEL_VALUE && !is_string($timeframes)) {
+            throw new \InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($timeframes, true), gettype($timeframes)));
+        }
 
 
         $resourcePath = '/accounts/{accountId}/returnRates';
@@ -4193,6 +4205,17 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                 'form', // style
                 true, // explode
                 true // required
+            ) ?? []);
+        }
+        if ($timeframes !== SENTINEL_VALUE) {
+            // query params
+            $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+                $timeframes,
+                'timeframes', // param base name
+                'string', // openApiType
+                'form', // style
+                true, // explode
+                false // required
             ) ?? []);
         }
 
