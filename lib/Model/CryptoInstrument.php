@@ -1,6 +1,6 @@
 <?php
 /**
- * SymbolFigiInstrument
+ * CryptoInstrument
  *
  * PHP version 7.4
  *
@@ -27,13 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * SymbolFigiInstrument Class Doc Comment
+ * CryptoInstrument Class Doc Comment
  *
  * @category Class
+ * @description Security instrument metadata for crypto positions.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
+class CryptoInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -42,7 +43,7 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Symbol_figi_instrument';
+    protected static $openAPIModelName = 'CryptoInstrument';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -50,8 +51,14 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'figi_code' => 'string',
-        'figi_share_class' => 'string'
+        'kind' => 'string',
+        'id' => 'string',
+        'symbol' => 'string',
+        'raw_symbol' => 'string',
+        'description' => 'string',
+        'currency' => 'string',
+        'exchange' => 'string',
+        'figi_instrument' => '\SnapTrade\Model\StockInstrumentFigiInstrument'
     ];
 
     /**
@@ -62,8 +69,14 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'figi_code' => null,
-        'figi_share_class' => null
+        'kind' => null,
+        'id' => 'uuid',
+        'symbol' => null,
+        'raw_symbol' => null,
+        'description' => null,
+        'currency' => null,
+        'exchange' => null,
+        'figi_instrument' => null
     ];
 
     /**
@@ -72,8 +85,14 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'figi_code' => true,
-		'figi_share_class' => true
+        'kind' => false,
+		'id' => false,
+		'symbol' => false,
+		'raw_symbol' => false,
+		'description' => true,
+		'currency' => true,
+		'exchange' => true,
+		'figi_instrument' => true
     ];
 
     /**
@@ -162,8 +181,14 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'figi_code' => 'figi_code',
-        'figi_share_class' => 'figi_share_class'
+        'kind' => 'kind',
+        'id' => 'id',
+        'symbol' => 'symbol',
+        'raw_symbol' => 'raw_symbol',
+        'description' => 'description',
+        'currency' => 'currency',
+        'exchange' => 'exchange',
+        'figi_instrument' => 'figi_instrument'
     ];
 
     /**
@@ -172,8 +197,14 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'figi_code' => 'setFigiCode',
-        'figi_share_class' => 'setFigiShareClass'
+        'kind' => 'setKind',
+        'id' => 'setId',
+        'symbol' => 'setSymbol',
+        'raw_symbol' => 'setRawSymbol',
+        'description' => 'setDescription',
+        'currency' => 'setCurrency',
+        'exchange' => 'setExchange',
+        'figi_instrument' => 'setFigiInstrument'
     ];
 
     /**
@@ -182,8 +213,14 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'figi_code' => 'getFigiCode',
-        'figi_share_class' => 'getFigiShareClass'
+        'kind' => 'getKind',
+        'id' => 'getId',
+        'symbol' => 'getSymbol',
+        'raw_symbol' => 'getRawSymbol',
+        'description' => 'getDescription',
+        'currency' => 'getCurrency',
+        'exchange' => 'getExchange',
+        'figi_instrument' => 'getFigiInstrument'
     ];
 
     /**
@@ -227,6 +264,19 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
+    public const KIND_CRYPTO = 'crypto';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getKindAllowableValues()
+    {
+        return [
+            self::KIND_CRYPTO,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -243,8 +293,14 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('figi_code', $data ?? [], null);
-        $this->setIfExists('figi_share_class', $data ?? [], null);
+        $this->setIfExists('kind', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('symbol', $data ?? [], null);
+        $this->setIfExists('raw_symbol', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('exchange', $data ?? [], null);
+        $this->setIfExists('figi_instrument', $data ?? [], null);
     }
 
     /**
@@ -274,6 +330,27 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
+        if ($this->container['kind'] === null) {
+            $invalidProperties[] = "'kind' can't be null";
+        }
+        $allowedValues = $this->getKindAllowableValues();
+        if (!is_null($this->container['kind']) && !in_array($this->container['kind'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'kind', must be one of '%s'",
+                $this->container['kind'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['symbol'] === null) {
+            $invalidProperties[] = "'symbol' can't be null";
+        }
+        if ($this->container['raw_symbol'] === null) {
+            $invalidProperties[] = "'raw_symbol' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -290,73 +367,271 @@ class SymbolFigiInstrument implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets figi_code
+     * Gets kind
      *
-     * @return string|null
+     * @return string
      */
-    public function getFigiCode()
+    public function getKind()
     {
-        return $this->container['figi_code'];
+        return $this->container['kind'];
     }
 
     /**
-     * Sets figi_code
+     * Sets kind
      *
-     * @param string|null $figi_code This identifier is unique per security per trading venue. See section 1.4.1 of the [FIGI Standard](https://www.openfigi.com/assets/local/figi-allocation-rules.pdf) for more information.
+     * @param string $kind Type of security instrument.
      *
      * @return self
      */
-    public function setFigiCode($figi_code)
+    public function setKind($kind)
     {
-
-        if (is_null($figi_code)) {
-            array_push($this->openAPINullablesSetToNull, 'figi_code');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('figi_code', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        $allowedValues = $this->getKindAllowableValues();
+        if (!in_array($kind, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'kind', must be one of '%s'",
+                    $kind,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
 
-        $this->container['figi_code'] = $figi_code;
+        if (is_null($kind)) {
+            throw new \InvalidArgumentException('non-nullable kind cannot be null');
+        }
+
+        $this->container['kind'] = $kind;
 
         return $this;
     }
 
     /**
-     * Gets figi_share_class
+     * Gets id
      *
-     * @return string|null
+     * @return string
      */
-    public function getFigiShareClass()
+    public function getId()
     {
-        return $this->container['figi_share_class'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets figi_share_class
+     * Sets id
      *
-     * @param string|null $figi_share_class This enables users to link multiple FIGIs for the same security in order to obtain an aggregated view across all countries and all exchanges. For example, `AAPL` has a different FIGI for each exchange/trading venue it is traded on. The `figi_share_class` is the same for all of these FIGIs. See section 1.4.3 of the [FIGI Standard](https://www.openfigi.com/assets/local/figi-allocation-rules.pdf) for more information.
+     * @param string $id Unique identifier for the instrument.
      *
      * @return self
      */
-    public function setFigiShareClass($figi_share_class)
+    public function setId($id)
     {
 
-        if (is_null($figi_share_class)) {
-            array_push($this->openAPINullablesSetToNull, 'figi_share_class');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets symbol
+     *
+     * @return string
+     */
+    public function getSymbol()
+    {
+        return $this->container['symbol'];
+    }
+
+    /**
+     * Sets symbol
+     *
+     * @param string $symbol The formatted trading symbol for the security.
+     *
+     * @return self
+     */
+    public function setSymbol($symbol)
+    {
+
+        if (is_null($symbol)) {
+            throw new \InvalidArgumentException('non-nullable symbol cannot be null');
+        }
+
+        $this->container['symbol'] = $symbol;
+
+        return $this;
+    }
+
+    /**
+     * Gets raw_symbol
+     *
+     * @return string
+     */
+    public function getRawSymbol()
+    {
+        return $this->container['raw_symbol'];
+    }
+
+    /**
+     * Sets raw_symbol
+     *
+     * @param string $raw_symbol The raw symbol without any exchange suffix.
+     *
+     * @return self
+     */
+    public function setRawSymbol($raw_symbol)
+    {
+
+        if (is_null($raw_symbol)) {
+            throw new \InvalidArgumentException('non-nullable raw_symbol cannot be null');
+        }
+
+        $this->container['raw_symbol'] = $raw_symbol;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Human-readable description of the security.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('figi_share_class', $nullablesSetToNull);
+            $index = array_search('description', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
 
-        $this->container['figi_share_class'] = $figi_share_class;
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency ISO-4217 currency code for the security listing.
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets exchange
+     *
+     * @return string|null
+     */
+    public function getExchange()
+    {
+        return $this->container['exchange'];
+    }
+
+    /**
+     * Sets exchange
+     *
+     * @param string|null $exchange Exchange MIC code or exchange code for the security.
+     *
+     * @return self
+     */
+    public function setExchange($exchange)
+    {
+
+        if (is_null($exchange)) {
+            array_push($this->openAPINullablesSetToNull, 'exchange');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('exchange', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['exchange'] = $exchange;
+
+        return $this;
+    }
+
+    /**
+     * Gets figi_instrument
+     *
+     * @return \SnapTrade\Model\StockInstrumentFigiInstrument|null
+     */
+    public function getFigiInstrument()
+    {
+        return $this->container['figi_instrument'];
+    }
+
+    /**
+     * Sets figi_instrument
+     *
+     * @param \SnapTrade\Model\StockInstrumentFigiInstrument|null $figi_instrument figi_instrument
+     *
+     * @return self
+     */
+    public function setFigiInstrument($figi_instrument)
+    {
+
+        if (is_null($figi_instrument)) {
+            array_push($this->openAPINullablesSetToNull, 'figi_instrument');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('figi_instrument', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['figi_instrument'] = $figi_instrument;
 
         return $this;
     }
