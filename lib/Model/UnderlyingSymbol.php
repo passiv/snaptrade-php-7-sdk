@@ -59,7 +59,7 @@ class UnderlyingSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
         'exchange' => '\SnapTrade\Model\UnderlyingSymbolExchange',
         'type' => '\SnapTrade\Model\UnderlyingSymbolType',
         'figi_code' => 'string',
-        'figi_instrument' => '\SnapTrade\Model\SymbolFigiInstrument',
+        'figi_instrument' => '\SnapTrade\Model\StockInstrumentFigiInstrument',
         'currencies' => '\SnapTrade\Model\Currency[]'
     ];
 
@@ -595,7 +595,7 @@ class UnderlyingSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets figi_instrument
      *
-     * @return \SnapTrade\Model\SymbolFigiInstrument|null
+     * @return \SnapTrade\Model\StockInstrumentFigiInstrument|null
      */
     public function getFigiInstrument()
     {
@@ -605,7 +605,7 @@ class UnderlyingSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets figi_instrument
      *
-     * @param \SnapTrade\Model\SymbolFigiInstrument|null $figi_instrument figi_instrument
+     * @param \SnapTrade\Model\StockInstrumentFigiInstrument|null $figi_instrument figi_instrument
      *
      * @return self
      */
