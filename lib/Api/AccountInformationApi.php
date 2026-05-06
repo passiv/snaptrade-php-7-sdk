@@ -5216,7 +5216,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List accounts
      *
-     * Returns all brokerage accounts across all connections known to SnapTrade for the authenticated user.  Please note that this data is cached and only refreshed once a day.  Check your API key on the [Customer Dashboard billing page](https://dashboard.snaptrade.com/settings/billing) to see if you have real-time data access:   - If you do, real-time data can be fetched using the [update account details endpoint](/reference/Account%20Information/AccountInformation_getUserAccountDetails).   - If you don&#39;t, the data is cached and refreshed once a day. If you need real-time, use the [manual refresh endpoint](/reference/Connections/Connections_refreshBrokerageAuthorization).
+     * **Deprecated, please use the [list accounts for a connection endpoint](/reference/Connections/Connections_listBrokerageAuthorizationAccounts) instead.**  Returns all brokerage accounts across all connections known to SnapTrade for the authenticated user.  This data is cached and only refreshed once a day, regardless of the customer&#39;s plan. To get real-time data on a real-time plan, use the connection-scoped endpoint linked above. Customers on delayed plans can force a refresh with the [manual refresh endpoint](/reference/Connections/Connections_refreshBrokerageAuthorization).
      *
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
@@ -5225,6 +5225,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \SnapTrade\Model\Account[]
+     * @deprecated
      */
     public function listUserAccounts(
         $user_id,
@@ -5243,7 +5244,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List accounts
      *
-     * Returns all brokerage accounts across all connections known to SnapTrade for the authenticated user.  Please note that this data is cached and only refreshed once a day.  Check your API key on the [Customer Dashboard billing page](https://dashboard.snaptrade.com/settings/billing) to see if you have real-time data access:   - If you do, real-time data can be fetched using the [update account details endpoint](/reference/Account%20Information/AccountInformation_getUserAccountDetails).   - If you don&#39;t, the data is cached and refreshed once a day. If you need real-time, use the [manual refresh endpoint](/reference/Connections/Connections_refreshBrokerageAuthorization).
+     * **Deprecated, please use the [list accounts for a connection endpoint](/reference/Connections/Connections_listBrokerageAuthorizationAccounts) instead.**  Returns all brokerage accounts across all connections known to SnapTrade for the authenticated user.  This data is cached and only refreshed once a day, regardless of the customer&#39;s plan. To get real-time data on a real-time plan, use the connection-scoped endpoint linked above. Customers on delayed plans can force a refresh with the [manual refresh endpoint](/reference/Connections/Connections_refreshBrokerageAuthorization).
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -5253,6 +5254,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \SnapTrade\Model\Account[], HTTP status code, HTTP response headers (array of strings)
+     * @deprecated
      */
     public function listUserAccountsWithHttpInfo($user_id, $user_secret, string $contentType = self::contentTypes['listUserAccounts'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
@@ -5364,7 +5366,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List accounts
      *
-     * Returns all brokerage accounts across all connections known to SnapTrade for the authenticated user.  Please note that this data is cached and only refreshed once a day.  Check your API key on the [Customer Dashboard billing page](https://dashboard.snaptrade.com/settings/billing) to see if you have real-time data access:   - If you do, real-time data can be fetched using the [update account details endpoint](/reference/Account%20Information/AccountInformation_getUserAccountDetails).   - If you don&#39;t, the data is cached and refreshed once a day. If you need real-time, use the [manual refresh endpoint](/reference/Connections/Connections_refreshBrokerageAuthorization).
+     * **Deprecated, please use the [list accounts for a connection endpoint](/reference/Connections/Connections_listBrokerageAuthorizationAccounts) instead.**  Returns all brokerage accounts across all connections known to SnapTrade for the authenticated user.  This data is cached and only refreshed once a day, regardless of the customer&#39;s plan. To get real-time data on a real-time plan, use the connection-scoped endpoint linked above. Customers on delayed plans can force a refresh with the [manual refresh endpoint](/reference/Connections/Connections_refreshBrokerageAuthorization).
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -5373,6 +5375,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
+     * @deprecated
      */
     public function listUserAccountsAsync(
         $user_id,
@@ -5395,7 +5398,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * List accounts
      *
-     * Returns all brokerage accounts across all connections known to SnapTrade for the authenticated user.  Please note that this data is cached and only refreshed once a day.  Check your API key on the [Customer Dashboard billing page](https://dashboard.snaptrade.com/settings/billing) to see if you have real-time data access:   - If you do, real-time data can be fetched using the [update account details endpoint](/reference/Account%20Information/AccountInformation_getUserAccountDetails).   - If you don&#39;t, the data is cached and refreshed once a day. If you need real-time, use the [manual refresh endpoint](/reference/Connections/Connections_refreshBrokerageAuthorization).
+     * **Deprecated, please use the [list accounts for a connection endpoint](/reference/Connections/Connections_listBrokerageAuthorizationAccounts) instead.**  Returns all brokerage accounts across all connections known to SnapTrade for the authenticated user.  This data is cached and only refreshed once a day, regardless of the customer&#39;s plan. To get real-time data on a real-time plan, use the connection-scoped endpoint linked above. Customers on delayed plans can force a refresh with the [manual refresh endpoint](/reference/Connections/Connections_refreshBrokerageAuthorization).
      *
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
@@ -5403,6 +5406,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
+     * @deprecated
      */
     public function listUserAccountsAsyncWithHttpInfo($user_id, $user_secret, string $contentType = self::contentTypes['listUserAccounts'][0], $requestOptions = null)
     {
@@ -5458,6 +5462,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
+     * @deprecated
      */
     public function listUserAccountsRequest($user_id, $user_secret, string $contentType = self::contentTypes['listUserAccounts'][0])
     {
