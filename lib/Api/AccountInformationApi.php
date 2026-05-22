@@ -3329,7 +3329,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_id user_id (required)
      * @param  string $user_secret user_secret (required)
      * @param  string $account_id account_id (required)
-     * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
+     * @param  string $state defaults to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. Values greater than 90 will be capped at 90. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      *
@@ -3362,7 +3362,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
+     * @param  string $state defaults to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. Values greater than 90 will be capped at 90. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
@@ -3512,7 +3512,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
+     * @param  string $state defaults to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. Values greater than 90 will be capped at 90. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
@@ -3549,7 +3549,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
+     * @param  string $state defaults to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. Values greater than 90 will be capped at 90. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      *
@@ -3607,7 +3607,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      * @param  string $user_id (required)
      * @param  string $user_secret (required)
      * @param  string $account_id (required)
-     * @param  string $state defaults value is set to \&quot;all\&quot; (optional)
+     * @param  string $state defaults to \&quot;all\&quot; (optional)
      * @param  int $days Number of days in the past to fetch the most recent orders. Defaults to the last 30 days if no value is passed in. Values greater than 90 will be capped at 90. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserAccountOrders'] to see the possible values for this operation
      *
