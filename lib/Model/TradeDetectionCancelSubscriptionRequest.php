@@ -1,6 +1,6 @@
 <?php
 /**
- * TradeDetectionAddSubscriptionRequest
+ * TradeDetectionCancelSubscriptionRequest
  *
  * PHP version 7.4
  *
@@ -27,13 +27,13 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * TradeDetectionAddSubscriptionRequest Class Doc Comment
+ * TradeDetectionCancelSubscriptionRequest Class Doc Comment
  *
  * @category Class
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class TradeDetectionCancelSubscriptionRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -42,7 +42,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TradeDetection_addSubscription_request';
+    protected static $openAPIModelName = 'TradeDetection_cancelSubscription_request';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -50,8 +50,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_id' => 'string',
-        'check_interval_seconds' => 'int'
+        'account_id' => 'string'
     ];
 
     /**
@@ -62,8 +61,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'account_id' => 'uuid',
-        'check_interval_seconds' => null
+        'account_id' => 'uuid'
     ];
 
     /**
@@ -72,8 +70,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'account_id' => false,
-		'check_interval_seconds' => false
+        'account_id' => false
     ];
 
     /**
@@ -162,8 +159,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_id' => 'account_id',
-        'check_interval_seconds' => 'check_interval_seconds'
+        'account_id' => 'account_id'
     ];
 
     /**
@@ -172,8 +168,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $setters = [
-        'account_id' => 'setAccountId',
-        'check_interval_seconds' => 'setCheckIntervalSeconds'
+        'account_id' => 'setAccountId'
     ];
 
     /**
@@ -182,8 +177,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $getters = [
-        'account_id' => 'getAccountId',
-        'check_interval_seconds' => 'getCheckIntervalSeconds'
+        'account_id' => 'getAccountId'
     ];
 
     /**
@@ -244,7 +238,6 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
     public function __construct(array $data = null)
     {
         $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('check_interval_seconds', $data ?? [], null);
     }
 
     /**
@@ -277,13 +270,6 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
         if ($this->container['account_id'] === null) {
             $invalidProperties[] = "'account_id' can't be null";
         }
-        if ($this->container['check_interval_seconds'] === null) {
-            $invalidProperties[] = "'check_interval_seconds' can't be null";
-        }
-        if (($this->container['check_interval_seconds'] < 1)) {
-            $invalidProperties[] = "invalid value for 'check_interval_seconds', must be bigger than or equal to 1.";
-        }
-
         return $invalidProperties;
     }
 
@@ -324,40 +310,6 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
         }
 
         $this->container['account_id'] = $account_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets check_interval_seconds
-     *
-     * @return int
-     */
-    public function getCheckIntervalSeconds()
-    {
-        return $this->container['check_interval_seconds'];
-    }
-
-    /**
-     * Sets check_interval_seconds
-     *
-     * @param int $check_interval_seconds How often the subscribed account should be checked for new trades. Must match an active Trade Detection plan.
-     *
-     * @return self
-     */
-    public function setCheckIntervalSeconds($check_interval_seconds)
-    {
-
-        if (($check_interval_seconds < 1)) {
-            throw new \InvalidArgumentException('invalid value for $check_interval_seconds when calling TradeDetectionAddSubscriptionRequest., must be bigger than or equal to 1.');
-        }
-
-
-        if (is_null($check_interval_seconds)) {
-            throw new \InvalidArgumentException('non-nullable check_interval_seconds cannot be null');
-        }
-
-        $this->container['check_interval_seconds'] = $check_interval_seconds;
 
         return $this;
     }

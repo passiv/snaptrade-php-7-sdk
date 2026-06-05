@@ -169,6 +169,7 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
     public function addSubscription(
 
         $account_id,
+        $check_interval_seconds,
         $user_id,
         $user_secret,
         string $contentType = self::contentTypes['addSubscription'][0]
@@ -176,6 +177,7 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
     {
         $_body = [];
         $this->setRequestBodyProperty($_body, "account_id", $account_id);
+        $this->setRequestBodyProperty($_body, "check_interval_seconds", $check_interval_seconds);
         $trade_detection_add_subscription_request = $_body;
 
         list($response) = $this->addSubscriptionWithHttpInfo($user_id, $user_secret, $trade_detection_add_subscription_request, $contentType);
@@ -439,6 +441,7 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
     public function addSubscriptionAsync(
 
         $account_id,
+        $check_interval_seconds,
         $user_id,
         $user_secret,
         string $contentType = self::contentTypes['addSubscription'][0]
@@ -446,6 +449,7 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
     {
         $_body = [];
         $this->setRequestBodyProperty($_body, "account_id", $account_id);
+        $this->setRequestBodyProperty($_body, "check_interval_seconds", $check_interval_seconds);
         $trade_detection_add_subscription_request = $_body;
 
         return $this->addSubscriptionAsyncWithHttpInfo($user_id, $user_secret, $trade_detection_add_subscription_request, $contentType)
@@ -687,7 +691,7 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
      *
      * Cancels a Trade Detection subscription for a connected brokerage account. This endpoint requires partner signature authentication only and does not require &#x60;userId&#x60; or &#x60;userSecret&#x60;.
      *
-     * @param  \SnapTrade\Model\TradeDetectionAddSubscriptionRequest $trade_detection_add_subscription_request trade_detection_add_subscription_request (required)
+     * @param  \SnapTrade\Model\TradeDetectionCancelSubscriptionRequest $trade_detection_cancel_subscription_request trade_detection_cancel_subscription_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelSubscription'] to see the possible values for this operation
      *
      * @throws \SnapTrade\ApiException on non-2xx response
@@ -702,9 +706,9 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
     {
         $_body = [];
         $this->setRequestBodyProperty($_body, "account_id", $account_id);
-        $trade_detection_add_subscription_request = $_body;
+        $trade_detection_cancel_subscription_request = $_body;
 
-        list($response) = $this->cancelSubscriptionWithHttpInfo($trade_detection_add_subscription_request, $contentType);
+        list($response) = $this->cancelSubscriptionWithHttpInfo($trade_detection_cancel_subscription_request, $contentType);
         return $response;
     }
 
@@ -715,7 +719,7 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
      *
      * Cancels a Trade Detection subscription for a connected brokerage account. This endpoint requires partner signature authentication only and does not require &#x60;userId&#x60; or &#x60;userSecret&#x60;.
      *
-     * @param  \SnapTrade\Model\TradeDetectionAddSubscriptionRequest $trade_detection_add_subscription_request (required)
+     * @param  \SnapTrade\Model\TradeDetectionCancelSubscriptionRequest $trade_detection_cancel_subscription_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelSubscription'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -723,10 +727,10 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
      * @throws \InvalidArgumentException
      * @return array of \SnapTrade\Model\TradeDetectionCancelSubscriptionResponse|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model401FailedRequestResponse|\SnapTrade\Model\Model403FeatureNotEnabledResponse|\SnapTrade\Model\Model404FailedRequestResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function cancelSubscriptionWithHttpInfo($trade_detection_add_subscription_request, string $contentType = self::contentTypes['cancelSubscription'][0], \SnapTrade\RequestOptions $requestOptions = null)
+    public function cancelSubscriptionWithHttpInfo($trade_detection_cancel_subscription_request, string $contentType = self::contentTypes['cancelSubscription'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
         if ($requestOptions == null) $requestOptions = new \SnapTrade\RequestOptions();
-        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelSubscriptionRequest($trade_detection_add_subscription_request, $contentType);
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelSubscriptionRequest($trade_detection_cancel_subscription_request, $contentType);
 
         // Customization hook
         $this->beforeSendHook($request, $requestOptions, $this->config, $serializedBody);
@@ -742,7 +746,7 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
                     $requestOptions->shouldRetryOAuth()
                 ) {
                     return $this->cancelSubscriptionWithHttpInfo(
-                        $trade_detection_add_subscription_request,
+                        $trade_detection_cancel_subscription_request,
                         $contentType,
                         $requestOptions->setRetryOAuth(false)
                     );
@@ -926,7 +930,7 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
      *
      * Cancels a Trade Detection subscription for a connected brokerage account. This endpoint requires partner signature authentication only and does not require &#x60;userId&#x60; or &#x60;userSecret&#x60;.
      *
-     * @param  \SnapTrade\Model\TradeDetectionAddSubscriptionRequest $trade_detection_add_subscription_request (required)
+     * @param  \SnapTrade\Model\TradeDetectionCancelSubscriptionRequest $trade_detection_cancel_subscription_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelSubscription'] to see the possible values for this operation
      * @param  \SnapTrade\RequestOptions $requestOptions
      *
@@ -941,9 +945,9 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
     {
         $_body = [];
         $this->setRequestBodyProperty($_body, "account_id", $account_id);
-        $trade_detection_add_subscription_request = $_body;
+        $trade_detection_cancel_subscription_request = $_body;
 
-        return $this->cancelSubscriptionAsyncWithHttpInfo($trade_detection_add_subscription_request, $contentType)
+        return $this->cancelSubscriptionAsyncWithHttpInfo($trade_detection_cancel_subscription_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -958,17 +962,17 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
      *
      * Cancels a Trade Detection subscription for a connected brokerage account. This endpoint requires partner signature authentication only and does not require &#x60;userId&#x60; or &#x60;userSecret&#x60;.
      *
-     * @param  \SnapTrade\Model\TradeDetectionAddSubscriptionRequest $trade_detection_add_subscription_request (required)
+     * @param  \SnapTrade\Model\TradeDetectionCancelSubscriptionRequest $trade_detection_cancel_subscription_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelSubscription'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelSubscriptionAsyncWithHttpInfo($trade_detection_add_subscription_request, string $contentType = self::contentTypes['cancelSubscription'][0], $requestOptions = null)
+    public function cancelSubscriptionAsyncWithHttpInfo($trade_detection_cancel_subscription_request, string $contentType = self::contentTypes['cancelSubscription'][0], $requestOptions = null)
     {
         if ($requestOptions == null) $requestOptions = new \SnapTrade\RequestOptions();
         $returnType = '\SnapTrade\Model\TradeDetectionCancelSubscriptionResponse';
-        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelSubscriptionRequest($trade_detection_add_subscription_request, $contentType);
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->cancelSubscriptionRequest($trade_detection_cancel_subscription_request, $contentType);
 
         // Customization hook
         $this->beforeSendHook($request, $requestOptions, $this->config, $serializedBody);
@@ -1012,27 +1016,27 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
     /**
      * Create request for operation 'cancelSubscription'
      *
-     * @param  \SnapTrade\Model\TradeDetectionAddSubscriptionRequest $trade_detection_add_subscription_request (required)
+     * @param  \SnapTrade\Model\TradeDetectionCancelSubscriptionRequest $trade_detection_cancel_subscription_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelSubscription'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelSubscriptionRequest($trade_detection_add_subscription_request, string $contentType = self::contentTypes['cancelSubscription'][0])
+    public function cancelSubscriptionRequest($trade_detection_cancel_subscription_request, string $contentType = self::contentTypes['cancelSubscription'][0])
     {
 
-        if ($trade_detection_add_subscription_request !== SENTINEL_VALUE) {
-            if (!($trade_detection_add_subscription_request instanceof \SnapTrade\Model\TradeDetectionAddSubscriptionRequest)) {
-                if (!is_array($trade_detection_add_subscription_request))
-                    throw new \InvalidArgumentException('"trade_detection_add_subscription_request" must be associative array or an instance of \SnapTrade\Model\TradeDetectionAddSubscriptionRequest ExperimentalEndpointsApi.cancelSubscription.');
+        if ($trade_detection_cancel_subscription_request !== SENTINEL_VALUE) {
+            if (!($trade_detection_cancel_subscription_request instanceof \SnapTrade\Model\TradeDetectionCancelSubscriptionRequest)) {
+                if (!is_array($trade_detection_cancel_subscription_request))
+                    throw new \InvalidArgumentException('"trade_detection_cancel_subscription_request" must be associative array or an instance of \SnapTrade\Model\TradeDetectionCancelSubscriptionRequest ExperimentalEndpointsApi.cancelSubscription.');
                 else
-                    $trade_detection_add_subscription_request = new \SnapTrade\Model\TradeDetectionAddSubscriptionRequest($trade_detection_add_subscription_request);
+                    $trade_detection_cancel_subscription_request = new \SnapTrade\Model\TradeDetectionCancelSubscriptionRequest($trade_detection_cancel_subscription_request);
             }
         }
-        // verify the required parameter 'trade_detection_add_subscription_request' is set
-        if ($trade_detection_add_subscription_request === SENTINEL_VALUE || (is_array($trade_detection_add_subscription_request) && count($trade_detection_add_subscription_request) === 0)) {
+        // verify the required parameter 'trade_detection_cancel_subscription_request' is set
+        if ($trade_detection_cancel_subscription_request === SENTINEL_VALUE || (is_array($trade_detection_cancel_subscription_request) && count($trade_detection_cancel_subscription_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter trade_detection_add_subscription_request when calling cancelSubscription'
+                'Missing the required parameter trade_detection_cancel_subscription_request when calling cancelSubscription'
             );
         }
 
@@ -1055,12 +1059,12 @@ class ExperimentalEndpointsApi extends \SnapTrade\CustomApi
         );
 
         // for model (json/xml)
-        if (isset($trade_detection_add_subscription_request)) {
+        if (isset($trade_detection_cancel_subscription_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($trade_detection_add_subscription_request));
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($trade_detection_cancel_subscription_request));
             } else {
-                $httpBody = $trade_detection_add_subscription_request;
+                $httpBody = $trade_detection_cancel_subscription_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

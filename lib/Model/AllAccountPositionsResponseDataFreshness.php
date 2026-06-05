@@ -1,6 +1,6 @@
 <?php
 /**
- * TradeDetectionAddSubscriptionRequest
+ * AllAccountPositionsResponseDataFreshness
  *
  * PHP version 7.4
  *
@@ -27,13 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * TradeDetectionAddSubscriptionRequest Class Doc Comment
+ * AllAccountPositionsResponseDataFreshness Class Doc Comment
  *
  * @category Class
+ * @description Metadata describing freshness of the returned positions data.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class AllAccountPositionsResponseDataFreshness implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -42,7 +43,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TradeDetection_addSubscription_request';
+    protected static $openAPIModelName = 'AllAccountPositionsResponse_data_freshness';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -50,8 +51,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_id' => 'string',
-        'check_interval_seconds' => 'int'
+        'as_of' => '\DateTime'
     ];
 
     /**
@@ -62,8 +62,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'account_id' => 'uuid',
-        'check_interval_seconds' => null
+        'as_of' => 'date-time'
     ];
 
     /**
@@ -72,8 +71,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'account_id' => false,
-		'check_interval_seconds' => false
+        'as_of' => false
     ];
 
     /**
@@ -162,8 +160,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_id' => 'account_id',
-        'check_interval_seconds' => 'check_interval_seconds'
+        'as_of' => 'as_of'
     ];
 
     /**
@@ -172,8 +169,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $setters = [
-        'account_id' => 'setAccountId',
-        'check_interval_seconds' => 'setCheckIntervalSeconds'
+        'as_of' => 'setAsOf'
     ];
 
     /**
@@ -182,8 +178,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $getters = [
-        'account_id' => 'getAccountId',
-        'check_interval_seconds' => 'getCheckIntervalSeconds'
+        'as_of' => 'getAsOf'
     ];
 
     /**
@@ -243,8 +238,7 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('account_id', $data ?? [], null);
-        $this->setIfExists('check_interval_seconds', $data ?? [], null);
+        $this->setIfExists('as_of', $data ?? [], null);
     }
 
     /**
@@ -274,16 +268,9 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
     {
         $invalidProperties = [];
 
-        if ($this->container['account_id'] === null) {
-            $invalidProperties[] = "'account_id' can't be null";
+        if ($this->container['as_of'] === null) {
+            $invalidProperties[] = "'as_of' can't be null";
         }
-        if ($this->container['check_interval_seconds'] === null) {
-            $invalidProperties[] = "'check_interval_seconds' can't be null";
-        }
-        if (($this->container['check_interval_seconds'] < 1)) {
-            $invalidProperties[] = "invalid value for 'check_interval_seconds', must be bigger than or equal to 1.";
-        }
-
         return $invalidProperties;
     }
 
@@ -300,64 +287,30 @@ class TradeDetectionAddSubscriptionRequest implements ModelInterface, ArrayAcces
 
 
     /**
-     * Gets account_id
+     * Gets as_of
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getAccountId()
+    public function getAsOf()
     {
-        return $this->container['account_id'];
+        return $this->container['as_of'];
     }
 
     /**
-     * Sets account_id
+     * Sets as_of
      *
-     * @param string $account_id Unique identifier for the connected brokerage account. This is the UUID used to reference the account in SnapTrade.
+     * @param \DateTime $as_of The time the returned positions data was fetched from the brokerage.
      *
      * @return self
      */
-    public function setAccountId($account_id)
+    public function setAsOf($as_of)
     {
 
-        if (is_null($account_id)) {
-            throw new \InvalidArgumentException('non-nullable account_id cannot be null');
+        if (is_null($as_of)) {
+            throw new \InvalidArgumentException('non-nullable as_of cannot be null');
         }
 
-        $this->container['account_id'] = $account_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets check_interval_seconds
-     *
-     * @return int
-     */
-    public function getCheckIntervalSeconds()
-    {
-        return $this->container['check_interval_seconds'];
-    }
-
-    /**
-     * Sets check_interval_seconds
-     *
-     * @param int $check_interval_seconds How often the subscribed account should be checked for new trades. Must match an active Trade Detection plan.
-     *
-     * @return self
-     */
-    public function setCheckIntervalSeconds($check_interval_seconds)
-    {
-
-        if (($check_interval_seconds < 1)) {
-            throw new \InvalidArgumentException('invalid value for $check_interval_seconds when calling TradeDetectionAddSubscriptionRequest., must be bigger than or equal to 1.');
-        }
-
-
-        if (is_null($check_interval_seconds)) {
-            throw new \InvalidArgumentException('non-nullable check_interval_seconds cannot be null');
-        }
-
-        $this->container['check_interval_seconds'] = $check_interval_seconds;
+        $this->container['as_of'] = $as_of;
 
         return $this;
     }
