@@ -51,7 +51,8 @@ class AllAccountPositionsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'results' => '\SnapTrade\Model\AccountPosition[]'
+        'results' => '\SnapTrade\Model\AccountPosition[]',
+        'data_freshness' => '\SnapTrade\Model\AllAccountPositionsResponseDataFreshness'
     ];
 
     /**
@@ -62,7 +63,8 @@ class AllAccountPositionsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'results' => null
+        'results' => null,
+        'data_freshness' => null
     ];
 
     /**
@@ -71,7 +73,8 @@ class AllAccountPositionsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'results' => false
+        'results' => false,
+		'data_freshness' => false
     ];
 
     /**
@@ -160,7 +163,8 @@ class AllAccountPositionsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'results' => 'results'
+        'results' => 'results',
+        'data_freshness' => 'data_freshness'
     ];
 
     /**
@@ -169,7 +173,8 @@ class AllAccountPositionsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'results' => 'setResults'
+        'results' => 'setResults',
+        'data_freshness' => 'setDataFreshness'
     ];
 
     /**
@@ -178,7 +183,8 @@ class AllAccountPositionsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'results' => 'getResults'
+        'results' => 'getResults',
+        'data_freshness' => 'getDataFreshness'
     ];
 
     /**
@@ -239,6 +245,7 @@ class AllAccountPositionsResponse implements ModelInterface, ArrayAccess, \JsonS
     public function __construct(array $data = null)
     {
         $this->setIfExists('results', $data ?? [], null);
+        $this->setIfExists('data_freshness', $data ?? [], null);
     }
 
     /**
@@ -270,6 +277,9 @@ class AllAccountPositionsResponse implements ModelInterface, ArrayAccess, \JsonS
 
         if ($this->container['results'] === null) {
             $invalidProperties[] = "'results' can't be null";
+        }
+        if ($this->container['data_freshness'] === null) {
+            $invalidProperties[] = "'data_freshness' can't be null";
         }
         return $invalidProperties;
     }
@@ -311,6 +321,35 @@ class AllAccountPositionsResponse implements ModelInterface, ArrayAccess, \JsonS
         }
 
         $this->container['results'] = $results;
+
+        return $this;
+    }
+
+    /**
+     * Gets data_freshness
+     *
+     * @return \SnapTrade\Model\AllAccountPositionsResponseDataFreshness
+     */
+    public function getDataFreshness()
+    {
+        return $this->container['data_freshness'];
+    }
+
+    /**
+     * Sets data_freshness
+     *
+     * @param \SnapTrade\Model\AllAccountPositionsResponseDataFreshness $data_freshness data_freshness
+     *
+     * @return self
+     */
+    public function setDataFreshness($data_freshness)
+    {
+
+        if (is_null($data_freshness)) {
+            throw new \InvalidArgumentException('non-nullable data_freshness cannot be null');
+        }
+
+        $this->container['data_freshness'] = $data_freshness;
 
         return $this;
     }
