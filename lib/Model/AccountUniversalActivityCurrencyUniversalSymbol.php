@@ -1,6 +1,6 @@
 <?php
 /**
- * Position
+ * AccountUniversalActivityCurrencyUniversalSymbol
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * Position Class Doc Comment
+ * AccountUniversalActivityCurrencyUniversalSymbol Class Doc Comment
  *
  * @category Class
- * @description Describes a single stock/ETF/crypto/mutual fund position in an account.
+ * @description The quote security for the transaction when &#x60;price&#x60;, &#x60;amount&#x60;, and &#x60;fee&#x60; are denominated in a security instead of a fiat currency. This is most common for cryptocurrency trades. The field is &#x60;null&#x60; when the transaction is denominated in &#x60;currency&#x60;.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class Position implements ModelInterface, ArrayAccess, \JsonSerializable
+class AccountUniversalActivityCurrencyUniversalSymbol implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Position';
+    protected static $openAPIModelName = 'AccountUniversalActivity_currency_universal_symbol';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,15 +51,15 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'symbol' => '\SnapTrade\Model\PositionSymbol',
-        'units' => 'float',
-        'price' => 'float',
-        'open_pnl' => 'float',
-        'average_purchase_price' => 'float',
-        'fractional_units' => 'float',
-        'currency' => '\SnapTrade\Model\PositionCurrency',
-        'cash_equivalent' => 'bool',
-        'tax_lots' => '\SnapTrade\Model\TaxLot[]'
+        'id' => 'string',
+        'symbol' => 'string',
+        'raw_symbol' => 'string',
+        'description' => 'string',
+        'currency' => '\SnapTrade\Model\SymbolCurrency',
+        'exchange' => '\SnapTrade\Model\SymbolExchange',
+        'type' => '\SnapTrade\Model\SecurityType',
+        'figi_code' => 'string',
+        'figi_instrument' => '\SnapTrade\Model\StockInstrumentFigiInstrument'
     ];
 
     /**
@@ -70,15 +70,15 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => 'uuid',
         'symbol' => null,
-        'units' => null,
-        'price' => null,
-        'open_pnl' => null,
-        'average_purchase_price' => null,
-        'fractional_units' => null,
+        'raw_symbol' => null,
+        'description' => null,
         'currency' => null,
-        'cash_equivalent' => null,
-        'tax_lots' => null
+        'exchange' => null,
+        'type' => null,
+        'figi_code' => null,
+        'figi_instrument' => null
     ];
 
     /**
@@ -87,15 +87,15 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'symbol' => false,
-		'units' => true,
-		'price' => true,
-		'open_pnl' => true,
-		'average_purchase_price' => true,
-		'fractional_units' => true,
+        'id' => false,
+		'symbol' => false,
+		'raw_symbol' => false,
+		'description' => true,
 		'currency' => false,
-		'cash_equivalent' => true,
-		'tax_lots' => false
+		'exchange' => false,
+		'type' => false,
+		'figi_code' => true,
+		'figi_instrument' => true
     ];
 
     /**
@@ -184,15 +184,15 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'symbol' => 'symbol',
-        'units' => 'units',
-        'price' => 'price',
-        'open_pnl' => 'open_pnl',
-        'average_purchase_price' => 'average_purchase_price',
-        'fractional_units' => 'fractional_units',
+        'raw_symbol' => 'raw_symbol',
+        'description' => 'description',
         'currency' => 'currency',
-        'cash_equivalent' => 'cash_equivalent',
-        'tax_lots' => 'tax_lots'
+        'exchange' => 'exchange',
+        'type' => 'type',
+        'figi_code' => 'figi_code',
+        'figi_instrument' => 'figi_instrument'
     ];
 
     /**
@@ -201,15 +201,15 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'symbol' => 'setSymbol',
-        'units' => 'setUnits',
-        'price' => 'setPrice',
-        'open_pnl' => 'setOpenPnl',
-        'average_purchase_price' => 'setAveragePurchasePrice',
-        'fractional_units' => 'setFractionalUnits',
+        'raw_symbol' => 'setRawSymbol',
+        'description' => 'setDescription',
         'currency' => 'setCurrency',
-        'cash_equivalent' => 'setCashEquivalent',
-        'tax_lots' => 'setTaxLots'
+        'exchange' => 'setExchange',
+        'type' => 'setType',
+        'figi_code' => 'setFigiCode',
+        'figi_instrument' => 'setFigiInstrument'
     ];
 
     /**
@@ -218,15 +218,15 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'symbol' => 'getSymbol',
-        'units' => 'getUnits',
-        'price' => 'getPrice',
-        'open_pnl' => 'getOpenPnl',
-        'average_purchase_price' => 'getAveragePurchasePrice',
-        'fractional_units' => 'getFractionalUnits',
+        'raw_symbol' => 'getRawSymbol',
+        'description' => 'getDescription',
         'currency' => 'getCurrency',
-        'cash_equivalent' => 'getCashEquivalent',
-        'tax_lots' => 'getTaxLots'
+        'exchange' => 'getExchange',
+        'type' => 'getType',
+        'figi_code' => 'getFigiCode',
+        'figi_instrument' => 'getFigiInstrument'
     ];
 
     /**
@@ -286,15 +286,15 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('symbol', $data ?? [], null);
-        $this->setIfExists('units', $data ?? [], null);
-        $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('open_pnl', $data ?? [], null);
-        $this->setIfExists('average_purchase_price', $data ?? [], null);
-        $this->setIfExists('fractional_units', $data ?? [], null);
+        $this->setIfExists('raw_symbol', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('cash_equivalent', $data ?? [], null);
-        $this->setIfExists('tax_lots', $data ?? [], null);
+        $this->setIfExists('exchange', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('figi_code', $data ?? [], null);
+        $this->setIfExists('figi_instrument', $data ?? [], null);
     }
 
     /**
@@ -340,9 +340,38 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id Unique identifier for the symbol within SnapTrade. This is the ID used to reference the symbol in SnapTrade API calls.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * Gets symbol
      *
-     * @return \SnapTrade\Model\PositionSymbol|null
+     * @return string|null
      */
     public function getSymbol()
     {
@@ -352,7 +381,7 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets symbol
      *
-     * @param \SnapTrade\Model\PositionSymbol|null $symbol symbol
+     * @param string|null $symbol The security's trading ticker symbol. For example \"AAPL\" for Apple Inc. We largely follow the [Yahoo Finance ticker format](https://help.yahoo.com/kb/SLN2310.html)(click on \"Yahoo Finance Market Coverage and Data Delays\"). For example, for securities traded on the Toronto Stock Exchange, the symbol has a '.TO' suffix. For securities traded on NASDAQ or NYSE, the symbol does not have a suffix.
      *
      * @return self
      */
@@ -369,183 +398,66 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets units
+     * Gets raw_symbol
      *
-     * @return float|null
+     * @return string|null
      */
-    public function getUnits()
+    public function getRawSymbol()
     {
-        return $this->container['units'];
+        return $this->container['raw_symbol'];
     }
 
     /**
-     * Sets units
+     * Sets raw_symbol
      *
-     * @param float|null $units The number of shares of the position. This can be fractional or integer units. A positive number indicates a long position, while a negative number indicates a short position.
+     * @param string|null $raw_symbol The raw symbol is `symbol` with the exchange suffix removed. For example, if `symbol` is \"VAB.TO\", then `raw_symbol` is \"VAB\".
      *
      * @return self
      */
-    public function setUnits($units)
+    public function setRawSymbol($raw_symbol)
     {
 
-        if (is_null($units)) {
-            array_push($this->openAPINullablesSetToNull, 'units');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('units', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($raw_symbol)) {
+            throw new \InvalidArgumentException('non-nullable raw_symbol cannot be null');
         }
 
-        $this->container['units'] = $units;
+        $this->container['raw_symbol'] = $raw_symbol;
 
         return $this;
     }
 
     /**
-     * Gets price
+     * Gets description
      *
-     * @return float|null
+     * @return string|null
      */
-    public function getPrice()
+    public function getDescription()
     {
-        return $this->container['price'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets price
+     * Sets description
      *
-     * @param float|null $price Last known market price for the symbol. The freshness of this price depends on the brokerage. Some brokerages provide real-time prices, while others provide delayed prices. It is recommended that you rely on your own third-party market data provider for most up to date prices.
+     * @param string|null $description A human-readable description of the security. This is usually the company name or ETF name.
      *
      * @return self
      */
-    public function setPrice($price)
+    public function setDescription($description)
     {
 
-        if (is_null($price)) {
-            array_push($this->openAPINullablesSetToNull, 'price');
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price', $nullablesSetToNull);
+            $index = array_search('description', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
 
-        $this->container['price'] = $price;
-
-        return $this;
-    }
-
-    /**
-     * Gets open_pnl
-     *
-     * @return float|null
-     */
-    public function getOpenPnl()
-    {
-        return $this->container['open_pnl'];
-    }
-
-    /**
-     * Sets open_pnl
-     *
-     * @param float|null $open_pnl The profit or loss on the position since it was opened. This is calculated as the difference between the current market value of the position and the total cost of the position. It is recommended to calculate this value using the average purchase price and the current market price yourself, instead of relying on this field.
-     *
-     * @return self
-     */
-    public function setOpenPnl($open_pnl)
-    {
-
-        if (is_null($open_pnl)) {
-            array_push($this->openAPINullablesSetToNull, 'open_pnl');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('open_pnl', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['open_pnl'] = $open_pnl;
-
-        return $this;
-    }
-
-    /**
-     * Gets average_purchase_price
-     *
-     * @return float|null
-     */
-    public function getAveragePurchasePrice()
-    {
-        return $this->container['average_purchase_price'];
-    }
-
-    /**
-     * Sets average_purchase_price
-     *
-     * @param float|null $average_purchase_price Cost basis _per share_ of this position.
-     *
-     * @return self
-     */
-    public function setAveragePurchasePrice($average_purchase_price)
-    {
-
-        if (is_null($average_purchase_price)) {
-            array_push($this->openAPINullablesSetToNull, 'average_purchase_price');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('average_purchase_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['average_purchase_price'] = $average_purchase_price;
-
-        return $this;
-    }
-
-    /**
-     * Gets fractional_units
-     *
-     * @return float|null
-     * @deprecated
-     */
-    public function getFractionalUnits()
-    {
-        return $this->container['fractional_units'];
-    }
-
-    /**
-     * Sets fractional_units
-     *
-     * @param float|null $fractional_units Deprecated, use the `units` field for both fractional and integer units going forward
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setFractionalUnits($fractional_units)
-    {
-
-        if (is_null($fractional_units)) {
-            array_push($this->openAPINullablesSetToNull, 'fractional_units');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('fractional_units', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['fractional_units'] = $fractional_units;
+        $this->container['description'] = $description;
 
         return $this;
     }
@@ -553,7 +465,7 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets currency
      *
-     * @return \SnapTrade\Model\PositionCurrency|null
+     * @return \SnapTrade\Model\SymbolCurrency|null
      */
     public function getCurrency()
     {
@@ -563,7 +475,7 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param \SnapTrade\Model\PositionCurrency|null $currency currency
+     * @param \SnapTrade\Model\SymbolCurrency|null $currency currency
      *
      * @return self
      */
@@ -580,66 +492,131 @@ class Position implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets cash_equivalent
+     * Gets exchange
      *
-     * @return bool|null
+     * @return \SnapTrade\Model\SymbolExchange|null
      */
-    public function getCashEquivalent()
+    public function getExchange()
     {
-        return $this->container['cash_equivalent'];
+        return $this->container['exchange'];
     }
 
     /**
-     * Sets cash_equivalent
+     * Sets exchange
      *
-     * @param bool|null $cash_equivalent If the position is a cash equivalent (usually a money market fund) that is also counted in account cash balance and buying power
+     * @param \SnapTrade\Model\SymbolExchange|null $exchange exchange
      *
      * @return self
      */
-    public function setCashEquivalent($cash_equivalent)
+    public function setExchange($exchange)
     {
 
-        if (is_null($cash_equivalent)) {
-            array_push($this->openAPINullablesSetToNull, 'cash_equivalent');
+        if (is_null($exchange)) {
+            throw new \InvalidArgumentException('non-nullable exchange cannot be null');
+        }
+
+        $this->container['exchange'] = $exchange;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \SnapTrade\Model\SecurityType|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \SnapTrade\Model\SecurityType|null $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets figi_code
+     *
+     * @return string|null
+     */
+    public function getFigiCode()
+    {
+        return $this->container['figi_code'];
+    }
+
+    /**
+     * Sets figi_code
+     *
+     * @param string|null $figi_code This identifier is unique per security per trading venue. See section 1.4.1 of the [FIGI Standard](https://www.openfigi.com/assets/local/figi-allocation-rules.pdf) for more information. This value should be the same as the `figi_code` in the `figi_instrument` child property.
+     *
+     * @return self
+     */
+    public function setFigiCode($figi_code)
+    {
+
+        if (is_null($figi_code)) {
+            array_push($this->openAPINullablesSetToNull, 'figi_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cash_equivalent', $nullablesSetToNull);
+            $index = array_search('figi_code', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
 
-        $this->container['cash_equivalent'] = $cash_equivalent;
+        $this->container['figi_code'] = $figi_code;
 
         return $this;
     }
 
     /**
-     * Gets tax_lots
+     * Gets figi_instrument
      *
-     * @return \SnapTrade\Model\TaxLot[]|null
+     * @return \SnapTrade\Model\StockInstrumentFigiInstrument|null
      */
-    public function getTaxLots()
+    public function getFigiInstrument()
     {
-        return $this->container['tax_lots'];
+        return $this->container['figi_instrument'];
     }
 
     /**
-     * Sets tax_lots
+     * Sets figi_instrument
      *
-     * @param \SnapTrade\Model\TaxLot[]|null $tax_lots List of tax lots for the given position (disabled by default, only available on paid plans, contact support if needed)
+     * @param \SnapTrade\Model\StockInstrumentFigiInstrument|null $figi_instrument figi_instrument
      *
      * @return self
      */
-    public function setTaxLots($tax_lots)
+    public function setFigiInstrument($figi_instrument)
     {
 
-        if (is_null($tax_lots)) {
-            throw new \InvalidArgumentException('non-nullable tax_lots cannot be null');
+        if (is_null($figi_instrument)) {
+            array_push($this->openAPINullablesSetToNull, 'figi_instrument');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('figi_instrument', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
-        $this->container['tax_lots'] = $tax_lots;
+        $this->container['figi_instrument'] = $figi_instrument;
 
         return $this;
     }

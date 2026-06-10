@@ -543,7 +543,7 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tax_lots
      *
-     * @param \SnapTrade\Model\TaxLot[]|null $tax_lots Present for stock positions when tax lot data is enabled for the account.
+     * @param \SnapTrade\Model\TaxLot[]|null $tax_lots List of tax lots for the given position (disabled by default, only available on paid plans, contact support if needed)
      *
      * @return self
      */
