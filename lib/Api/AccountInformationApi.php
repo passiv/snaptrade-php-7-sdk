@@ -1128,7 +1128,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SnapTrade\Model\AllAccountPositionsResponse
+     * @return \SnapTrade\Model\AllAccountPositionsResponse|\SnapTrade\Model\Model503BrokerageRequestResponse
      */
     public function getAllAccountPositions(
         $user_id,
@@ -1158,7 +1158,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SnapTrade\Model\AllAccountPositionsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SnapTrade\Model\AllAccountPositionsResponse|\SnapTrade\Model\Model503BrokerageRequestResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAllAccountPositionsWithHttpInfo($user_id, $user_secret, $account_id, string $contentType = self::contentTypes['getAllAccountPositions'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
@@ -1233,6 +1233,21 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 503:
+                    if ('\SnapTrade\Model\Model503BrokerageRequestResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SnapTrade\Model\Model503BrokerageRequestResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SnapTrade\Model\Model503BrokerageRequestResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SnapTrade\Model\AllAccountPositionsResponse';
@@ -1257,6 +1272,14 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SnapTrade\Model\AllAccountPositionsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SnapTrade\Model\Model503BrokerageRequestResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2011,7 +2034,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SnapTrade\Model\Balance[]
+     * @return \SnapTrade\Model\Balance[]|\SnapTrade\Model\Model503BrokerageRequestResponse
      */
     public function getUserAccountBalance(
         $user_id,
@@ -2041,7 +2064,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SnapTrade\Model\Balance[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SnapTrade\Model\Balance[]|\SnapTrade\Model\Model503BrokerageRequestResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getUserAccountBalanceWithHttpInfo($user_id, $user_secret, $account_id, string $contentType = self::contentTypes['getUserAccountBalance'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
@@ -2116,6 +2139,21 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 503:
+                    if ('\SnapTrade\Model\Model503BrokerageRequestResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SnapTrade\Model\Model503BrokerageRequestResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SnapTrade\Model\Model503BrokerageRequestResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SnapTrade\Model\Balance[]';
@@ -2140,6 +2178,14 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SnapTrade\Model\Balance[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SnapTrade\Model\Model503BrokerageRequestResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2824,7 +2870,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SnapTrade\Model\AccountOrderRecord|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model404FailedRequestResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse
+     * @return \SnapTrade\Model\AccountOrderRecord|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model404FailedRequestResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model503BrokerageRequestResponse
      */
     public function getUserAccountOrderDetail(
 
@@ -2859,7 +2905,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SnapTrade\Model\AccountOrderRecord|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model404FailedRequestResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SnapTrade\Model\AccountOrderRecord|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model404FailedRequestResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model503BrokerageRequestResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getUserAccountOrderDetailWithHttpInfo($account_id, $user_id, $user_secret, $account_information_get_user_account_order_detail_request, string $contentType = self::contentTypes['getUserAccountOrderDetail'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
@@ -2980,6 +3026,21 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 503:
+                    if ('\SnapTrade\Model\Model503BrokerageRequestResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SnapTrade\Model\Model503BrokerageRequestResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SnapTrade\Model\Model503BrokerageRequestResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SnapTrade\Model\AccountOrderRecord';
@@ -3028,6 +3089,14 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SnapTrade\Model\Model500UnexpectedExceptionResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SnapTrade\Model\Model503BrokerageRequestResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3335,7 +3404,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SnapTrade\Model\AccountOrderRecord[]|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model501NotImplementedResponse
+     * @return \SnapTrade\Model\AccountOrderRecord[]|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model501NotImplementedResponse|\SnapTrade\Model\Model503BrokerageRequestResponse
      */
     public function getUserAccountOrders(
         $user_id,
@@ -3369,7 +3438,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SnapTrade\Model\AccountOrderRecord[]|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model501NotImplementedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SnapTrade\Model\AccountOrderRecord[]|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model501NotImplementedResponse|\SnapTrade\Model\Model503BrokerageRequestResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getUserAccountOrdersWithHttpInfo($user_id, $user_secret, $account_id, $state = null, $days = null, string $contentType = self::contentTypes['getUserAccountOrders'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
@@ -3476,6 +3545,21 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 503:
+                    if ('\SnapTrade\Model\Model503BrokerageRequestResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SnapTrade\Model\Model503BrokerageRequestResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SnapTrade\Model\Model503BrokerageRequestResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SnapTrade\Model\AccountOrderRecord[]';
@@ -3516,6 +3600,14 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SnapTrade\Model\Model501NotImplementedResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SnapTrade\Model\Model503BrokerageRequestResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3833,7 +3925,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SnapTrade\Model\Position[]
+     * @return \SnapTrade\Model\Position[]|\SnapTrade\Model\Model503BrokerageRequestResponse
      * @deprecated
      */
     public function getUserAccountPositions(
@@ -3864,7 +3956,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SnapTrade\Model\Position[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SnapTrade\Model\Position[]|\SnapTrade\Model\Model503BrokerageRequestResponse, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
     public function getUserAccountPositionsWithHttpInfo($user_id, $user_secret, $account_id, string $contentType = self::contentTypes['getUserAccountPositions'][0], \SnapTrade\RequestOptions $requestOptions = null)
@@ -3940,6 +4032,21 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 503:
+                    if ('\SnapTrade\Model\Model503BrokerageRequestResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SnapTrade\Model\Model503BrokerageRequestResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SnapTrade\Model\Model503BrokerageRequestResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SnapTrade\Model\Position[]';
@@ -3964,6 +4071,14 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SnapTrade\Model\Position[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SnapTrade\Model\Model503BrokerageRequestResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4245,7 +4360,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SnapTrade\Model\RecentOrdersResponse|\SnapTrade\Model\Model403FeatureNotEnabledResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model501NotImplementedResponse
+     * @return \SnapTrade\Model\RecentOrdersResponse|\SnapTrade\Model\Model403FeatureNotEnabledResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model501NotImplementedResponse|\SnapTrade\Model\Model503BrokerageRequestResponse
      */
     public function getUserAccountRecentOrders(
         $user_id,
@@ -4277,7 +4392,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SnapTrade\Model\RecentOrdersResponse|\SnapTrade\Model\Model403FeatureNotEnabledResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model501NotImplementedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SnapTrade\Model\RecentOrdersResponse|\SnapTrade\Model\Model403FeatureNotEnabledResponse|\SnapTrade\Model\Model500UnexpectedExceptionResponse|\SnapTrade\Model\Model501NotImplementedResponse|\SnapTrade\Model\Model503BrokerageRequestResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getUserAccountRecentOrdersWithHttpInfo($user_id, $user_secret, $account_id, $only_executed = null, string $contentType = self::contentTypes['getUserAccountRecentOrders'][0], \SnapTrade\RequestOptions $requestOptions = null)
     {
@@ -4398,6 +4513,21 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 503:
+                    if ('\SnapTrade\Model\Model503BrokerageRequestResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SnapTrade\Model\Model503BrokerageRequestResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SnapTrade\Model\Model503BrokerageRequestResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SnapTrade\Model\RecentOrdersResponse';
@@ -4446,6 +4576,14 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SnapTrade\Model\Model501NotImplementedResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SnapTrade\Model\Model503BrokerageRequestResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5236,7 +5374,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SnapTrade\Model\AccountHoldingsAccount|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model403FailedRequestResponse|\SnapTrade\Model\Model425FailedRequestResponse
+     * @return \SnapTrade\Model\AccountHoldingsAccount|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model403FailedRequestResponse|\SnapTrade\Model\Model425FailedRequestResponse|\SnapTrade\Model\Model503BrokerageRequestResponse
      * @deprecated
      */
     public function getUserHoldings(
@@ -5267,7 +5405,7 @@ class AccountInformationApi extends \SnapTrade\CustomApi
      *
      * @throws \SnapTrade\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SnapTrade\Model\AccountHoldingsAccount|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model403FailedRequestResponse|\SnapTrade\Model\Model425FailedRequestResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SnapTrade\Model\AccountHoldingsAccount|\SnapTrade\Model\Model400FailedRequestResponse|\SnapTrade\Model\Model403FailedRequestResponse|\SnapTrade\Model\Model425FailedRequestResponse|\SnapTrade\Model\Model503BrokerageRequestResponse, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
     public function getUserHoldingsWithHttpInfo($account_id, $user_id, $user_secret, string $contentType = self::contentTypes['getUserHoldings'][0], \SnapTrade\RequestOptions $requestOptions = null)
@@ -5388,6 +5526,21 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 503:
+                    if ('\SnapTrade\Model\Model503BrokerageRequestResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SnapTrade\Model\Model503BrokerageRequestResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SnapTrade\Model\Model503BrokerageRequestResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SnapTrade\Model\AccountHoldingsAccount';
@@ -5436,6 +5589,14 @@ class AccountInformationApi extends \SnapTrade\CustomApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SnapTrade\Model\Model425FailedRequestResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SnapTrade\Model\Model503BrokerageRequestResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
