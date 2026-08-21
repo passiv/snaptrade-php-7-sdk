@@ -1,6 +1,6 @@
 <?php
 /**
- * UserAumPercentileResponseData
+ * LineOfCreditAccountCreditDetailsMinimumPaymentAmount
  *
  * PHP version 7.4
  *
@@ -27,13 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * UserAumPercentileResponseData Class Doc Comment
+ * LineOfCreditAccountCreditDetailsMinimumPaymentAmount Class Doc Comment
  *
  * @category Class
+ * @description The minimum payment due on the account&#39;s next statement.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
+class LineOfCreditAccountCreditDetailsMinimumPaymentAmount implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -42,7 +43,7 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserAumPercentileResponse_data';
+    protected static $openAPIModelName = 'LineOfCreditAccount_credit_details_minimum_payment_amount';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -50,10 +51,7 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bucket' => 'string',
-        'percentile' => 'int',
-        'cohort_size' => 'int',
-        'as_of' => '\DateTime',
+        'amount' => 'float',
         'currency' => 'string'
     ];
 
@@ -65,10 +63,7 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bucket' => null,
-        'percentile' => null,
-        'cohort_size' => null,
-        'as_of' => 'date',
+        'amount' => null,
         'currency' => null
     ];
 
@@ -78,11 +73,8 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bucket' => false,
-		'percentile' => false,
-		'cohort_size' => false,
-		'as_of' => false,
-		'currency' => false
+        'amount' => true,
+		'currency' => true
     ];
 
     /**
@@ -171,10 +163,7 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'bucket' => 'bucket',
-        'percentile' => 'percentile',
-        'cohort_size' => 'cohort_size',
-        'as_of' => 'as_of',
+        'amount' => 'amount',
         'currency' => 'currency'
     ];
 
@@ -184,10 +173,7 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'bucket' => 'setBucket',
-        'percentile' => 'setPercentile',
-        'cohort_size' => 'setCohortSize',
-        'as_of' => 'setAsOf',
+        'amount' => 'setAmount',
         'currency' => 'setCurrency'
     ];
 
@@ -197,10 +183,7 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'bucket' => 'getBucket',
-        'percentile' => 'getPercentile',
-        'cohort_size' => 'getCohortSize',
-        'as_of' => 'getAsOf',
+        'amount' => 'getAmount',
         'currency' => 'getCurrency'
     ];
 
@@ -245,29 +228,6 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
-    public const BUCKET_TOP_1_PERCENT = 'TOP_1_PERCENT';
-    public const BUCKET_TOP_5_PERCENT = 'TOP_5_PERCENT';
-    public const BUCKET_TOP_10_PERCENT = 'TOP_10_PERCENT';
-    public const BUCKET_TOP_25_PERCENT = 'TOP_25_PERCENT';
-    public const BUCKET_TOP_50_PERCENT = 'TOP_50_PERCENT';
-    public const BUCKET_BOTTOM_50_PERCENT = 'BOTTOM_50_PERCENT';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getBucketAllowableValues()
-    {
-        return [
-            self::BUCKET_TOP_1_PERCENT,
-            self::BUCKET_TOP_5_PERCENT,
-            self::BUCKET_TOP_10_PERCENT,
-            self::BUCKET_TOP_25_PERCENT,
-            self::BUCKET_TOP_50_PERCENT,
-            self::BUCKET_BOTTOM_50_PERCENT,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -284,10 +244,7 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct($data = null)
     {
-        $this->setIfExists('bucket', $data ?? [], null);
-        $this->setIfExists('percentile', $data ?? [], null);
-        $this->setIfExists('cohort_size', $data ?? [], null);
-        $this->setIfExists('as_of', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
     }
 
@@ -318,23 +275,6 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getBucketAllowableValues();
-        if (!is_null($this->container['bucket']) && !in_array($this->container['bucket'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'bucket', must be one of '%s'",
-                $this->container['bucket'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if (!is_null($this->container['percentile']) && ($this->container['percentile'] > 100)) {
-            $invalidProperties[] = "invalid value for 'percentile', must be smaller than or equal to 100.";
-        }
-
-        if (!is_null($this->container['percentile']) && ($this->container['percentile'] < 0)) {
-            $invalidProperties[] = "invalid value for 'percentile', must be bigger than or equal to 0.";
-        }
-
         return $invalidProperties;
     }
 
@@ -351,135 +291,37 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets bucket
+     * Gets amount
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getBucket()
+    public function getAmount()
     {
-        return $this->container['bucket'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets bucket
+     * Sets amount
      *
-     * @param string|null $bucket The band the user falls into. Deliberately coarse: the underlying totals are only as current as each brokerage's last sync, so an exact percentile would imply more precision than the data supports.
+     * @param float|null $amount amount
      *
      * @return self
      */
-    public function setBucket($bucket)
-    {
-        $allowedValues = $this->getBucketAllowableValues();
-        if (!is_null($bucket) && !in_array($bucket, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'bucket', must be one of '%s'",
-                    $bucket,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-
-        if (is_null($bucket)) {
-            throw new \InvalidArgumentException('non-nullable bucket cannot be null');
-        }
-
-        $this->container['bucket'] = $bucket;
-
-        return $this;
-    }
-
-    /**
-     * Gets percentile
-     *
-     * @return int|null
-     */
-    public function getPercentile()
-    {
-        return $this->container['percentile'];
-    }
-
-    /**
-     * Sets percentile
-     *
-     * @param int|null $percentile The percent of the cohort the user's assets are strictly above, 0-100. Integer by design: the distribution is stored as 101 interpolated cutoffs, so a fractional percentile would not mean anything.  Prefer `bucket` for anything you display prominently. The distribution is recomputed monthly, so a user's percentile can move a few points on its own as other users' holdings refresh, while their bucket stays put. Users tied on the same total all receive the lowest percentile that total spans.
-     *
-     * @return self
-     */
-    public function setPercentile($percentile)
+    public function setAmount($amount)
     {
 
-        if (!is_null($percentile) && ($percentile > 100)) {
-            throw new \InvalidArgumentException('invalid value for $percentile when calling UserAumPercentileResponseData., must be smaller than or equal to 100.');
-        }
-        if (!is_null($percentile) && ($percentile < 0)) {
-            throw new \InvalidArgumentException('invalid value for $percentile when calling UserAumPercentileResponseData., must be bigger than or equal to 0.');
-        }
-
-
-        if (is_null($percentile)) {
-            throw new \InvalidArgumentException('non-nullable percentile cannot be null');
-        }
-
-        $this->container['percentile'] = $percentile;
-
-        return $this;
-    }
-
-    /**
-     * Gets cohort_size
-     *
-     * @return int|null
-     */
-    public function getCohortSize()
-    {
-        return $this->container['cohort_size'];
-    }
-
-    /**
-     * Sets cohort_size
-     *
-     * @param int|null $cohort_size Number of your users the distribution was computed from.
-     *
-     * @return self
-     */
-    public function setCohortSize($cohort_size)
-    {
-
-        if (is_null($cohort_size)) {
-            throw new \InvalidArgumentException('non-nullable cohort_size cannot be null');
+        if (is_null($amount)) {
+            array_push($this->openAPINullablesSetToNull, 'amount');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('amount', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
-        $this->container['cohort_size'] = $cohort_size;
-
-        return $this;
-    }
-
-    /**
-     * Gets as_of
-     *
-     * @return \DateTime|null
-     */
-    public function getAsOf()
-    {
-        return $this->container['as_of'];
-    }
-
-    /**
-     * Sets as_of
-     *
-     * @param \DateTime|null $as_of The month whose distribution produced this placement.
-     *
-     * @return self
-     */
-    public function setAsOf($as_of)
-    {
-
-        if (is_null($as_of)) {
-            throw new \InvalidArgumentException('non-nullable as_of cannot be null');
-        }
-
-        $this->container['as_of'] = $as_of;
+        $this->container['amount'] = $amount;
 
         return $this;
     }
@@ -497,7 +339,7 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets currency
      *
-     * @param string|null $currency The currency the distribution was computed in.
+     * @param string|null $currency currency
      *
      * @return self
      */
@@ -505,7 +347,14 @@ class UserAumPercentileResponseData implements ModelInterface, ArrayAccess, \Jso
     {
 
         if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['currency'] = $currency;
