@@ -1,6 +1,6 @@
 <?php
 /**
- * LineOfCreditAccountCreditDetailsMinimumPaymentAmount
+ * LineOfCreditAccountMinimumPaymentAmount
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * LineOfCreditAccountCreditDetailsMinimumPaymentAmount Class Doc Comment
+ * LineOfCreditAccountMinimumPaymentAmount Class Doc Comment
  *
  * @category Class
- * @description The minimum payment due on the account&#39;s next statement.
+ * @description The minimum payment due on the account&#39;s next statement. Omitted when no such data is available.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class LineOfCreditAccountCreditDetailsMinimumPaymentAmount implements ModelInterface, ArrayAccess, \JsonSerializable
+class LineOfCreditAccountMinimumPaymentAmount implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class LineOfCreditAccountCreditDetailsMinimumPaymentAmount implements ModelInter
       *
       * @var string
       */
-    protected static $openAPIModelName = 'LineOfCreditAccount_credit_details_minimum_payment_amount';
+    protected static $openAPIModelName = 'LineOfCreditAccount_minimum_payment_amount';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
