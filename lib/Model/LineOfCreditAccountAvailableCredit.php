@@ -1,6 +1,6 @@
 <?php
 /**
- * AccountSyncStatus
+ * LineOfCreditAccountAvailableCredit
  *
  * PHP version 7.4
  *
@@ -27,14 +27,14 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * AccountSyncStatus Class Doc Comment
+ * LineOfCreditAccountAvailableCredit Class Doc Comment
  *
  * @category Class
- * @description Contains status update for the account sync process between SnapTrade and the brokerage.
+ * @description The remaining credit available to spend on the account (credit limit less the current balance). Omitted when no such data is available.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializable
+class LineOfCreditAccountAvailableCredit implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +43,7 @@ class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AccountSyncStatus';
+    protected static $openAPIModelName = 'LineOfCreditAccount_available_credit';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,8 +51,8 @@ class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'transactions' => '\SnapTrade\Model\TransactionsStatus',
-        'holdings' => '\SnapTrade\Model\HoldingsStatus'
+        'amount' => 'float',
+        'currency' => 'string'
     ];
 
     /**
@@ -63,8 +63,8 @@ class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'transactions' => null,
-        'holdings' => null
+        'amount' => null,
+        'currency' => null
     ];
 
     /**
@@ -73,8 +73,8 @@ class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'transactions' => false,
-		'holdings' => false
+        'amount' => true,
+		'currency' => true
     ];
 
     /**
@@ -163,8 +163,8 @@ class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'transactions' => 'transactions',
-        'holdings' => 'holdings'
+        'amount' => 'amount',
+        'currency' => 'currency'
     ];
 
     /**
@@ -173,8 +173,8 @@ class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'transactions' => 'setTransactions',
-        'holdings' => 'setHoldings'
+        'amount' => 'setAmount',
+        'currency' => 'setCurrency'
     ];
 
     /**
@@ -183,8 +183,8 @@ class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'transactions' => 'getTransactions',
-        'holdings' => 'getHoldings'
+        'amount' => 'getAmount',
+        'currency' => 'getCurrency'
     ];
 
     /**
@@ -244,8 +244,8 @@ class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct($data = null)
     {
-        $this->setIfExists('transactions', $data ?? [], null);
-        $this->setIfExists('holdings', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
     }
 
     /**
@@ -291,59 +291,73 @@ class AccountSyncStatus implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets transactions
+     * Gets amount
      *
-     * @return \SnapTrade\Model\TransactionsStatus|null
+     * @return float|null
      */
-    public function getTransactions()
+    public function getAmount()
     {
-        return $this->container['transactions'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets transactions
+     * Sets amount
      *
-     * @param \SnapTrade\Model\TransactionsStatus|null $transactions transactions
+     * @param float|null $amount amount
      *
      * @return self
      */
-    public function setTransactions($transactions)
+    public function setAmount($amount)
     {
 
-        if (is_null($transactions)) {
-            throw new \InvalidArgumentException('non-nullable transactions cannot be null');
+        if (is_null($amount)) {
+            array_push($this->openAPINullablesSetToNull, 'amount');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('amount', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
-        $this->container['transactions'] = $transactions;
+        $this->container['amount'] = $amount;
 
         return $this;
     }
 
     /**
-     * Gets holdings
+     * Gets currency
      *
-     * @return \SnapTrade\Model\HoldingsStatus|null
+     * @return string|null
      */
-    public function getHoldings()
+    public function getCurrency()
     {
-        return $this->container['holdings'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets holdings
+     * Sets currency
      *
-     * @param \SnapTrade\Model\HoldingsStatus|null $holdings holdings
+     * @param string|null $currency currency
      *
      * @return self
      */
-    public function setHoldings($holdings)
+    public function setCurrency($currency)
     {
 
-        if (is_null($holdings)) {
-            throw new \InvalidArgumentException('non-nullable holdings cannot be null');
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
-        $this->container['holdings'] = $holdings;
+        $this->container['currency'] = $currency;
 
         return $this;
     }
