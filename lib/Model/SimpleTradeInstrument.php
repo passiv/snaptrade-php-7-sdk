@@ -1,6 +1,6 @@
 <?php
 /**
- * AccountPosition
+ * SimpleTradeInstrument
  *
  * PHP version 7.4
  *
@@ -27,14 +27,13 @@ use \ArrayAccess;
 use \SnapTrade\ObjectSerializer;
 
 /**
- * AccountPosition Class Doc Comment
+ * SimpleTradeInstrument Class Doc Comment
  *
  * @category Class
- * @description Describes a single position.
  * @package  SnapTrade
  * @implements \ArrayAccess<string, mixed>
  */
-class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
+class SimpleTradeInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -43,7 +42,7 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AccountPosition';
+    protected static $openAPIModelName = 'SimpleTradeInstrument';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -51,13 +50,8 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'instrument' => '\SnapTrade\Model\Instrument',
-        'units' => 'float',
-        'price' => 'float',
-        'cost_basis' => 'float',
-        'currency' => 'string',
-        'cash_equivalent' => 'bool',
-        'tax_lots' => '\SnapTrade\Model\TaxLot[]'
+        'kind' => 'string',
+        'symbol' => 'string'
     ];
 
     /**
@@ -68,13 +62,8 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'instrument' => null,
-        'units' => 'decimal',
-        'price' => 'decimal',
-        'cost_basis' => 'decimal',
-        'currency' => null,
-        'cash_equivalent' => null,
-        'tax_lots' => null
+        'kind' => null,
+        'symbol' => null
     ];
 
     /**
@@ -83,13 +72,8 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'instrument' => false,
-		'units' => true,
-		'price' => true,
-		'cost_basis' => true,
-		'currency' => true,
-		'cash_equivalent' => false,
-		'tax_lots' => false
+        'kind' => false,
+		'symbol' => false
     ];
 
     /**
@@ -178,13 +162,8 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'instrument' => 'instrument',
-        'units' => 'units',
-        'price' => 'price',
-        'cost_basis' => 'cost_basis',
-        'currency' => 'currency',
-        'cash_equivalent' => 'cash_equivalent',
-        'tax_lots' => 'tax_lots'
+        'kind' => 'kind',
+        'symbol' => 'symbol'
     ];
 
     /**
@@ -193,13 +172,8 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'instrument' => 'setInstrument',
-        'units' => 'setUnits',
-        'price' => 'setPrice',
-        'cost_basis' => 'setCostBasis',
-        'currency' => 'setCurrency',
-        'cash_equivalent' => 'setCashEquivalent',
-        'tax_lots' => 'setTaxLots'
+        'kind' => 'setKind',
+        'symbol' => 'setSymbol'
     ];
 
     /**
@@ -208,13 +182,8 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'instrument' => 'getInstrument',
-        'units' => 'getUnits',
-        'price' => 'getPrice',
-        'cost_basis' => 'getCostBasis',
-        'currency' => 'getCurrency',
-        'cash_equivalent' => 'getCashEquivalent',
-        'tax_lots' => 'getTaxLots'
+        'kind' => 'getKind',
+        'symbol' => 'getSymbol'
     ];
 
     /**
@@ -258,6 +227,25 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const KIND_EQUITY = 'equity';
+    public const KIND_OPTION = 'option';
+    public const KIND_FUTURE = 'future';
+    public const KIND_FUTURE_OPTION = 'future_option';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getKindAllowableValues()
+    {
+        return [
+            self::KIND_EQUITY,
+            self::KIND_OPTION,
+            self::KIND_FUTURE,
+            self::KIND_FUTURE_OPTION,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -274,13 +262,8 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct($data = null)
     {
-        $this->setIfExists('instrument', $data ?? [], null);
-        $this->setIfExists('units', $data ?? [], null);
-        $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('cost_basis', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('cash_equivalent', $data ?? [], null);
-        $this->setIfExists('tax_lots', $data ?? [], null);
+        $this->setIfExists('kind', $data ?? [], null);
+        $this->setIfExists('symbol', $data ?? [], null);
     }
 
     /**
@@ -310,9 +293,25 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['instrument'] === null) {
-            $invalidProperties[] = "'instrument' can't be null";
+        if ($this->container['kind'] === null) {
+            $invalidProperties[] = "'kind' can't be null";
         }
+        $allowedValues = $this->getKindAllowableValues();
+        if (!is_null($this->container['kind']) && !in_array($this->container['kind'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'kind', must be one of '%s'",
+                $this->container['kind'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['symbol'] === null) {
+            $invalidProperties[] = "'symbol' can't be null";
+        }
+        if ((mb_strlen($this->container['symbol']) < 1)) {
+            $invalidProperties[] = "invalid value for 'symbol', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -329,232 +328,74 @@ class AccountPosition implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets instrument
+     * Gets kind
      *
-     * @return \SnapTrade\Model\Instrument
+     * @return string
      */
-    public function getInstrument()
+    public function getKind()
     {
-        return $this->container['instrument'];
+        return $this->container['kind'];
     }
 
     /**
-     * Sets instrument
+     * Sets kind
      *
-     * @param \SnapTrade\Model\Instrument $instrument instrument
+     * @param string $kind kind
      *
      * @return self
      */
-    public function setInstrument($instrument)
+    public function setKind($kind)
     {
-
-        if (is_null($instrument)) {
-            throw new \InvalidArgumentException('non-nullable instrument cannot be null');
+        $allowedValues = $this->getKindAllowableValues();
+        if (!in_array($kind, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'kind', must be one of '%s'",
+                    $kind,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
 
-        $this->container['instrument'] = $instrument;
+        if (is_null($kind)) {
+            throw new \InvalidArgumentException('non-nullable kind cannot be null');
+        }
+
+        $this->container['kind'] = $kind;
 
         return $this;
     }
 
     /**
-     * Gets units
+     * Gets symbol
      *
-     * @return float|null
+     * @return string
      */
-    public function getUnits()
+    public function getSymbol()
     {
-        return $this->container['units'];
+        return $this->container['symbol'];
     }
 
     /**
-     * Sets units
+     * Sets symbol
      *
-     * @param float|null $units The number of units held in the position. Positive numbers indicate long positions and negative numbers indicate short positions.
+     * @param string $symbol Equity ticker, OCC equity-option symbol, or exact tastytrade BrokerageInstrument ticker for a future or future option. Future tickers begin with `/`; future-option tickers begin with `./`. Preserve spaces and punctuation. Universal symbol IDs are not accepted.
      *
      * @return self
      */
-    public function setUnits($units)
+    public function setSymbol($symbol)
     {
 
-        if (is_null($units)) {
-            array_push($this->openAPINullablesSetToNull, 'units');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('units', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if ((mb_strlen($symbol) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $symbol when calling SimpleTradeInstrument., must be bigger than or equal to 1.');
         }
 
-        $this->container['units'] = $units;
 
-        return $this;
-    }
-
-    /**
-     * Gets price
-     *
-     * @return float|null
-     */
-    public function getPrice()
-    {
-        return $this->container['price'];
-    }
-
-    /**
-     * Sets price
-     *
-     * @param float|null $price Last known market price _per share_. The freshness of this price depends on the brokerage. Some brokerages provide real-time prices, while others provide delayed prices. It is recommended that you rely on your own third-party market data provider for most up to date prices.
-     *
-     * @return self
-     */
-    public function setPrice($price)
-    {
-
-        if (is_null($price)) {
-            array_push($this->openAPINullablesSetToNull, 'price');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($symbol)) {
+            throw new \InvalidArgumentException('non-nullable symbol cannot be null');
         }
 
-        $this->container['price'] = $price;
-
-        return $this;
-    }
-
-    /**
-     * Gets cost_basis
-     *
-     * @return float|null
-     */
-    public function getCostBasis()
-    {
-        return $this->container['cost_basis'];
-    }
-
-    /**
-     * Sets cost_basis
-     *
-     * @param float|null $cost_basis Book price or average purchase price for the position. For options, this is per-share.
-     *
-     * @return self
-     */
-    public function setCostBasis($cost_basis)
-    {
-
-        if (is_null($cost_basis)) {
-            array_push($this->openAPINullablesSetToNull, 'cost_basis');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cost_basis', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['cost_basis'] = $cost_basis;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
-     *
-     * @return string|null
-     */
-    public function getCurrency()
-    {
-        return $this->container['currency'];
-    }
-
-    /**
-     * Sets currency
-     *
-     * @param string|null $currency ISO-4217 currency code for the position `price` and `cost_basis`.
-     *
-     * @return self
-     */
-    public function setCurrency($currency)
-    {
-
-        if (is_null($currency)) {
-            array_push($this->openAPINullablesSetToNull, 'currency');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets cash_equivalent
-     *
-     * @return bool|null
-     */
-    public function getCashEquivalent()
-    {
-        return $this->container['cash_equivalent'];
-    }
-
-    /**
-     * Sets cash_equivalent
-     *
-     * @param bool|null $cash_equivalent Present for mutual fund positions and for other instrument kinds when true. A true value means the position is also counted in cash balance or buying power.
-     *
-     * @return self
-     */
-    public function setCashEquivalent($cash_equivalent)
-    {
-
-        if (is_null($cash_equivalent)) {
-            throw new \InvalidArgumentException('non-nullable cash_equivalent cannot be null');
-        }
-
-        $this->container['cash_equivalent'] = $cash_equivalent;
-
-        return $this;
-    }
-
-    /**
-     * Gets tax_lots
-     *
-     * @return \SnapTrade\Model\TaxLot[]|null
-     */
-    public function getTaxLots()
-    {
-        return $this->container['tax_lots'];
-    }
-
-    /**
-     * Sets tax_lots
-     *
-     * @param \SnapTrade\Model\TaxLot[]|null $tax_lots List of tax lots for the given position. Disabled by default; enable via the Customer Dashboard Add-ons page. When enabled, this field is included only for stocks, ADRs, ETFs, mutual funds, and crypto positions. For these positions, an empty list means no tax lot data is available. Availability varies by brokerage and position. This field is omitted for all other instrument kinds or when the feature is disabled.
-     *
-     * @return self
-     */
-    public function setTaxLots($tax_lots)
-    {
-
-        if (is_null($tax_lots)) {
-            throw new \InvalidArgumentException('non-nullable tax_lots cannot be null');
-        }
-
-        $this->container['tax_lots'] = $tax_lots;
+        $this->container['symbol'] = $symbol;
 
         return $this;
     }
